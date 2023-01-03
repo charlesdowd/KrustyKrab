@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layouts';
+import Layout from './components/Layout';
 import Public from './components/Public';
 import Login from './components/Login';
 import { useGetUserQuery } from './store/slices/base/templateApi';
