@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Public from './components/Public';
-import Login from './components/Login';
 import { useGetUserQuery } from './store/slices/base/templateApi';
+import Layout from './components/Layout/Layout';
+import Public from './components/Public/Public';
+import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
 
 const App: FunctionComponent = () => {
   const { data: userData } = useGetUserQuery();
@@ -13,6 +14,7 @@ const App: FunctionComponent = () => {
       <Route path='/' element={<Layout />}>
         <Route index element={<Public />} />
         <Route path='login' element={<Login />} />
+        <Route path='signup' element={<SignUp />} />
       </Route>
     </Routes>
   );

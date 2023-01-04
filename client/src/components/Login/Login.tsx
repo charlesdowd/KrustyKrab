@@ -1,10 +1,10 @@
-import { Container } from 'react-bootstrap';
+import { Root } from './Login.styled';
 
 const Login = () => {
   return (
-    <Container>
+    <Root>
       <h1>Login Page</h1>
-    </Container>
+    </Root>
   );
 };
 
