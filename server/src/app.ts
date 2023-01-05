@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import api from './api';
-import * as middlewares from './middlewares';
+import * as middlewares from './middleware/middlewares';
 import MessageResponse from './interfaces/MessageResponse';
 
 dotenv.config();
