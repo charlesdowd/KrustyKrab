@@ -1,16 +1,17 @@
 import { Router } from 'express';
 import loginLimiter from '../../middleware/loginLimiter';
-import UserController from '../../controllers/user.controller';
+import AuthController from '../../controllers/auth.controller';
+import { tryCatch } from '../../services/util';
 
 const router = Router();
 
 // Login User
-router.post('/', loginLimiter, UserController.getUser);
+router.post('/', loginLimiter, tryCatch(AuthController.login));
 
 // Refresh Token
-router.route('/refresh').get(UserController.getUsers);
+router.get('/refresh', tryCatch(AuthController.refresh));
 
 // Logout User
-router.route('/logout').post(UserController.createUser);
+router.post('/logout', AuthController.logout);
 
 export default router;

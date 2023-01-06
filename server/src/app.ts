@@ -3,9 +3,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import errors from 'common-errors';
 
 import api from './api';
-import * as middlewares from './middleware/middlewares';
+import * as middlewares from './middleware/notFound';
 import MessageResponse from './interfaces/MessageResponse';
 
 dotenv.config();
@@ -28,6 +29,6 @@ app.get<{}, MessageResponse>('/', (req, res) => {
 // The order of these matter, consider refactoring middleware
 app.use('/api/v1', api);
 app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
+app.use(errors.middleware.errorHandler); // Error handler from common-errors lib
 
 export default app;
