@@ -9,13 +9,8 @@ import TodoService from '../services/todo';
  * @returns { ITodo[] } all todos
  */
 async function getTodos(req: Request, res: Response<ITodo[]>) {
-  try {
-    const todos = await TodoService.getTodos();
-    return res.status(200).json(todos);
-  } catch (error) {
-    console.log(error);
-    return res.status(500);
-  }
+  const todos = await TodoService.getTodos();
+  return res.status(200).json(todos);
 }
 
 export default {

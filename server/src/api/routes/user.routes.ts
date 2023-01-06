@@ -1,12 +1,17 @@
 import { Router } from 'express';
 import UserController from '../../controllers/user.controller';
+import verifyJWT from '../../middleware/verifyJWT';
+import { tryCatch } from '../../services/util';
 
 const router = Router();
 
-router.get('/', UserController.getUsers);
+// Use auth middleware for this router
+router.use(verifyJWT);
 
-router.post('/', UserController.createUser);
+router.get('/', tryCatch, UserController.getUsers);
 
-router.get('/:userId', UserController.getUser);
+router.post('/', tryCatch, UserController.createUser);
+
+router.get('/:userId', tryCatch, UserController.getUser);
 
 export default router;

@@ -12,6 +12,6 @@ router.post('/', loginLimiter, tryCatch(AuthController.login));
 router.get('/refresh', tryCatch(AuthController.refresh));
 
 // Logout User
-router.post('/logout', AuthController.logout);
+router.post('/logout', tryCatch, AuthController.logout);
 
 export default router;
