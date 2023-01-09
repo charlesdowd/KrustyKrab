@@ -1,10 +1,7 @@
-import jwt from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { HttpStatusError, Error } from 'common-errors';
+import { HttpStatusError } from 'common-errors';
 import { User, IUser } from '../../models';
-
-// Set default value so there are no type errors
-const { ACCESS_TOKEN_SECRET = '', REFRESH_TOKEN_SECRET = '' } = process.env;
 
 // This just creates the users access + refresh tokens, nothing more
 export async function login(username: string, password: string) {
@@ -20,7 +17,7 @@ export async function login(username: string, password: string) {
   }
 
   // Check to see if password matches
-  const match = bcrypt.compare(password, foundUser.password);
+  const match = await bcrypt.compare(password, foundUser.password);
   if (!match) {
     throw new HttpStatusError(401, 'Incorrect password');
   }
@@ -28,14 +25,18 @@ export async function login(username: string, password: string) {
   // Create access token
   const accessToken = jwt.sign(
     { UserInfo: { username } },
-    ACCESS_TOKEN_SECRET,
+    process.env.ACCESS_TOKEN_SECRET as Secret,
     { expiresIn: 10 },
   );
 
   // Create refresh token
-  const refreshToken = jwt.sign({ username }, REFRESH_TOKEN_SECRET, {
-    expiresIn: '1d',
-  });
+  const refreshToken = jwt.sign(
+    { username },
+    process.env.REFRESH_TOKEN_SECRET as Secret,
+    {
+      expiresIn: '1d',
+    },
+  );
 
   return { refreshToken, accessToken };
 }

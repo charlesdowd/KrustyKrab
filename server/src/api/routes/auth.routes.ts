@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import loginLimiter from '../../middleware/loginLimiter';
 import AuthController from '../../controllers/auth.controller';
-import { tryCatch } from '../../services/util';
+import { tryCatch } from '../../middleware/tryCatch';
 
 const router = Router();
 
@@ -12,6 +12,6 @@ router.post('/', loginLimiter, tryCatch(AuthController.login));
 router.get('/refresh', tryCatch(AuthController.refresh));
 
 // Logout User
-router.post('/logout', tryCatch, AuthController.logout);
+router.post('/logout', tryCatch(AuthController.logout));
 
 export default router;

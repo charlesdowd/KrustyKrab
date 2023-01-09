@@ -6,6 +6,8 @@ export const tryCatch =
     try {
       await controller(req, res);
     } catch (error) {
+      // Log the error here for the server, then pass to the middleware
+      console.log(error);
       return next(error);
     }
   };

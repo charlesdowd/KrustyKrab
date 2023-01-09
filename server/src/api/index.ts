@@ -14,8 +14,8 @@ router.get<{}, MessageResponse>('/', (req, res) => {
   });
 });
 
+router.use('/auth', auth);
 router.use('/todo', todos);
 router.use('/user', users);
-router.use('/auth', auth);
 
 export default router;

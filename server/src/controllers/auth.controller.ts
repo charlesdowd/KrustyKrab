@@ -35,7 +35,7 @@ async function login(req: Request, res: Response) {
 async function refresh(req: Request, res: Response) {
   const { cookies } = req;
 
-  if (!cookies.jwt) return res.status(401).json({ message: 'Unauthorized' });
+  if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' });
   const refreshToken = cookies.jwt; // grab refresh token from the cookie
 
   const { accessToken } = await AuthService.refresh(refreshToken);
@@ -55,7 +55,7 @@ async function logout(req: Request, res: Response) {
   // Clear jwt cookie
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'none', secure: true });
 
-  res.json({ message: 'Cookie Cleared' }); // Might need to do more here.. TODO
+  return res.json({ message: 'Cookie Cleared' });
 }
 
 export default { login, refresh, logout };

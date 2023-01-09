@@ -1,5 +1,5 @@
-import { getTodos } from './getTodos';
+import { getAllTodos } from './getAllTodos';
 
 export default {
-  getTodos,
+  getAllTodos,
 };

@@ -10,6 +10,7 @@ import UserService from '../services/user';
  */
 async function getUsers(req: Request, res: Response<IUser[]>) {
   const users = await UserService.getUsers();
+
   return res.status(200).json(users);
 }
 
@@ -17,7 +18,7 @@ async function getUsers(req: Request, res: Response<IUser[]>) {
  *
  * @param req
  * @param res
- * @returns
+ * @returns { IUser } the queried user
  */
 async function getUser(req: Request, res: Response<IUser>) {
   const { userId } = req.params;
@@ -30,11 +31,13 @@ async function getUser(req: Request, res: Response<IUser>) {
  *
  * @param req
  * @param res
- * @returns successfull 204 status
+ * @returns { string } successfull 204 status and message
  */
 async function createUser(req: Request<IUser>, res: Response) {
-  await UserService.createUser(req.body);
-  return res.status(204).json({ message: 'User successfully created' });
+  const { username, password, email, firstname } = req.body;
+  await UserService.createNewUser(username, password, email, firstname);
+
+  return res.status(200).json({ message: 'User successfully created' });
 }
 
 export default {

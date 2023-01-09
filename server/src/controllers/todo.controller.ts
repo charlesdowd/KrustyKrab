@@ -8,11 +8,11 @@ import TodoService from '../services/todo';
  * @param res
  * @returns { ITodo[] } all todos
  */
-async function getTodos(req: Request, res: Response<ITodo[]>) {
-  const todos = await TodoService.getTodos();
+async function getAllTodos(req: Request, res: Response<ITodo[]>) {
+  const todos = await TodoService.getAllTodos();
   return res.status(200).json(todos);
 }
 
 export default {
-  getTodos,
+  getAllTodos,
 };
