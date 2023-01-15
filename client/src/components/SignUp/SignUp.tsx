@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
 
+// Validation object for new sign ups
 const signupSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
   username: Yup.string()
@@ -31,7 +32,7 @@ const SignUp = () => {
 
       <Formik
         validationSchema={signupSchema}
-        onSubmit={console.log}
+        onSubmit={console.log} // TODO: replace with RTK signup
         initialValues={{
           username: '',
           email: '',

@@ -18,5 +18,5 @@ export const SignUpForm = styled(Form)`
 `;
 
 export const InputGroup = styled(Form.Group)`
-  min-width: 400px;
+  width: 400px;
 `;
