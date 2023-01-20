@@ -22,9 +22,9 @@ export async function login(username: string, password: string) {
     throw new HttpStatusError(401, 'Incorrect password');
   }
 
-  // Create access token
+  // Create access token with user object
   const accessToken = jwt.sign(
-    { UserInfo: { username } },
+    { user: foundUser },
     process.env.ACCESS_TOKEN_SECRET as Secret,
     { expiresIn: 10 },
   );
@@ -34,7 +34,7 @@ export async function login(username: string, password: string) {
     { username },
     process.env.REFRESH_TOKEN_SECRET as Secret,
     {
-      expiresIn: '1d',
+      expiresIn: '5d',
     },
   );
 

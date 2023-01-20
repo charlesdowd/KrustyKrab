@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
+import { IUser } from '../models';
 
 const { ACCESS_TOKEN_SECRET = '' } = process.env;
 
@@ -16,9 +17,11 @@ const verifyJWT = (req: any, res: Response, next: NextFunction) => {
   const token = authHeader.split(' ')[1];
   // Cast the type of the decoded info
   const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET) as {
-    UserInfo: { username: string };
+    user: IUser;
   };
-  req.user = decoded.UserInfo.username;
+
+  // Attach user to request
+  req.user = decoded.user;
 
   // continue
   next();
