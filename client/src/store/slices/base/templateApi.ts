@@ -17,7 +17,7 @@ const enhancedApi = api.enhanceEndpoints({
     getUser: {
       providesTags: [tags.user],
     },
-    postUser: {
+    createUser: {
       invalidatesTags: [tags.user],
     },
   },
@@ -43,5 +43,10 @@ export const templateApi = enhancedApi.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetUserQuery, useGetUserByUserIdQuery, usePostUserMutation } =
-  templateApi;
+export const {
+  useGetUserQuery,
+  useGetUsersQuery,
+
+  useLoginMutation,
+  useCreateUserMutation,
+} = templateApi;

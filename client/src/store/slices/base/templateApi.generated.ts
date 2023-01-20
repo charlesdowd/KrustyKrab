@@ -1,26 +1,37 @@
 import { templateApi as api } from './templateApi.base';
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getUserByUserId: build.query<GetUserByUserIdApiResponse, GetUserByUserIdApiArg>({
+    getUser: build.query<GetUserApiResponse, GetUserApiArg>({
       query: (queryArg) => ({ url: `/user/${queryArg.userId}` }),
     }),
-    postUser: build.mutation<PostUserApiResponse, PostUserApiArg>({
-      query: (queryArg) => ({ url: `/user`, method: 'POST', body: queryArg.body }),
+    createUser: build.mutation<CreateUserApiResponse, CreateUserApiArg>({
+      query: (queryArg) => ({
+        url: `/user`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
     }),
-    getUser: build.query<GetUserApiResponse, GetUserApiArg>({
+    getUsers: build.query<GetUsersApiResponse, GetUsersApiArg>({
       query: () => ({ url: `/user` }),
+    }),
+    login: build.mutation<LoginApiResponse, LoginApiArg>({
+      query: (queryArg) => ({
+        url: `/auth`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
     }),
   }),
   overrideExisting: false,
 });
 export { injectedRtkApi as templateApi };
-export type GetUserByUserIdApiResponse = /** status 200 User Found */ User;
-export type GetUserByUserIdApiArg = {
+export type GetUserApiResponse = /** status 200 User Found */ User;
+export type GetUserApiArg = {
   /** Id of an existing user. */
   userId: number;
 };
-export type PostUserApiResponse = /** status 200 User Created */ User;
-export type PostUserApiArg = {
+export type CreateUserApiResponse = /** status 200 User Created */ User;
+export type CreateUserApiArg = {
   /** Post the necessary fields for the API to create a new user. */
   body: {
     firstName: string;
@@ -29,8 +40,14 @@ export type PostUserApiArg = {
     username: string;
   };
 };
-export type GetUserApiResponse = unknown;
-export type GetUserApiArg = void;
+export type GetUsersApiResponse = /** status 200 OK */ User[];
+export type GetUsersApiArg = void;
+export type LoginApiResponse = /** status 200 OK */ {
+  accessToken?: string;
+};
+export type LoginApiArg = {
+  body: {};
+};
 export type User = {
   username: string;
   email: string;
