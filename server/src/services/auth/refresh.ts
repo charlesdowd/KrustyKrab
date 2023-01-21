@@ -11,7 +11,7 @@ export async function refresh(refreshToken: string) {
 
     // Look for user from decoded refresh token
     const foundUser: IUser | null = await User.findOne({
-      username: decoded.username,
+      email: decoded?.user?.email,
     });
 
     // User not authorized
@@ -20,14 +20,15 @@ export async function refresh(refreshToken: string) {
     // Create and return new access token
     const accessToken = jwt.sign(
       {
-        UserInfo: foundUser.username,
+        user: foundUser,
       },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: '10s' },
+      { expiresIn: '1000s' },
     );
 
     return { accessToken };
   } catch (error) {
+    console.log(error);
     // Server error if something breaks in try/catch
     throw new Error('Internal Server Error');
   }

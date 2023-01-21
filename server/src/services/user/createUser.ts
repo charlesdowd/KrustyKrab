@@ -3,13 +3,11 @@ import { HttpStatusError } from 'common-errors';
 import { IUser, User } from '../../models';
 
 export async function createNewUser(
-  username: string,
-  password: string,
   email: string,
-  firstName: string,
+  password: string,
 ): Promise<void> {
   // Check if all required fields are present
-  if (!username || !password || !email || !firstName) {
+  if (!email || !password) {
     throw new HttpStatusError(400, 'All fields are required');
   }
   // Check if email already exists
@@ -20,10 +18,9 @@ export async function createNewUser(
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const userObject: IUser = {
-    username,
-    password: hashedPassword,
     email,
-    firstName,
+    emailVerified: true,
+    password: hashedPassword,
   };
 
   const user = await User.create(userObject);

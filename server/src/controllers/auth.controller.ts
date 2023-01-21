@@ -7,11 +7,11 @@ import AuthService from '../services/auth';
  * @access Public
  */
 async function login(req: Request, res: Response) {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // Get access + refresh tokens for user
   const { refreshToken, accessToken } = await AuthService.login(
-    username,
+    email,
     password,
   );
 
@@ -50,7 +50,8 @@ async function refresh(req: Request, res: Response) {
  */
 async function logout(req: Request, res: Response) {
   const { cookies } = req;
-  if (!cookies.jwt) return res.sendStatus(204); // No content
+
+  if (!cookies?.jwt) return res.sendStatus(204); // No content
 
   // Clear jwt cookie
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'none', secure: true });
