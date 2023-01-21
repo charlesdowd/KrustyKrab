@@ -25,36 +25,41 @@ const injectedRtkApi = api.injectEndpoints({
   overrideExisting: false,
 });
 export { injectedRtkApi as templateApi };
-export type GetUserApiResponse = /** status 200 User Found */ User;
+export type GetUserApiResponse = /** status 200 User Found */ {
+  user?: User;
+};
 export type GetUserApiArg = {
   /** Id of an existing user. */
   userId: number;
 };
-export type CreateUserApiResponse = /** status 200 User Created */ User;
+export type CreateUserApiResponse = /** status 200 User Created */ {
+  user: User;
+};
 export type CreateUserApiArg = {
   /** Post the necessary fields for the API to create a new user. */
   body: {
-    firstName: string;
     email: string;
     password: string;
-    username: string;
   };
 };
-export type GetUsersApiResponse = /** status 200 OK */ User[];
+export type GetUsersApiResponse = /** status 200 OK */ {
+  users?: User[];
+};
 export type GetUsersApiArg = void;
 export type LoginApiResponse = /** status 200 OK */ {
-  accessToken?: string;
+  accessToken: string;
 };
 export type LoginApiArg = {
-  body: {};
+  body: {
+    email: string;
+    password: string;
+  };
 };
 export type User = {
-  username: string;
   email: string;
-  firstName: string;
-  password: string;
+  password?: string;
   _id: string;
   createdAt: string;
   updatedAt: string;
-  lastName?: string;
+  emailVerified: boolean;
 };

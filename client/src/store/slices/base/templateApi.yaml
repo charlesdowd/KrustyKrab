@@ -24,7 +24,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
               examples: {}
         '404':
           description: User Not Found
@@ -40,7 +43,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                required:
+                  - user
               examples: {}
         '400':
           description: Missing Required Information
@@ -52,20 +60,18 @@ paths:
             schema:
               type: object
               properties:
-                firstName:
-                  type: string
                 email:
                   type: string
                 password:
                   type: string
-                username:
-                  type: string
               required:
-                - firstName
                 - email
                 - password
-                - username
-            examples: {}
+            examples:
+              Example 1:
+                value:
+                  email: user@email.com
+                  password: user_password
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
     get:
@@ -77,9 +83,12 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
       description: Gets all users
   /auth:
     post:
@@ -95,13 +104,22 @@ paths:
                 properties:
                   accessToken:
                     type: string
+                required:
+                  - accessToken
       description: Login
       requestBody:
         content:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
 components:
   schemas:
     User:
@@ -121,13 +139,9 @@ components:
           __v: 0
       title: User
       properties:
-        username:
-          type: string
         email:
           type: string
           format: email
-        firstName:
-          type: string
         password:
           type: string
         _id:
@@ -138,16 +152,22 @@ components:
         updatedAt:
           type: string
           format: date-time
-        lastName:
-          type: string
+        emailVerified:
+          type: boolean
       required:
-        - username
         - email
-        - firstName
-        - password
         - _id
         - createdAt
         - updatedAt
+        - emailVerified
+      description: ''
+      examples:
+        - email: user@example.com
+          password: string
+          _id: string
+          createdAt: '2019-08-24T14:15:22Z'
+          updatedAt: '2019-08-24T14:15:22Z'
+          emailVerified: true
     Todo:
       title: Todo
       x-stoplight:
