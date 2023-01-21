@@ -5,13 +5,13 @@ const NavBar = () => {
   return (
     <NavRoot>
       <NavHome to='/'>
-        <Button>Home </Button>
+        <Button>Home</Button>
       </NavHome>
       <NavItem to='/login'>
-        <Button>Login </Button>
+        <Button>Login</Button>
       </NavItem>
       <NavItem to='/signup'>
-        <Button>Sign Up </Button>
+        <Button>Sign Up</Button>
       </NavItem>
     </NavRoot>
   );
