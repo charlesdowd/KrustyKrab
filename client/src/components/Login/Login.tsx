@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from './Login.styled';
 
+import { useLoginMutation } from '../../store/slices/base/templateApi';
+
 // Validation object for logging in
 const loginSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -16,13 +18,18 @@ const loginSchema = Yup.object({
 });
 
 const Login = () => {
+  const [login, { isSuccess, isLoading, isError }] = useLoginMutation();
+
   return (
     <Root>
       <h1 className='mb-4'>Log In Page</h1>
 
       <Formik
         validationSchema={loginSchema}
-        onSubmit={console.log} // TODO: replace with RTK signup
+        onSubmit={async (values) => {
+          const { email, password } = values;
+          login({ body: { email, password } });
+        }}
         initialValues={{
           email: '',
           password: '',

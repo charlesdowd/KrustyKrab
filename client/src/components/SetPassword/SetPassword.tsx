@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
-import { LoginForm, Root, InputGroup } from '../Login/Login.styled';
+import { LoginForm, Root, InputGroup } from '../Login/Login.styled'; // TODO: Make these non login specific styled components
 
 const setPasswordSchema = Yup.object({
   password: Yup.string()
