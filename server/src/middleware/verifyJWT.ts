@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
+import { HttpStatusError } from 'common-errors';
 import { IUser } from '../models';
 
 const { ACCESS_TOKEN_SECRET = '' } = process.env;
@@ -10,7 +11,7 @@ const verifyJWT = (req: any, res: Response, next: NextFunction) => {
 
   // If auth header is some weird value or does not start correctly, fail here
   if (typeof authHeader !== 'string' || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    throw new HttpStatusError(400, 'Unauthorized');
   }
 
   // Decode username from jwt and attach to request

@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import errors from 'common-errors';
 
 import api from './api';
@@ -17,7 +18,15 @@ console.log('ENVIRONMENT: ', process.env.NODE_ENV);
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors());
+
+// https://stackoverflow.com/questions/63351799/react-fetch-credentials-include-breaks-my-entire-request-and-i-get-an-error
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // (Whatever your frontend url is)
+    credentials: true, // <= Accept credentials (cookies) sent by the client
+  }),
+);
+app.use(cookieParser());
 app.use(express.json());
 
 app.get<{}, MessageResponse>('/', (req, res) => {
