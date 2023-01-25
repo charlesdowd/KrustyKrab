@@ -35,9 +35,11 @@ async function login(req: Request, res: Response) {
 async function refresh(req: Request, res: Response) {
   const { cookies } = req;
 
+  // Return 401 if refresh cookie does not exist
   if (!cookies?.refresh_jwt)
     return res.status(401).json({ message: 'Unauthorized' });
-  const refreshToken = cookies.jwt; // grab refresh token from the cookie
+
+  const refreshToken = cookies.refresh_jwt; // grab refresh token from the cookie
 
   const { accessToken } = await AuthService.refresh(refreshToken);
 

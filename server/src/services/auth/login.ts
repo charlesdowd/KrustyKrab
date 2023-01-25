@@ -35,7 +35,7 @@ export async function login(email: string, password: string) {
   const accessToken = jwt.sign(
     { user: foundUser },
     process.env.ACCESS_TOKEN_SECRET as Secret,
-    { expiresIn: 30 }, // 30 seconds for now as I test
+    { expiresIn: '1h' }, // 1h until refresh is used to make new access token
   );
 
   // Create refresh token
@@ -43,7 +43,7 @@ export async function login(email: string, password: string) {
     { user: foundUser },
     process.env.REFRESH_TOKEN_SECRET as Secret,
     {
-      expiresIn: '5d',
+      expiresIn: '5d', // Require user to login and get new refresh token every 5 days
     },
   );
 

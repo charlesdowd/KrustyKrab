@@ -1,13 +1,14 @@
-import jwt from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import { IUser, User } from '../../models';
 import { HttpError } from '../../util/Errors';
-
-const { REFRESH_TOKEN_SECRET = '', ACCESS_TOKEN_SECRET = '' } = process.env;
 
 export async function refresh(refreshToken: string) {
   try {
     // Cast decoded object to any - not the best practice
-    const decoded: any = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
+    const decoded: any = jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET as Secret,
+    );
 
     // Look for user from decoded refresh token
     const foundUser: IUser | null = await User.findOne({
@@ -26,7 +27,7 @@ export async function refresh(refreshToken: string) {
       {
         user: foundUser,
       },
-      ACCESS_TOKEN_SECRET,
+      process.env.ACCESS_TOKEN_SECRET as Secret,
       { expiresIn: '1000s' },
     );
 

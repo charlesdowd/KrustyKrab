@@ -1,6 +1,6 @@
-import jwt, { Secret } from 'jsonwebtoken';
+import jwt, { Secret, TokenExpiredError } from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
-import { IUser } from '../models';
+import { HttpError } from '../util/Errors';
 
 const verifyJWT = (req: any, res: Response, next: NextFunction) => {
   // Look for auth headers in upper or lower case - not always necessary
@@ -13,21 +13,27 @@ const verifyJWT = (req: any, res: Response, next: NextFunction) => {
 
   try {
     // Decode username from jwt and attach to request
-    const token = authHeader.split(' ')[1];
+    const accessToken = authHeader.split(' ')[1];
 
-    // Cast the type of the decoded info to IUser
-    const decoded = jwt.verify(
-      token,
+    const decoded: any = jwt.verify(
+      accessToken,
       process.env.ACCESS_TOKEN_SECRET as Secret,
-    ) as {
-      user: IUser;
-    };
+    );
 
-    // Attach user to request
+    // Attach user to request in case we need it
     req.user = decoded.user;
   } catch (error) {
-    console.log(error); // Log error for server
-    return res.status(403).send({ message: 'Forbidden' });
+    // Throw different error if the jwt is expired
+    if (error instanceof jwt.TokenExpiredError) {
+      throw new HttpError('JWT token expired', {
+        status: 403,
+        friendlyMessage: 'Expired credentials',
+      });
+    }
+    throw new HttpError('Error while decoding JWT', {
+      status: 403,
+      friendlyMessage: 'Error authenticating credentials',
+    });
   }
 
   // continue
