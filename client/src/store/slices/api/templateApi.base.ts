@@ -2,12 +2,11 @@ import { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {
   createApi,
   fetchBaseQuery,
-  BaseQueryFn,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../..';
-import { logOut } from '../authSlice';
+import { setCredentials } from '../authSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_BASE_URL,
@@ -22,13 +21,33 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
+// The typing here is not the best but it works
 async function baseQueryWithReauth(
   args: any,
   api: any,
   extraOptions: any,
 ): Promise<QueryReturnValue<unknown, FetchBaseQueryError, FetchBaseQueryMeta>> {
-  const result = await baseQuery(args, api, extraOptions);
-  console.log('RESULT FROM BASE QUERY: ', result);
+  let result = await baseQuery(args, api, extraOptions);
+
+  // If error decoding auth credentials, try and use refresh token
+  if (result?.error?.status === 403) {
+    console.log('Sending refresh token');
+
+    const refreshResult = await baseQuery('/auth/refresh', api, extraOptions);
+
+    // If refresh token works set new access token and retry original request
+    if (refreshResult?.data) {
+      // Store the new access token
+      api.dispatch(setCredentials(refreshResult.data));
+
+      // Retry original request with new access token
+      result = await baseQuery(args, api, extraOptions);
+      console.log('Refresh token used successfully');
+    } else {
+      // TODO: (optional) handle 403 expired refresh differently than other errors
+      return refreshResult;
+    }
+  }
   return result;
 }
 

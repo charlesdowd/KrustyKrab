@@ -26,7 +26,7 @@ const Login = () => {
     useLoginMutation();
 
   useEffect(() => {
-    console.log('LOG IN DATA: ', loginData?.accessToken);
+    // Set state.auth.accessToken to token received from login mutation
     dispatch(setCredentials({ ...loginData }));
   }, [isSuccess]);
 
