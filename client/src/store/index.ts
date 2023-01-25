@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { templateApi } from './slices/base/templateApi.base';
+import { templateApi } from './slices/api/templateApi.base';
+import authReducer from './slices/authSlice';
 
 const store = configureStore({
   reducer: {
     [templateApi.reducerPath]: templateApi.reducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(templateApi.middleware),

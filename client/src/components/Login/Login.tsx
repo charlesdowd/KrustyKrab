@@ -1,10 +1,13 @@
 import * as Yup from 'yup';
+import { useEffect } from 'react';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from './Login.styled';
 
-import { useLoginMutation } from '../../store/slices/base/templateApi';
+import { useLoginMutation } from '../../store/slices/api/templateApi';
+import { useAppDispatch } from '../../store/hooks';
+import { setCredentials } from '../../store/slices/authSlice';
 
 // Validation object for logging in
 const loginSchema = Yup.object({
@@ -18,7 +21,14 @@ const loginSchema = Yup.object({
 });
 
 const Login = () => {
-  const [login, { isSuccess, isLoading, isError }] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const [login, { data: loginData, isSuccess, isLoading, isError }] =
+    useLoginMutation();
+
+  useEffect(() => {
+    console.log('LOG IN DATA: ', loginData?.accessToken);
+    dispatch(setCredentials({ ...loginData }));
+  }, [isSuccess]);
 
   return (
     <Root>

@@ -16,7 +16,7 @@ async function login(req: Request, res: Response) {
   );
 
   // Set secure cookie named 'jwt' with refresh token
-  res.cookie('jwt', refreshToken, {
+  res.cookie('refresh_jwt', refreshToken, {
     httpOnly: true, // accessible only by web server
     secure: true, // https
     sameSite: 'none', // cross-site cookie
@@ -35,7 +35,8 @@ async function login(req: Request, res: Response) {
 async function refresh(req: Request, res: Response) {
   const { cookies } = req;
 
-  if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' });
+  if (!cookies?.refresh_jwt)
+    return res.status(401).json({ message: 'Unauthorized' });
   const refreshToken = cookies.jwt; // grab refresh token from the cookie
 
   const { accessToken } = await AuthService.refresh(refreshToken);

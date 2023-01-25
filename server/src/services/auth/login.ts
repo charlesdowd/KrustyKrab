@@ -26,7 +26,7 @@ export async function login(email: string, password: string) {
   const accessToken = jwt.sign(
     { user: foundUser },
     process.env.ACCESS_TOKEN_SECRET as Secret,
-    { expiresIn: 1000 },
+    { expiresIn: 30 }, // 30 seconds for now as I test
   );
 
   // Create refresh token

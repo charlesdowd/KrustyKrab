@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useGetUsersQuery } from './store/slices/base/templateApi';
+import { useGetUsersQuery } from './store/slices/api/templateApi';
 import Layout from './components/Layout/Layout';
 import Public from './components/Public/Public';
 import Login from './components/Login/Login';
@@ -8,8 +8,6 @@ import SignUp from './components/SignUp/SignUp';
 import SetPassword from './components/SetPassword/SetPassword';
 
 const App: FunctionComponent = () => {
-  const { data: userData } = useGetUsersQuery();
-  console.log('USERS: ', userData);
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
