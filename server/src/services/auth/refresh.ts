@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { HttpStatusError, Error } from 'common-errors';
 import { IUser, User } from '../../models';
+import { HttpError } from '../../util/Errors';
 
 const { REFRESH_TOKEN_SECRET = '', ACCESS_TOKEN_SECRET = '' } = process.env;
 
@@ -15,7 +15,11 @@ export async function refresh(refreshToken: string) {
     });
 
     // User not authorized
-    if (!foundUser) throw new HttpStatusError(401, 'Unauthorized');
+    if (!foundUser)
+      throw new HttpError('Unauthorized', {
+        status: 401,
+        friendlyMessage: 'Unauthorized',
+      });
 
     // Create and return new access token
     const accessToken = jwt.sign(

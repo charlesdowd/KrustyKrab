@@ -1,5 +1,5 @@
-import { HttpStatusError } from 'common-errors';
 import { User, IUser } from '../../models';
+import { BaseError } from '../../util/Errors';
 
 export async function getUsers(): Promise<IUser[]> {
   try {
@@ -7,6 +7,6 @@ export async function getUsers(): Promise<IUser[]> {
   } catch (error) {
     // Log error for server
     console.log(error);
-    throw new HttpStatusError(500, 'Error getting users');
+    throw new BaseError('Error getting users');
   }
 }

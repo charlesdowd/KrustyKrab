@@ -1,25 +1,34 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { HttpStatusError } from 'common-errors';
 import { User, IUser } from '../../models';
+import { HttpError } from '../../util/Errors';
 
 // This just creates the users access + refresh tokens, nothing more
 export async function login(email: string, password: string) {
   // Check if all fields are present
   if (!email || !password) {
-    throw new HttpStatusError(400, 'All fields are required');
+    throw new HttpError('All fields are required', {
+      status: 400,
+      friendlyMessage: 'All fields are required',
+    });
   }
 
   // Check if user exists
   const foundUser: IUser | null = await User.findOne({ email });
   if (!foundUser) {
-    throw new HttpStatusError(401, 'User does not exist');
+    throw new HttpError('User does not exist', {
+      status: 401,
+      friendlyMessage: 'Email does not exist',
+    });
   }
 
   // Check to see if password matches
   const match = await bcrypt.compare(password, foundUser.password || '');
   if (!match) {
-    throw new HttpStatusError(401, 'Incorrect password');
+    throw new HttpError('Incorrect password', {
+      status: 401,
+      friendlyMessage: 'Incorrect password',
+    });
   }
 
   // Create access token with user object
