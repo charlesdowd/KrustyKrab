@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
-
-const { Schema } = mongoose;
+import { Schema, Document, model } from 'mongoose';
 
 export interface ITodo {
   task: string;
   completed: boolean;
 }
+
+export interface ITodoDocument extends ITodo, Document {}
 
 const todoSchema = new Schema(
   {
@@ -15,4 +15,4 @@ const todoSchema = new Schema(
   { timestamps: true },
 );
 
-export default mongoose.model<ITodo>('Todo', todoSchema);
+export default model<ITodo>('Todo', todoSchema);

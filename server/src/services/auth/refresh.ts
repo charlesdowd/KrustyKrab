@@ -1,5 +1,5 @@
 import jwt, { Secret } from 'jsonwebtoken';
-import { IUser, User } from '../../models';
+import { IUserDocument, User } from '../../models';
 import { HttpError } from '../../util/Errors';
 
 export async function refresh(refreshToken: string) {
@@ -11,9 +11,7 @@ export async function refresh(refreshToken: string) {
     );
 
     // Look for user from decoded refresh token
-    const foundUser: IUser | null = await User.findOne({
-      email: decoded?.user?.email,
-    });
+    const foundUser: IUserDocument | null = await User.findById(decoded._id);
 
     // User not authorized
     if (!foundUser)
@@ -25,7 +23,7 @@ export async function refresh(refreshToken: string) {
     // Create and return new access token
     const accessToken = jwt.sign(
       {
-        user: foundUser,
+        id: foundUser._id,
       },
       process.env.ACCESS_TOKEN_SECRET as Secret,
       { expiresIn: '1000s' },

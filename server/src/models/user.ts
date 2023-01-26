@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-
-const { Schema } = mongoose;
+import { Schema, Document, model } from 'mongoose';
 
 export interface IUser {
   email: string;
@@ -8,7 +6,10 @@ export interface IUser {
   password?: string;
 }
 
-const userSchema = new Schema(
+// Interface to hold normal properties as well as document properties ie _id, timestamps
+export interface IUserDocument extends IUser, Document {}
+
+const userSchema: Schema<IUserDocument> = new Schema(
   {
     email: { type: String, required: true, unique: true },
     emailVerified: { type: Boolean, required: true, default: false },
@@ -19,11 +20,10 @@ const userSchema = new Schema(
 
 /* 
 Example of a virtual method and how it can be applied
-
 userSchema
   .virtual('fullName')
   .get((user: IUser) => `${user.firstName} ${user.lastName}`);
 
 */
 
-export default mongoose.model<IUser>('User', userSchema);
+export default model<IUser>('User', userSchema);

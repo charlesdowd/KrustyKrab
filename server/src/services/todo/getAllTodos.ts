@@ -1,7 +1,7 @@
-import { Todo, ITodo } from '../../models';
+import { Todo, ITodoDocument } from '../../models';
 import { BaseError } from '../../util/Errors';
 
-export async function getAllTodos(): Promise<ITodo[]> {
+export async function getAllTodos(): Promise<ITodoDocument[]> {
   try {
     return await Todo.find();
   } catch (error) {

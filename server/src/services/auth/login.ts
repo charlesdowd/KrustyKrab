@@ -1,6 +1,6 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { User, IUser } from '../../models';
+import { User, IUserDocument } from '../../models';
 import { HttpError } from '../../util/Errors';
 
 // This just creates the users access + refresh tokens, nothing more
@@ -14,7 +14,7 @@ export async function login(email: string, password: string) {
   }
 
   // Check if user exists
-  const foundUser: IUser | null = await User.findOne({ email });
+  const foundUser: IUserDocument | null = await User.findOne({ email });
   if (!foundUser) {
     throw new HttpError('User does not exist', {
       status: 401,
@@ -33,14 +33,14 @@ export async function login(email: string, password: string) {
 
   // Create access token with user object
   const accessToken = jwt.sign(
-    { user: foundUser },
+    { _id: foundUser._id },
     process.env.ACCESS_TOKEN_SECRET as Secret,
     { expiresIn: '1h' }, // 1h until refresh is used to make new access token
   );
 
   // Create refresh token
   const refreshToken = jwt.sign(
-    { user: foundUser },
+    { _id: foundUser._id },
     process.env.REFRESH_TOKEN_SECRET as Secret,
     {
       expiresIn: '5d', // Require user to login and get new refresh token every 5 days

@@ -1,2 +1,2 @@
-export { default as User, IUser } from './user';
-export { default as Todo, ITodo } from './todo';
+export { default as User, IUser, IUserDocument } from './user';
+export { default as Todo, ITodo, ITodoDocument } from './todo';
