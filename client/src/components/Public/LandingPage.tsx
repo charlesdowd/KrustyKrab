@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Root, CustomButton, ButtonDiv } from './Public.styled';
+import { Root, CustomButton, ButtonDiv } from './LandingPage.styled';
 
-const Public = () => {
+const LandingPage = () => {
   return (
     <Root>
       <h1>Welcome to the Krusty Krab!</h1>
@@ -17,4 +17,4 @@ const Public = () => {
   );
 };
 
-export default Public;
+export default LandingPage;

@@ -1,7 +1,13 @@
 import { Button } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import { NavRoot, NavHome, NavItem } from './Layout.styled';
 
 const PublicNav = () => {
+  const location = useLocation();
+
+  // Dont render nav if we are on the landing page
+  if (location.pathname === '/landing') return null;
+
   return (
     <NavRoot>
       <NavHome to='/landing'>

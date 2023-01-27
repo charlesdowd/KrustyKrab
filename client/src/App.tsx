@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import PublicLayout from './components/Layout/PublicLayout';
 import PrivateLayout from './components/Layout/PrivateLayout';
-import Public from './components/Public/Public';
+import LandingPage from './components/Public/LandingPage';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -19,7 +19,7 @@ const App: FunctionComponent = () => {
     <Routes>
       {/* Public Routes */}
       <Route element={<PublicLayout />}>
-        <Route path='landing' element={<Public />} />
+        <Route path='landing' element={<LandingPage />} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
       </Route>
