@@ -6,7 +6,13 @@ import PrivateLayout from './components/Layout/PrivateLayout';
 import Public from './components/Public/Public';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
+import UserPage from './components/UserPage';
+
+/*
+  <PublicLayout> and <PrivateLayout> components handle redirects based on 
+  whether the user is logged in or not.
+*/
 
 const App: FunctionComponent = () => {
   return (
@@ -21,6 +27,7 @@ const App: FunctionComponent = () => {
       {/* Private Routes */}
       <Route path='/' element={<PrivateLayout />}>
         <Route index element={<Dashboard />} />
+        <Route path='users' element={<UserPage />} />
       </Route>
 
       {/* Cath other routes and send them to correct page. TODO: add 404 page */}
