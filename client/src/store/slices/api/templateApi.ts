@@ -48,5 +48,6 @@ export const {
   useGetUsersQuery,
 
   useLoginMutation,
+  useSendLogoutMutation,
   useCreateUserMutation,
 } = templateApi;

@@ -54,12 +54,16 @@ async function refresh(req: Request, res: Response) {
 async function logout(req: Request, res: Response) {
   const { cookies } = req;
 
-  if (!cookies?.jwt) return res.sendStatus(204); // No content
+  if (!cookies?.refresh_jwt) return res.sendStatus(204); // No content
 
   // Clear jwt cookie
-  res.clearCookie('jwt', { httpOnly: true, sameSite: 'none', secure: true });
+  res.clearCookie('refresh_jwt', {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+  });
 
-  return res.json({ message: 'Cookie Cleared' });
+  return res.status(200).json({ message: 'Cookie Cleared' });
 }
 
 export default { login, refresh, logout };

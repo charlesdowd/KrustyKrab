@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { useEffect } from 'react';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from './Login.styled';
 
@@ -22,13 +22,19 @@ const loginSchema = Yup.object({
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const [login, { data: loginData, isSuccess, isLoading, isError }] =
-    useLoginMutation();
+  const navigate = useNavigate();
+  const [login, { data: loginData, isSuccess, isError }] = useLoginMutation();
 
   useEffect(() => {
-    // Set state.auth.accessToken to token received from login mutation
-    dispatch(setCredentials({ ...loginData }));
-  }, [isSuccess]);
+    if (isSuccess) {
+      // Set auth token in redux
+      dispatch(setCredentials({ ...loginData }));
+      navigate('/app');
+    }
+    if (isError) {
+      console.log('ERROR LOGGING IN'); // TODO: replace with toast
+    }
+  }, [isSuccess, isError]);
 
   return (
     <Root>

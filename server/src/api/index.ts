@@ -14,6 +14,10 @@ router.get<{}, MessageResponse>('/', (req, res) => {
   });
 });
 
+// TODO: Consider unauth, auth, and admin routers - use LEX as example
+
+// TODO: Add basic rate limiter middleware for unauthenticated routes
+
 router.use('/auth', auth);
 router.use('/todo', todos);
 router.use('/user', users);

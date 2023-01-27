@@ -21,6 +21,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
+    "redux-logger": "^3.0.6",
     "styled-components": "^5.3.6",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4",
@@ -32,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src",
-    "generate-api": "npx @rtk-query/codegen-openapi src/store/slices/base/templateApi.config.json"
+    "generate-api": "npx @rtk-query/codegen-openapi src/store/slices/api/templateApi.config.json"
   },
   "eslintConfig": {
     "extends": [

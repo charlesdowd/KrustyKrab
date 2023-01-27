@@ -21,6 +21,9 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    sendLogout: build.mutation<SendLogoutApiResponse, SendLogoutApiArg>({
+      query: () => ({ url: `/auth/logout`, method: 'POST' }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -55,6 +58,12 @@ export type LoginApiArg = {
     password: string;
   };
 };
+export type SendLogoutApiResponse = /** status 200 OK */
+  | {
+      message?: string;
+    }
+  | /** status 204 No Content */ undefined;
+export type SendLogoutApiArg = void;
 export type User = {
   email: string;
   password?: string;

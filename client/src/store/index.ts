@@ -1,6 +1,12 @@
+import { createLogger } from 'redux-logger';
 import { configureStore } from '@reduxjs/toolkit';
 import { templateApi } from './slices/api/templateApi.base';
 import authReducer from './slices/authSlice';
+
+// Default redux logger but collapsed
+const customLogger = createLogger({
+  collapsed: true,
+});
 
 const store = configureStore({
   reducer: {
@@ -8,7 +14,7 @@ const store = configureStore({
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(templateApi.middleware),
+    getDefaultMiddleware().concat(templateApi.middleware, customLogger),
   devTools: true,
 });
 

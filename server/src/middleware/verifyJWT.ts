@@ -1,4 +1,4 @@
-import jwt, { Secret, TokenExpiredError } from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
 import { HttpError } from '../util/Errors';
 

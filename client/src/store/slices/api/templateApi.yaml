@@ -120,6 +120,23 @@ paths:
               required:
                 - email
                 - password
+  /auth/logout:
+    post:
+      summary: ''
+      operationId: sendLogout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '204':
+          description: No Content
+      description: Clears the refresh token that is stored in the refresh_jwt cookie
 components:
   schemas:
     User:

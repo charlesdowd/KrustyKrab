@@ -1,15 +1,17 @@
 import { Button } from 'react-bootstrap';
 import { NavRoot, NavHome, NavItem } from './Layout.styled';
 
-const NavBar = () => {
+const PublicNav = () => {
   return (
     <NavRoot>
-      <NavHome to='/'>
+      <NavHome to='/landing'>
         <Button>Home</Button>
       </NavHome>
+
       <NavItem to='/login'>
         <Button>Login</Button>
       </NavItem>
+
       <NavItem to='/signup'>
         <Button>Sign Up</Button>
       </NavItem>
@@ -17,4 +19,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default PublicNav;
