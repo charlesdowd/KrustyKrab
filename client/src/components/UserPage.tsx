@@ -12,16 +12,19 @@ const UserPage = () => {
   }, [userData, isLoading, isError, isSuccess]);
 
   // TODO: Make this '...loading' component better or change pattern
-  if (isLoading) return <h2>...Loading</h2>;
 
   return (
     <Root>
       <h1>List of all users</h1>
-      <div>
-        {userData.users?.map((user) => (
-          <div key={user._id}>{user.email}</div>
-        ))}
-      </div>
+      {isLoading ? (
+        <h2>...Loading</h2>
+      ) : (
+        <div>
+          {userData.users?.map((user) => (
+            <div key={user._id}>{user.email}</div>
+          ))}
+        </div>
+      )}
     </Root>
   );
 };

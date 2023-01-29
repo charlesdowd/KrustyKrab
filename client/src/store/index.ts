@@ -1,5 +1,16 @@
 import { createLogger } from 'redux-logger';
-import { configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { templateApi } from './slices/api/templateApi.base';
 import authReducer from './slices/authSlice';
 
@@ -8,15 +19,36 @@ const customLogger = createLogger({
   collapsed: true,
 });
 
+// Config for persisting redux state
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+  blacklist: [templateApi.reducerPath], // Do not persist api reducer
+};
+
+// Root reducer to persist. ADD TO HERE WHEN WE HAVE NEW REDUCERS
+const rootReducer = combineReducers({
+  [templateApi.reducerPath]: templateApi.reducer,
+  auth: authReducer,
+});
+
+// Persisted root reducer
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const store = configureStore({
-  reducer: {
-    [templateApi.reducerPath]: templateApi.reducer,
-    auth: authReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(templateApi.middleware, customLogger),
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore redux-persist actions
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(templateApi.middleware, customLogger),
   devTools: true,
 });
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
