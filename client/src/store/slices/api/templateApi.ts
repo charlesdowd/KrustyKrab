@@ -5,6 +5,8 @@ const tags = {
   todo: 'Todo',
 };
 
+// TODO: fix up the tags to make sure dependencies make sense for routes
+
 /*
   The generated API does not know how our endpoints relate to one another. By
   using `providesTags` and `invalidatesTags`, we describe those relationships
@@ -45,7 +47,7 @@ export const templateApi = enhancedApi.injectEndpoints({
 
 export const {
   useGetUserQuery,
-  useGetUsersQuery,
+  useGetAllUsersQuery,
 
   useLoginMutation,
   useSendLogoutMutation,

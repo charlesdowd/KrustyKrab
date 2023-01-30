@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useGetUsersQuery } from '../store/slices/api/templateApi';
+import { useGetAllUsersQuery } from '../store/slices/api/templateApi';
 import { Root } from './Dashboard/Dashboard.styled'; // TODO: share styles for common components
 
 const UserPage = () => {
-  const { data: userData, isLoading, isSuccess, isError } = useGetUsersQuery();
+  const { data: userData, isLoading, isError } = useGetAllUsersQuery();
 
   useEffect(() => {
     if (isError) {
       console.log('ERROR GETTING USERS'); // TODO: replace with toast
     }
-  }, [userData, isLoading, isError, isSuccess]);
+  }, [isError]);
 
   // TODO: Make this '...loading' component better or change pattern
 

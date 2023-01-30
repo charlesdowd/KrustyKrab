@@ -1,7 +1,7 @@
 import { User, IUser } from '../../models';
-import { BaseError } from '../../util/Errors';
+import { BaseError } from '../../interfaces/Errors';
 
-export async function getUsers(): Promise<IUser[]> {
+export async function getAllUsers(): Promise<IUser[]> {
   try {
     return await User.find();
   } catch (error) {

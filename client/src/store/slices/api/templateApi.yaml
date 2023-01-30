@@ -7,32 +7,26 @@ info:
 servers:
   - url: 'http://localhost:3000/api/v1'
 paths:
-  '/user/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
+  /user/all:
+    parameters: []
     get:
       summary: Get User by ID
       tags: []
       responses:
         '200':
-          description: User Found
+          description: ''
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  user:
-                    $ref: '#/components/schemas/User'
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
               examples: {}
-        '404':
-          description: User Not Found
-      operationId: getUser
-      description: Retrieve the information of the user with the matching user ID.
+      operationId: getAllUsers
+      description: Get all users
   /user:
     post:
       summary: Create New User
@@ -76,7 +70,7 @@ paths:
       description: Create a new user.
     get:
       summary: Get All Users
-      operationId: getUsers
+      operationId: getUser
       responses:
         '200':
           description: OK
@@ -85,11 +79,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  users:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/User'
-      description: Gets all users
+                  user:
+                    $ref: '#/components/schemas/User'
+      description: Gets the current user who made the request
   /auth:
     post:
       summary: Login

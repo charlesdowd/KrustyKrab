@@ -1,8 +1,8 @@
 import { templateApi as api } from './templateApi.base';
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getUser: build.query<GetUserApiResponse, GetUserApiArg>({
-      query: (queryArg) => ({ url: `/user/${queryArg.userId}` }),
+    getAllUsers: build.query<GetAllUsersApiResponse, GetAllUsersApiArg>({
+      query: () => ({ url: `/user/all` }),
     }),
     createUser: build.mutation<CreateUserApiResponse, CreateUserApiArg>({
       query: (queryArg) => ({
@@ -11,7 +11,7 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
-    getUsers: build.query<GetUsersApiResponse, GetUsersApiArg>({
+    getUser: build.query<GetUserApiResponse, GetUserApiArg>({
       query: () => ({ url: `/user` }),
     }),
     login: build.mutation<LoginApiResponse, LoginApiArg>({
@@ -28,13 +28,10 @@ const injectedRtkApi = api.injectEndpoints({
   overrideExisting: false,
 });
 export { injectedRtkApi as templateApi };
-export type GetUserApiResponse = /** status 200 User Found */ {
-  user?: User;
+export type GetAllUsersApiResponse = /** status 200  */ {
+  users?: User[];
 };
-export type GetUserApiArg = {
-  /** Id of an existing user. */
-  userId: number;
-};
+export type GetAllUsersApiArg = void;
 export type CreateUserApiResponse = /** status 200 User Created */ {
   user: User;
 };
@@ -45,10 +42,10 @@ export type CreateUserApiArg = {
     password: string;
   };
 };
-export type GetUsersApiResponse = /** status 200 OK */ {
-  users?: User[];
+export type GetUserApiResponse = /** status 200 OK */ {
+  user?: User;
 };
-export type GetUsersApiArg = void;
+export type GetUserApiArg = void;
 export type LoginApiResponse = /** status 200 OK */ {
   accessToken: string;
 };
