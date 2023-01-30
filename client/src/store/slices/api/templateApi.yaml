@@ -96,6 +96,8 @@ paths:
                 properties:
                   accessToken:
                     type: string
+                  user:
+                    $ref: '#/components/schemas/User'
                 required:
                   - accessToken
       description: Login

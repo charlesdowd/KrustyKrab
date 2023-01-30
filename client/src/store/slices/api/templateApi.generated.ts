@@ -48,6 +48,7 @@ export type GetUserApiResponse = /** status 200 OK */ {
 export type GetUserApiArg = void;
 export type LoginApiResponse = /** status 200 OK */ {
   accessToken: string;
+  user?: User;
 };
 export type LoginApiArg = {
   body: {

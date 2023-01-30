@@ -10,7 +10,7 @@ async function login(req: Request, res: Response) {
   const { email, password } = req.body;
 
   // Get access + refresh tokens for user
-  const { refreshToken, accessToken } = await AuthService.login(
+  const { refreshToken, accessToken, foundUser } = await AuthService.login(
     email,
     password,
   );
@@ -23,8 +23,8 @@ async function login(req: Request, res: Response) {
     maxAge: 7 * 24 * 60 * 60 * 60, // expire after 7 days to match refresh token
   });
 
-  // Return the access token
-  return res.status(200).json({ accessToken });
+  // Return the access token and the user object
+  return res.status(200).json({ accessToken, user: foundUser });
 }
 
 /**

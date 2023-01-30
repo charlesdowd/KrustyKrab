@@ -47,5 +47,5 @@ export async function login(email: string, password: string) {
     },
   );
 
-  return { refreshToken, accessToken };
+  return { refreshToken, accessToken, foundUser };
 }

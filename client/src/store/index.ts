@@ -27,11 +27,19 @@ const persistConfig = {
   blacklist: [templateApi.reducerPath], // Do not persist api reducer
 };
 
-// Root reducer to persist. ADD TO HERE WHEN WE HAVE NEW REDUCERS
-const rootReducer = combineReducers({
+// Combined reducer to persist. ADD TO HERE WHEN WE HAVE NEW REDUCERS
+const combinedReducer = combineReducers({
   [templateApi.reducerPath]: templateApi.reducer,
   auth: authReducer,
 });
+
+// Since we are persisting redux state, we need to manually clear it on logout
+const rootReducer = (state, action) => {
+  if (action.type === 'auth/logOut') {
+    state = undefined;
+  }
+  return combinedReducer(state, action);
+};
 
 // Persisted root reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
