@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import MessageResponse from '../util/MessageResponse';
+import MessageResponse from '../interfaces/MessageResponse';
 
 import users from './routes/user.routes';
 import todos from './routes/todo.routes';

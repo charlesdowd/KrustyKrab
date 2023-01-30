@@ -1,7 +1,7 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { User, IUserDocument } from '../../models';
-import { HttpError } from '../../util/Errors';
+import { HttpError } from '../../interfaces/Errors';
 
 // This just creates the users access + refresh tokens, nothing more
 export async function login(email: string, password: string) {

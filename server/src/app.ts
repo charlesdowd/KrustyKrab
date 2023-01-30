@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 
 import api from './api';
 import * as middlewares from './middleware/notFound';
-import MessageResponse from './util/MessageResponse';
+import MessageResponse from './interfaces/MessageResponse';
 import errorHandler from './middleware/errorHandler';
 
 dotenv.config();

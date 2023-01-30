@@ -1,8 +1,9 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
-import { HttpError } from '../util/Errors';
+import { User } from '../models';
+import { HttpError } from '../interfaces/Errors';
 
-const verifyJWT = (req: any, res: Response, next: NextFunction) => {
+const verifyJWT = async (req: any, res: Response, next: NextFunction) => {
   // Look for auth headers in upper or lower case - not always necessary
   const authHeader = req.headers.authorization || req.headers.Authorization;
 
@@ -20,8 +21,11 @@ const verifyJWT = (req: any, res: Response, next: NextFunction) => {
       process.env.ACCESS_TOKEN_SECRET as Secret,
     );
 
+    // Get the full user by the decoded _id in the jwt token
+    const user = await User.findById(decoded._id);
+
     // Attach user to request in case we need it
-    req.user = decoded.user;
+    req.user = user;
   } catch (error) {
     // Throw different error if the jwt is expired
     if (error instanceof jwt.TokenExpiredError) {

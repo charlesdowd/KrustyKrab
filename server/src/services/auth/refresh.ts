@@ -1,6 +1,6 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import { IUserDocument, User } from '../../models';
-import { HttpError } from '../../util/Errors';
+import { HttpError } from '../../interfaces/Errors';
 
 export async function refresh(refreshToken: string) {
   try {

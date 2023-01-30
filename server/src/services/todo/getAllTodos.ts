@@ -1,5 +1,5 @@
 import { Todo, ITodoDocument } from '../../models';
-import { BaseError } from '../../util/Errors';
+import { BaseError } from '../../interfaces/Errors';
 
 export async function getAllTodos(): Promise<ITodoDocument[]> {
   try {

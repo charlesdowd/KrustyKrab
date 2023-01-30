@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { IUser, User } from '../../models';
-import { BaseError, HttpError } from '../../util/Errors';
+import { BaseError, HttpError } from '../../interfaces/Errors';
 
 export async function createNewUser(
   email: string,

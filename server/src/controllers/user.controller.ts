@@ -1,6 +1,8 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { IUser } from '../models';
 import UserService from '../services/user';
+import AuthenticatedRequest from '../interfaces/AuthenticatedRequest';
+import MessageResponse from '../interfaces/MessageResponse';
 
 /**
  *
@@ -8,8 +10,11 @@ import UserService from '../services/user';
  * @param res
  * @returns { IUser[] } all users
  */
-async function getUsers(req: Request, res: Response<{ users: IUser[] }>) {
-  const users = await UserService.getUsers();
+async function getAllUsers(
+  req: AuthenticatedRequest,
+  res: Response<{ users: IUser[] }>,
+) {
+  const users = await UserService.getAllUsers();
 
   return res.status(200).json({ users });
 }
@@ -20,9 +25,14 @@ async function getUsers(req: Request, res: Response<{ users: IUser[] }>) {
  * @param res
  * @returns { IUser } the queried user
  */
-async function getUser(req: Request, res: Response<{ user: IUser }>) {
-  const { userId } = req.params;
-  const user = await UserService.getUser(userId);
+async function getUser(
+  req: AuthenticatedRequest,
+  res: Response<{ user: IUser } | MessageResponse>,
+) {
+  const { user } = req;
+  if (!user) {
+    res.status(401).send({ message: 'User not attached to request' });
+  }
 
   return res.status(200).json({ user });
 }
@@ -33,8 +43,9 @@ async function getUser(req: Request, res: Response<{ user: IUser }>) {
  * @param res
  * @returns { string } successfull 204 status and message
  */
-async function createUser(req: Request<IUser>, res: Response) {
-  const { password, email } = req.body;
+async function createUser(req: AuthenticatedRequest<IUser>, res: Response) {
+  const { email, password } = req.body;
+
   await UserService.createNewUser(email, password);
 
   return res.status(200).json({ message: 'User successfully created' });
@@ -42,6 +53,6 @@ async function createUser(req: Request<IUser>, res: Response) {
 
 export default {
   getUser,
-  getUsers,
+  getAllUsers,
   createUser,
 };
