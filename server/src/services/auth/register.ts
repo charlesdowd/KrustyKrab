@@ -39,5 +39,4 @@ export async function register(email: string): Promise<void> {
 
   // Email has been successfully sent, save the user to the db
   await User.create(newUser);
-  console.log('NEW USER CREATED');
 }

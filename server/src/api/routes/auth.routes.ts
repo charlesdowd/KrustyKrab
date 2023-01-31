@@ -12,6 +12,9 @@ router.post('/register', registerLimiter, tryCatch(AuthController.register));
 // Verify email
 router.post('/verify-email', tryCatch(AuthController.verifyEmail));
 
+// Set Password
+router.post('/set-password', tryCatch(AuthController.setPassword));
+
 // Login User
 router.post('/', loginLimiter, tryCatch(AuthController.login));
 

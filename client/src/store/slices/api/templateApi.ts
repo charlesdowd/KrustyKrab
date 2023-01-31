@@ -49,6 +49,7 @@ export const {
   useGetUserQuery,
   useGetAllUsersQuery,
 
+  useSetPasswordMutation,
   useRegisterMutation,
   useVerifyEmailMutation,
   useLoginMutation,

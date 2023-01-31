@@ -81,9 +81,17 @@ async function register(req: Request, res: Response<MessageResponse>) {
 async function verifyEmail(req: Request, res: Response) {
   const { emailToken } = req.body;
 
-  await AuthService.verifyEmail(emailToken);
+  const user = await AuthService.verifyEmail(emailToken);
 
-  return res.status(200).send({ message: 'Email verified' });
+  return res.status(200).send({ user });
 }
 
-export default { login, refresh, logout, register, verifyEmail };
+async function setPassword(req: Request, res: Response) {
+  const { userId, password } = req.body;
+
+  await AuthService.setPassword(userId, password);
+
+  return res.status(200).send({ message: 'Password successfully set' });
+}
+
+export default { login, refresh, logout, register, verifyEmail, setPassword };

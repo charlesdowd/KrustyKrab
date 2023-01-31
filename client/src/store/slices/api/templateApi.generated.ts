@@ -38,6 +38,13 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    setPassword: build.mutation<SetPasswordApiResponse, SetPasswordApiArg>({
+      query: (queryArg) => ({
+        url: `/auth/set-password`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -85,11 +92,20 @@ export type RegisterApiArg = {
   };
 };
 export type VerifyEmailApiResponse = /** status 200 OK */ {
-  message?: string;
+  user?: User;
 };
 export type VerifyEmailApiArg = {
   body: {
     emailToken?: string;
+  };
+};
+export type SetPasswordApiResponse = /** status 200 OK */ {
+  message?: string;
+};
+export type SetPasswordApiArg = {
+  body: {
+    userId: string;
+    password: string;
   };
 };
 export type User = {

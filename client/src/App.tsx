@@ -9,6 +9,7 @@ import SignUp from './components/SignUp/SignUp';
 import Dashboard from './components/Dashboard/Dashboard';
 import UserPage from './components/UserPage';
 import VerifyEmail from './components/VerifyEmail';
+import SetPassword from './components/SetPassword/SetPassword';
 
 /*
   <PublicLayout> and <PrivateLayout> components handle redirects based on 
@@ -25,6 +26,9 @@ const App: FunctionComponent = () => {
         <Route path='signup' element={<SignUp />} />
         <Route path='verify-email' element={<VerifyEmail />} />
       </Route>
+
+      {/* This route is special and will redirect elsewhere if user should not be here */}
+      <Route path='set-password' element={<SetPassword />} />
 
       {/* Private Routes */}
       <Route path='/' element={<PrivateLayout />}>

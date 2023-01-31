@@ -169,8 +169,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  message:
-                    type: string
+                  user:
+                    $ref: '#/components/schemas/User'
       description: Verify a users email
       requestBody:
         content:
@@ -180,6 +180,34 @@ paths:
               properties:
                 emailToken:
                   type: string
+  /auth/set-password:
+    post:
+      summary: ''
+      operationId: setPassword
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: Set password for user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                password:
+                  type: string
+              required:
+                - userId
+                - password
 components:
   schemas:
     User:

@@ -2,6 +2,11 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from '../Login/Login.styled'; // TODO: Make these non login specific styled components
+import { isSettingPassword, useAppSelector } from '../../store/hooks';
+import { useNavigate } from 'react-router-dom';
+import { useSetPasswordMutation } from '../../store/slices/api/templateApi';
+import { useEffect } from 'react';
+import { selectUser } from '../../store/slices/authSlice';
 
 const setPasswordSchema = Yup.object({
   password: Yup.string()
@@ -17,13 +22,34 @@ const setPasswordSchema = Yup.object({
 });
 
 const SetPassword = () => {
+  // Grab user from redux store to get their _id
+  const user = useAppSelector(selectUser);
+  const navigate = useNavigate();
+  const [setPassword, { isSuccess, isError }] = useSetPasswordMutation();
+
+  // Redirect if user should not be setting their password
+  if (!isSettingPassword()) navigate('/');
+
+  useEffect(() => {
+    if (isError) {
+      console.log('Error setting password'); // TODO
+    }
+    if (isSuccess) {
+      console.log('Success setting password');
+      navigate('/login');
+    }
+  }, [isSuccess, isError]);
+
   return (
     <Root>
       <h1 className='mb-4'>Set Your Password</h1>
 
       <Formik
         validationSchema={setPasswordSchema}
-        onSubmit={console.log} // TODO: replace with RTK signup
+        onSubmit={(values) => {
+          const { password } = values;
+          setPassword({ body: { userId: user?._id, password } });
+        }}
         initialValues={{
           password: '',
           passwordConfirmation: '',
@@ -68,7 +94,7 @@ const SetPassword = () => {
                 isInvalid={
                   !!errors.passwordConfirmation &&
                   !!touched.passwordConfirmation &&
-                  values.passwordConfirmation
+                  !!values.passwordConfirmation
                 }
               />
               <Form.Control.Feedback className='FeedBack' type='invalid'>
