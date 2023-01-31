@@ -74,7 +74,16 @@ async function register(req: Request, res: Response<MessageResponse>) {
 
   // Create new user and send verification email
   await AuthService.register(lowerCaseEmail);
+
   return res.status(200).send({ message: 'Register email sent' });
 }
 
-export default { login, refresh, logout, register };
+async function verifyEmail(req: Request, res: Response) {
+  const { token } = req.body;
+
+  await AuthService.verifyEmail(token);
+
+  return res.status(200).send({ message: 'Email verified' });
+}
+
+export default { login, refresh, logout, register, verifyEmail };

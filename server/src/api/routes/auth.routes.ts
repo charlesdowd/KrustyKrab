@@ -9,6 +9,9 @@ const router = Router();
 // Register User
 router.post('/register', registerLimiter, tryCatch(AuthController.register));
 
+// Verify email
+router.post('/verify-email', tryCatch(AuthController.verifyEmail));
+
 // Login User
 router.post('/', loginLimiter, tryCatch(AuthController.login));
 
