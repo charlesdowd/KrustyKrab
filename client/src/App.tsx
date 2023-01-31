@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Dashboard from './components/Dashboard/Dashboard';
 import UserPage from './components/UserPage';
+import VerifyEmail from './components/VerifyEmail';
 
 /*
   <PublicLayout> and <PrivateLayout> components handle redirects based on 
@@ -22,6 +23,7 @@ const App: FunctionComponent = () => {
         <Route path='landing' element={<LandingPage />} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
+        <Route path='verify-email' element={<VerifyEmail />} />
       </Route>
 
       {/* Private Routes */}

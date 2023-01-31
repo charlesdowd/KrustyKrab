@@ -1,8 +1,8 @@
 import { IUserDocument, User } from '../../models';
 import { HttpError } from '../../interfaces/Errors';
 
-export async function verifyEmail(token: string): Promise<void> {
-  const user: IUserDocument | null = await User.findOne({ emailToken: token });
+export async function verifyEmail(emailToken: string): Promise<void> {
+  const user: IUserDocument | null = await User.findOne({ emailToken });
 
   // If no user has this emailToken associated with them, throw error
   if (!user) {
@@ -13,5 +13,8 @@ export async function verifyEmail(token: string): Promise<void> {
   }
 
   // Set emailVerified to true on user
-  await User.findOneAndUpdate(user._id, { $set: { emailVerified: true } });
+  await User.findOneAndUpdate(
+    { _id: user._id },
+    { $set: { emailVerified: true, emailToken: null } },
+  );
 }

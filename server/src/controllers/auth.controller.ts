@@ -79,9 +79,9 @@ async function register(req: Request, res: Response<MessageResponse>) {
 }
 
 async function verifyEmail(req: Request, res: Response) {
-  const { token } = req.body;
+  const { emailToken } = req.body;
 
-  await AuthService.verifyEmail(token);
+  await AuthService.verifyEmail(emailToken);
 
   return res.status(200).send({ message: 'Email verified' });
 }

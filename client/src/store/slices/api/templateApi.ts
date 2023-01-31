@@ -50,6 +50,7 @@ export const {
   useGetAllUsersQuery,
 
   useRegisterMutation,
+  useVerifyEmailMutation,
   useLoginMutation,
   useSendLogoutMutation,
   useCreateUserMutation,

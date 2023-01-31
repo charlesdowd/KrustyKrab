@@ -31,6 +31,13 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    verifyEmail: build.mutation<VerifyEmailApiResponse, VerifyEmailApiArg>({
+      query: (queryArg) => ({
+        url: `/auth/verify-email`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -75,6 +82,14 @@ export type RegisterApiResponse = /** status 200 OK */ {
 export type RegisterApiArg = {
   body: {
     email: string;
+  };
+};
+export type VerifyEmailApiResponse = /** status 200 OK */ {
+  message?: string;
+};
+export type VerifyEmailApiArg = {
+  body: {
+    emailToken?: string;
   };
 };
 export type User = {

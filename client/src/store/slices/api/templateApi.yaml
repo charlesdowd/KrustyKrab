@@ -157,6 +157,29 @@ paths:
                   format: email
               required:
                 - email
+  /auth/verify-email:
+    post:
+      summary: ''
+      operationId: verifyEmail
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: Verify a users email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emailToken:
+                  type: string
 components:
   schemas:
     User:

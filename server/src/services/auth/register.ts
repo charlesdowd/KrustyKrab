@@ -29,7 +29,7 @@ export async function register(email: string): Promise<void> {
     html: `<h2>Thanks for registering on our site </h2>
         <h4>Please verify your email to continue...</h4>
         <button>
-          <a href=http://localhost:3000/verify-email?token=${newUser.emailToken}>
+          <a href=http://localhost:3000/verify-email?emailToken=${newUser.emailToken}>
             Verify Email
           </a>
         </button>`,
