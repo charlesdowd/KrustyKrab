@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
 import { useRegisterMutation } from '../../store/slices/api/templateApi';
@@ -13,6 +13,17 @@ const signupSchema = Yup.object({
 
 const SignUp = () => {
   const [registerUser, { isSuccess, isError }] = useRegisterMutation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log('Success toast here'); // TODO: add toasts
+      navigate('/landing');
+    }
+    if (isError) {
+      console.log('Error toast here'); // TODO
+    }
+  }, [isSuccess, isError]);
 
   return (
     <Root>
@@ -20,9 +31,10 @@ const SignUp = () => {
 
       <Formik
         validationSchema={signupSchema}
-        onSubmit={async (values) => {
+        onSubmit={async (values, { resetForm }) => {
           const { email } = values;
-          registerUser({ body: { email } });
+          await registerUser({ body: { email } });
+          resetForm();
         }}
         initialValues={{
           email: '',
@@ -58,6 +70,7 @@ const SignUp = () => {
             <Button
               // Start out disabled on initial load and until all fields valid
               disabled={!(isValid && dirty)}
+              // TODO: create custom button with loading prop
               variant='primary'
               className='SignUpButton'
               type='submit'
