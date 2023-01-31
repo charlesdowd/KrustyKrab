@@ -9,7 +9,7 @@ const Dashboard = () => {
     <Root>
       <h1>Dashboard</h1>
       <div>
-        <h2>Profile: {user.email}</h2>
+        <h2>Profile: {user?.email}</h2>
       </div>
     </Root>
   );

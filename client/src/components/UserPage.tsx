@@ -20,7 +20,7 @@ const UserPage = () => {
         <h2>...Loading</h2>
       ) : (
         <div>
-          {userData.users?.map((user) => (
+          {userData?.users?.map((user) => (
             <div key={user._id}>{user.email}</div>
           ))}
         </div>

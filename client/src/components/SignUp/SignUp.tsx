@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
+import { useRegisterMutation } from '../../store/slices/api/templateApi';
+import { useEffect } from 'react';
 
 // Validation object for new sign ups
 const signupSchema = Yup.object({
@@ -10,13 +12,18 @@ const signupSchema = Yup.object({
 });
 
 const SignUp = () => {
+  const [registerUser, { isSuccess, isError }] = useRegisterMutation();
+
   return (
     <Root>
       <h1 className='mb-4'>Sign Up Page</h1>
 
       <Formik
         validationSchema={signupSchema}
-        onSubmit={console.log} // TODO: replace with RTK signup
+        onSubmit={async (values) => {
+          const { email } = values;
+          registerUser({ body: { email } });
+        }}
         initialValues={{
           email: '',
         }}

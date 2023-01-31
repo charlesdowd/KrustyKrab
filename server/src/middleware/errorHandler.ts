@@ -1,7 +1,9 @@
+import { Response, Request } from 'express';
+
 export default function errorHandler(
   err: any,
-  req: any,
-  res: any,
+  req: Request,
+  res: Response,
   next: () => any,
 ) {
   // If there is no error, pass to next or end it if none exists

@@ -2,7 +2,7 @@ import { Schema, Document, model } from 'mongoose';
 
 export interface IUser {
   email: string;
-  emailVerified: boolean;
+  emailVerified?: boolean;
   password?: string;
   emailToken?: string; // Randomized token used to verify email on register
 }

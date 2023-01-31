@@ -29,15 +29,19 @@ const verifyJWT = async (req: any, res: Response, next: NextFunction) => {
   } catch (error) {
     // Throw different error if the jwt is expired
     if (error instanceof jwt.TokenExpiredError) {
-      throw new HttpError('JWT token expired', {
-        status: 403,
-        friendlyMessage: 'Expired credentials',
-      });
+      next(
+        new HttpError('JWT token expired', {
+          status: 403,
+          friendlyMessage: 'Expired credentials',
+        }),
+      );
     }
-    throw new HttpError('Error while decoding JWT', {
-      status: 403,
-      friendlyMessage: 'Error authenticating credentials',
-    });
+    next(
+      new HttpError('Error while decoding JWT', {
+        status: 403,
+        friendlyMessage: 'Error authenticating credentials',
+      }),
+    );
   }
 
   // continue

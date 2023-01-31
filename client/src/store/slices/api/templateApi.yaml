@@ -131,6 +131,32 @@ paths:
         '204':
           description: No Content
       description: Clears the refresh token that is stored in the refresh_jwt cookie
+  /auth/register:
+    post:
+      summary: ''
+      operationId: register
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: Register a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+              required:
+                - email
 components:
   schemas:
     User:

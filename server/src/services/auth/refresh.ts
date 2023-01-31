@@ -4,7 +4,7 @@ import { HttpError } from '../../interfaces/Errors';
 
 export async function refresh(refreshToken: string) {
   try {
-    // Cast decoded object to any - not the best practice
+    // TODO: refresh is expired, make sure we handle the error and log the user out
     const decoded: any = jwt.verify(
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET as Secret,
