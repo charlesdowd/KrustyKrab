@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import MessageResponse from '../interfaces/MessageResponse';
 import AuthService from '../services/auth';
 
 /**
@@ -66,4 +67,14 @@ async function logout(req: Request, res: Response) {
   return res.status(200).json({ message: 'Cookie Cleared' });
 }
 
-export default { login, refresh, logout };
+async function register(req: Request, res: Response<MessageResponse>) {
+  const { email } = req.body; // TODO: sanitize emails throughout codebase
+
+  const lowerCaseEmail = email.toLowerCase();
+
+  // Create new user and send verification email
+  await AuthService.register(lowerCaseEmail);
+  return res.status(200).send({ message: 'Register email sent' });
+}
+
+export default { login, refresh, logout, register };

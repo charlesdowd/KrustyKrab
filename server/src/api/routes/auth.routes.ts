@@ -1,9 +1,13 @@
 import { Router } from 'express';
-import loginLimiter from '../../middleware/loginLimiter';
+import loginLimiter from '../../middleware/rateLimiters/loginLimiter';
 import AuthController from '../../controllers/auth.controller';
 import { tryCatch } from '../../middleware/tryCatch';
+import registerLimiter from '../../middleware/rateLimiters/registerLimiter';
 
 const router = Router();
+
+// Register User
+router.post('/register', registerLimiter, tryCatch(AuthController.register));
 
 // Login User
 router.post('/', loginLimiter, tryCatch(AuthController.login));
