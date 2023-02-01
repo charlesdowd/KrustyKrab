@@ -1,6 +1,6 @@
 import { Root } from './Dashboard.styled';
-import { selectUser } from '../../store/slices/authSlice';
-import { useAppSelector } from '../../store/hooks';
+import { selectUser } from '../../../store/slices/authSlice';
+import { useAppSelector } from '../../../store/hooks';
 
 const Dashboard = () => {
   const user = useAppSelector(selectUser);

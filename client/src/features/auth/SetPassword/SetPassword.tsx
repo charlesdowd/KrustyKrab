@@ -2,11 +2,11 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from '../Login/Login.styled'; // TODO: Make these non login specific styled components
-import { isSettingPassword, useAppSelector } from '../../store/hooks';
+import { isSettingPassword, useAppSelector } from '../../../store/hooks';
 import { useNavigate } from 'react-router-dom';
-import { useSetPasswordMutation } from '../../store/slices/api/templateApi';
+import { useSetPasswordMutation } from '../../../store/slices/api/templateApi';
 import { useEffect } from 'react';
-import { selectUser } from '../../store/slices/authSlice';
+import { selectUser } from '../../../store/slices/authSlice';
 
 const setPasswordSchema = Yup.object({
   password: Yup.string()

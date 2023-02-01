@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useGetAllUsersQuery } from '../store/slices/api/templateApi';
+import { useGetAllUsersQuery } from '../../store/slices/api/templateApi';
 import { Root } from './Dashboard/Dashboard.styled'; // TODO: share styles for common components
 
 const UserPage = () => {

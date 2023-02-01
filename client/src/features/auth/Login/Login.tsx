@@ -5,9 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from './Login.styled';
 
-import { useLoginMutation } from '../../store/slices/api/templateApi';
-import { useAppDispatch } from '../../store/hooks';
-import { setCredentials } from '../../store/slices/authSlice';
+import { useLoginMutation } from '../../../store/slices/api/templateApi';
+import { useAppDispatch } from '../../../store/hooks';
+import { setCredentials } from '../../../store/slices/authSlice';
 
 // Validation object for logging in
 const loginSchema = Yup.object({

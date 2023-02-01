@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useVerifyEmailMutation } from '../store/slices/api/templateApi';
-import { setUser } from '../store/slices/authSlice';
-import { useAppDispatch } from '../store/hooks';
+import { useVerifyEmailMutation } from '../../store/slices/api/templateApi';
+import { setUser } from '../../store/slices/authSlice';
+import { useAppDispatch } from '../../store/hooks';
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ const VerifyEmail = () => {
     }
   }, [isSuccess, isError, isLoading]);
 
+  // TODO: Just put a spinner in the center of the page
   return (
     <Container>
       {isLoading ? <h1>Loading...</h1> : <h1>Verify Email Page</h1>}

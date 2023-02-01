@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
-import { useRegisterMutation } from '../../store/slices/api/templateApi';
+import { useRegisterMutation } from '../../../store/slices/api/templateApi';
 import { useEffect } from 'react';
 
 // Validation object for new sign ups
