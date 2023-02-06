@@ -14,6 +14,7 @@ export interface ButtonProps {
   color?: ButtonColor;
   size?: ButtonSize;
   type?: 'button' | 'submit' | 'reset';
+  variant?: string;
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -28,9 +29,11 @@ const Button: FunctionComponent<ButtonProps> = ({
   id,
   className,
   form,
+  variant,
 }) => {
   return (
     <Root
+      variant={variant}
       id={id}
       type={type}
       disabled={disabled || loading}

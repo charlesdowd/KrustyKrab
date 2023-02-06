@@ -2,8 +2,9 @@ import * as Yup from 'yup';
 import { useEffect } from 'react';
 import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { LoginForm, Root, InputGroup } from './Login.styled';
+import Button from '../../../components/Button/Button';
 
 import { useLoginMutation } from '../../../store/slices/api/templateApi';
 import { useAppDispatch } from '../../../store/hooks';
@@ -24,7 +25,8 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [login, { data: loginData, isSuccess, isError }] = useLoginMutation();
+  const [login, { data: loginData, isSuccess, isError, isLoading }] =
+    useLoginMutation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -100,9 +102,9 @@ const Login = () => {
             <Button
               // Start out disabled on initial load and until all fields valid
               disabled={!(isValid && dirty)}
-              variant='primary'
               className='SignUpButton'
               type='submit'
+              loading={isLoading}
             >
               Log In
             </Button>

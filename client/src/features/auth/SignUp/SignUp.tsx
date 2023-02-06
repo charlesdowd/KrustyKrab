@@ -1,7 +1,8 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import Button from '../../../components/Button/Button';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
 import { useRegisterMutation } from '../../../store/slices/api/templateApi';
 import { useEffect } from 'react';
@@ -12,7 +13,8 @@ const signupSchema = Yup.object({
 });
 
 const SignUp = () => {
-  const [registerUser, { isSuccess, isError }] = useRegisterMutation();
+  const [registerUser, { isSuccess, isError, isLoading }] =
+    useRegisterMutation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,7 +72,7 @@ const SignUp = () => {
             <Button
               // Start out disabled on initial load and until all fields valid
               disabled={!(isValid && dirty)}
-              // TODO: create custom button with loading prop
+              loading={isLoading}
               variant='primary'
               className='SignUpButton'
               type='submit'

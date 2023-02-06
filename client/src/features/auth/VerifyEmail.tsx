@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
+import { ClipLoader } from 'react-spinners';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useVerifyEmailMutation } from '../../store/slices/api/templateApi';
 import { setUser } from '../../store/slices/authSlice';
@@ -43,7 +44,7 @@ const VerifyEmail = () => {
   // TODO: Just put a spinner in the center of the page
   return (
     <Container>
-      {isLoading ? <h1>Loading...</h1> : <h1>Verify Email Page</h1>}
+      {isLoading && <ClipLoader size={50} color='blue' loading />}
     </Container>
   );
 };

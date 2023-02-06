@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Root, CustomButton, ButtonDiv } from './LandingPage.styled';
+import { Button } from '@charlesdowd/component-library';
 
 const LandingPage = () => {
   return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
         <Link to='/signup'>
           <CustomButton>Sign Up</CustomButton>
         </Link>
+        <Button>Button from NPM Component Library</Button>
       </ButtonDiv>
     </Root>
   );
