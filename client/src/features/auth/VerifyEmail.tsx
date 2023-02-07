@@ -3,15 +3,12 @@ import { Container } from 'react-bootstrap';
 import { ClipLoader } from 'react-spinners';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useVerifyEmailMutation } from '../../store/slices/api/templateApi';
-import { setUser } from '../../store/slices/authSlice';
-import { useAppDispatch } from '../../store/hooks';
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
 
-  const [verifyEmail, { isSuccess, isError, isLoading, data: userData }] =
+  const [verifyEmail, { isSuccess, isError, isLoading }] =
     useVerifyEmailMutation();
 
   // Grab emailToken from URL
@@ -29,9 +26,6 @@ const VerifyEmail = () => {
   useEffect(() => {
     if (isSuccess) {
       console.log('Successfully verified user');
-
-      // Save user to redux
-      dispatch(setUser({ ...userData }));
       navigate('/set-password');
     }
 
