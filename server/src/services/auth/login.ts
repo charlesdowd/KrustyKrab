@@ -31,14 +31,14 @@ export async function login(email: string, password: string) {
     });
   }
 
-  // Create access token with user object
+  // Create access token with user _id
   const accessToken = jwt.sign(
     { _id: foundUser._id },
     process.env.ACCESS_TOKEN_SECRET as Secret,
     { expiresIn: '1h' }, // 1h until refresh is used to make new access token
   );
 
-  // Create refresh token
+  // Create refresh token with the user _id
   const refreshToken = jwt.sign(
     { _id: foundUser._id },
     process.env.REFRESH_TOKEN_SECRET as Secret,

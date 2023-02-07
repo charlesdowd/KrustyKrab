@@ -1,13 +1,18 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from '../../../store/hooks';
+import { selectUser } from '../../../store/slices/authSlice';
+import {
+  useLoginMutation,
+  useSetPasswordMutation,
+} from '../../../store/slices/api/templateApi';
+
 import Button from '../../../components/Button/Button';
 import { LoginForm, Root, InputGroup } from '../Login/Login.styled'; // TODO: Make these non login specific styled components
-import { isSettingPassword, useAppSelector } from '../../../store/hooks';
-import { useNavigate } from 'react-router-dom';
-import { useSetPasswordMutation } from '../../../store/slices/api/templateApi';
-import { useEffect } from 'react';
-import { selectUser } from '../../../store/slices/authSlice';
 
 const setPasswordSchema = Yup.object({
   password: Yup.string()
@@ -26,21 +31,32 @@ const SetPassword = () => {
   // Grab user from redux store to get their _id
   const user = useAppSelector(selectUser);
   const navigate = useNavigate();
-  const [setPassword, { isSuccess, isError, isLoading }] =
-    useSetPasswordMutation();
 
-  // Redirect if user should not be setting their password
-  if (!isSettingPassword()) navigate('/');
+  const [login, { isSuccess, isLoading: loginLoading }] = useLoginMutation();
+  const [setPassword, { isLoading }] = useSetPasswordMutation();
 
   useEffect(() => {
-    if (isError) {
-      console.log('Error setting password'); // TODO
-    }
     if (isSuccess) {
-      console.log('Success setting password');
-      navigate('/login');
+      console.log('Password set successfully!');
+      navigate('/');
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess]);
+
+  const handleSetPassword = async (values) => {
+    try {
+      const { password } = values;
+
+      // Wait until the users password is set
+      await setPassword({
+        body: { userId: user?._id, password },
+      }).unwrap();
+
+      // Log the user in with their new password
+      await login({ body: { email: user?.email, password } }).unwrap();
+    } catch (error) {
+      console.log('Error setting password or logging in');
+    }
+  };
 
   return (
     <Root>
@@ -48,10 +64,7 @@ const SetPassword = () => {
 
       <Formik
         validationSchema={setPasswordSchema}
-        onSubmit={(values) => {
-          const { password } = values;
-          setPassword({ body: { userId: user?._id, password } });
-        }}
+        onSubmit={handleSetPassword}
         initialValues={{
           password: '',
           passwordConfirmation: '',
@@ -107,7 +120,7 @@ const SetPassword = () => {
             <Button
               // Start out disabled on initial load and until all fields valid
               disabled={!isValid || !dirty || !values.passwordConfirmation}
-              loading={isLoading}
+              loading={isLoading || loginLoading}
               variant='primary'
               className='SignUpButton'
               type='submit'

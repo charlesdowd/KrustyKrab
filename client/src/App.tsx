@@ -11,6 +11,7 @@ import UserPage from './features/pages/UserPage';
 import VerifyEmail from './features/auth/VerifyEmail';
 import SetPassword from './features/auth/SetPassword/SetPassword';
 import ProductsPage from './features/pages/ProductsPage';
+import SetPasswordGuard from './features/layout/SetPasswordGuard';
 
 /*
   <PublicLayout> and <PrivateLayout> components handle redirects based on 
@@ -28,8 +29,10 @@ const App: FunctionComponent = () => {
         <Route path='verify-email' element={<VerifyEmail />} />
       </Route>
 
-      {/* This route is special and will redirect elsewhere if user should not be here */}
-      <Route path='set-password' element={<SetPassword />} />
+      {/* Protected SetPassword route */}
+      <Route element={<SetPasswordGuard />}>
+        <Route path='set-password' element={<SetPassword />} />
+      </Route>
 
       {/* Private Routes */}
       <Route path='/' element={<PrivateLayout />}>
