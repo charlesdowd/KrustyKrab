@@ -7,10 +7,16 @@ const authSlice = createSlice({
     user: null,
   },
   reducers: {
+    //  Used on login
     setCredentials: (state, action) => {
       const { accessToken, user } = action.payload;
       state.accessToken = accessToken;
       state.user = user;
+    },
+    // Used when accessToken is stale and we use our refresh token
+    setAcessToken: (state, action) => {
+      const { accessToken } = action.payload;
+      state.accessToken = accessToken;
     },
     setUser: (state, action) => {
       const { user } = action.payload;
@@ -27,6 +33,7 @@ export const selectCurrentToken = (state) => state.auth.accessToken;
 export const selectUser = (state) => state.auth.user;
 
 // Functions for executing actions on the Auth state
-export const { setCredentials, logOut, setUser } = authSlice.actions;
+export const { setCredentials, setAcessToken, logOut, setUser } =
+  authSlice.actions;
 
 export default authSlice.reducer;
