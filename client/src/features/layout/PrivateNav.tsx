@@ -31,6 +31,10 @@ const PublicNav = () => {
         <Button>Users</Button>
       </NavItem>
 
+      <NavItem to='/products'>
+        <Button>Products</Button>
+      </NavItem>
+
       <Button onClick={() => sendLogout()}>Logout</Button>
     </NavRoot>
   );

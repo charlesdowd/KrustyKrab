@@ -23,7 +23,8 @@ export const NavRoot = styled.div`
 export const NavItem = styled(NavLink)`
   &.active {
     > button {
-      display: none;
+      background-color: white;
+      color: blue;
     }
   }
 `;

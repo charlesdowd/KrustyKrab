@@ -10,6 +10,7 @@ import Dashboard from './features/pages/Dashboard/Dashboard';
 import UserPage from './features/pages/UserPage';
 import VerifyEmail from './features/auth/VerifyEmail';
 import SetPassword from './features/auth/SetPassword/SetPassword';
+import ProductsPage from './features/pages/ProductsPage';
 
 /*
   <PublicLayout> and <PrivateLayout> components handle redirects based on 
@@ -34,6 +35,7 @@ const App: FunctionComponent = () => {
       <Route path='/' element={<PrivateLayout />}>
         <Route index element={<Dashboard />} />
         <Route path='users' element={<UserPage />} />
+        <Route path='products' element={<ProductsPage />} />
       </Route>
 
       {/* Catch other routes and send them to correct page. TODO: add 404 page */}
