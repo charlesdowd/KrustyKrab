@@ -8,15 +8,16 @@ const VerifyEmail = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const [verifyEmail, { isSuccess, isError, isLoading }] =
-    useVerifyEmailMutation();
+  const [verifyEmail, { isSuccess, isError }] = useVerifyEmailMutation();
 
   // Grab emailToken from URL
   const emailToken = searchParams.get('emailToken');
 
   useEffect(() => {
     // Navigate home if no token in url
-    if (!emailToken) navigate('/');
+    if (!emailToken) {
+      navigate('/');
+    }
 
     // Attempt to verify email
     verifyEmail({ body: { emailToken } });
@@ -33,12 +34,12 @@ const VerifyEmail = () => {
       console.log('Failed to verify user');
       navigate('/'); // Navigate home if emailToken was invalid
     }
-  }, [isSuccess, isError, isLoading]);
+  }, [isSuccess, isError]);
 
   // TODO: Just put a spinner in the center of the page
   return (
     <Container>
-      {isLoading && <ClipLoader size={50} color='blue' loading />}
+      <ClipLoader size={50} color='blue' loading />
     </Container>
   );
 };

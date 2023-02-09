@@ -18,5 +18,6 @@ export async function verifyEmail(
   return User.findOneAndUpdate(
     { _id: user._id },
     { $set: { emailVerified: true, emailToken: null } },
+    { new: true },
   );
 }

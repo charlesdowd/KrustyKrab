@@ -10,8 +10,9 @@ import Dashboard from './features/pages/Dashboard/Dashboard';
 import UserPage from './features/pages/UserPage';
 import VerifyEmail from './features/auth/VerifyEmail';
 import SetPassword from './features/auth/SetPassword/SetPassword';
-import ProductsPage from './features/pages/ProductsPage';
+import ProductsPage from './features/pages/ProductsPage/ProductsPage';
 import SetPasswordGuard from './features/layout/SetPasswordGuard';
+import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
 
 /*
   <PublicLayout> and <PrivateLayout> components handle redirects based on 
@@ -26,6 +27,10 @@ const App: FunctionComponent = () => {
         <Route path='landing' element={<LandingPage />} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
+      </Route>
+
+      {/* Protected VerifyEmail route */}
+      <Route element={<VerifyEmailGuard />}>
         <Route path='verify-email' element={<VerifyEmail />} />
       </Route>
 
@@ -35,7 +40,7 @@ const App: FunctionComponent = () => {
       </Route>
 
       {/* Private Routes */}
-      <Route path='/' element={<PrivateLayout />}>
+      <Route element={<PrivateLayout />}>
         <Route index element={<Dashboard />} />
         <Route path='users' element={<UserPage />} />
         <Route path='products' element={<ProductsPage />} />

@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from './index';
-import { selectCurrentToken, selectUser, selectAuth } from './slices/authSlice';
+import { selectCurrentToken, selectAuth, selectUser } from './slices/authSlice';
 
 // Use these instead of the standard `useDispatch` and `useSelector` hooks.
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -16,12 +16,8 @@ export const isLoggedIn = () => {
   return !!useAppSelector(selectCurrentToken);
 };
 
-// Return true if user in the redux store has emailVerified = true
-export const emailVerified = () => {
-  return useAppSelector(selectUser)?.emailVerified;
-};
-
-// This specific state of not being logged in but having emailVerified means they can set their password
-export const isSettingPassword = () => {
-  return !isLoggedIn() && emailVerified();
+// User has verified their email but does not have a password yet
+export const settingPassword = () => {
+  const user = useAppSelector(selectUser);
+  return user?.emailVerified && !user?.password;
 };
