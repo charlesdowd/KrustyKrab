@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import reactLogo from '../../images/logo512.png';
 
@@ -8,6 +8,8 @@ export interface ProductProps {
 }
 
 const Product: FunctionComponent<ProductProps> = ({ name, price }) => {
+  const quantityRef = useRef();
+
   return (
     <Card border='dark'>
       <Card.Img variant='top' src={reactLogo} />
@@ -20,6 +22,14 @@ const Product: FunctionComponent<ProductProps> = ({ name, price }) => {
           can go here or any other informational text.
         </Card.Text>
       </Card.Body>
+      <div>
+        <input
+          type='number'
+          ref={quantityRef}
+          onChange={() => console.log(quantityRef)}
+        />
+        Below the Card body
+      </div>
     </Card>
   );
 };
