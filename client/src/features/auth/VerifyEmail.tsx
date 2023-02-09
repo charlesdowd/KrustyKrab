@@ -6,16 +6,16 @@ import Loader from '../../components/Loader/Loader';
 type ContextType = { emailToken: string };
 
 const VerifyEmail = () => {
-  const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
+  const [verifyEmail] = useVerifyEmailMutation();
 
   const { emailToken } = useOutletContext<ContextType>();
 
   useEffect(() => {
-    // NOTE: verifyEmail was triggered twice due to React.StrictMode issue
+    // NOTE: verifyEmail is triggered twice due to React.StrictMode issue.
+    // The component gets mounted twice so this useEffect runs twice only in dev
 
-    // Attempt to verify email.. isLoading check to make sure we dont trigger this twice
-    if (!isLoading) verifyEmail({ body: { emailToken } });
-  }, [isLoading]);
+    verifyEmail({ body: { emailToken } });
+  }, []);
 
   return <Loader size={200} />;
 };

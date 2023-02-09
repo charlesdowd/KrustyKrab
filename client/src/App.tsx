@@ -15,8 +15,7 @@ import SetPasswordGuard from './features/layout/SetPasswordGuard';
 import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
 
 /*
-  <PublicLayout> and <PrivateLayout> components handle redirects based on 
-  whether the user is logged in or not.
+  Layout and Guard wrapper routes help redirect user to correct route
 */
 
 const App: FunctionComponent = () => {
@@ -29,12 +28,10 @@ const App: FunctionComponent = () => {
         <Route path='signup' element={<SignUp />} />
       </Route>
 
-      {/* Protected VerifyEmail route */}
+      {/* Unique Routes with their own guards*/}
       <Route element={<VerifyEmailGuard />}>
         <Route path='verify-email' element={<VerifyEmail />} />
       </Route>
-
-      {/* Protected SetPassword route */}
       <Route element={<SetPasswordGuard />}>
         <Route path='set-password' element={<SetPassword />} />
       </Route>
