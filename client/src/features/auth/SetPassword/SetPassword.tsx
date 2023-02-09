@@ -1,8 +1,6 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../store/hooks';
 import { selectUser } from '../../../store/slices/authSlice';
@@ -30,17 +28,9 @@ const setPasswordSchema = Yup.object({
 const SetPassword = () => {
   // Grab user from redux store to get their _id
   const user = useAppSelector(selectUser);
-  const navigate = useNavigate();
 
-  const [login, { isSuccess, isLoading: loginLoading }] = useLoginMutation();
+  const [login, { isLoading: loginLoading }] = useLoginMutation();
   const [setPassword, { isLoading }] = useSetPasswordMutation();
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log('Password set successfully!');
-      navigate('/');
-    }
-  }, [isSuccess]);
 
   const handleSetPassword = async (values) => {
     try {

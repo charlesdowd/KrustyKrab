@@ -1,11 +1,10 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Button from '../../../components/Button/Button';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
 import { useRegisterMutation } from '../../../store/slices/api/templateApi';
-import { useEffect } from 'react';
 
 // Validation object for new sign ups
 const signupSchema = Yup.object({
@@ -13,19 +12,7 @@ const signupSchema = Yup.object({
 });
 
 const SignUp = () => {
-  const [registerUser, { isSuccess, isError, isLoading }] =
-    useRegisterMutation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log('Success toast here'); // TODO: add toasts
-      navigate('/landing');
-    }
-    if (isError) {
-      console.log('Error toast here'); // TODO
-    }
-  }, [isSuccess, isError]);
+  const [registerUser, { isLoading }] = useRegisterMutation();
 
   return (
     <Root>

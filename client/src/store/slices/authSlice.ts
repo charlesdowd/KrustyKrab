@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
 import { templateApi } from './api/templateApi.generated';
 
@@ -33,6 +34,7 @@ const authSlice = createSlice({
       templateApi.endpoints.verifyEmail.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user;
+        toast.success('Email verified');
       },
     );
 
@@ -41,6 +43,39 @@ const authSlice = createSlice({
       (state, { payload }) => {
         state.accessToken = payload.accessToken;
         state.user = payload.user;
+        toast.success('Login success');
+      },
+    );
+
+    builder.addMatcher(templateApi.endpoints.register.matchFulfilled, () => {
+      toast.success('Verification email sent');
+    });
+
+    // Fire error toasts when these fail
+    builder.addMatcher(
+      templateApi.endpoints.login.matchRejected,
+      (state, { payload }) => {
+        // TODO: find better way to deal with types here
+        const errorMessage = (payload as any)?.data?.error;
+        toast.error(`Login Failed: ${errorMessage}`);
+      },
+    );
+
+    builder.addMatcher(
+      templateApi.endpoints.verifyEmail.matchRejected,
+      (state, { payload }) => {
+        // TODO: find better way to deal with types here
+        const errorMessage = (payload as any)?.data?.error;
+        toast.error(`Error verifying email: ${errorMessage}`);
+      },
+    );
+
+    builder.addMatcher(
+      templateApi.endpoints.register.matchRejected,
+      (state, { payload }) => {
+        // TODO: find better way to deal with types here
+        const errorMessage = (payload as any)?.data?.error;
+        toast.error(`Error: ${errorMessage}`);
       },
     );
   },

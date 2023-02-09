@@ -1,47 +1,23 @@
 import { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
-import { ClipLoader } from 'react-spinners';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useVerifyEmailMutation } from '../../store/slices/api/templateApi';
+import Loader from '../../components/Loader/Loader';
+
+type ContextType = { emailToken: string };
 
 const VerifyEmail = () => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
 
-  const [verifyEmail, { isSuccess, isError }] = useVerifyEmailMutation();
-
-  // Grab emailToken from URL
-  const emailToken = searchParams.get('emailToken');
+  const { emailToken } = useOutletContext<ContextType>();
 
   useEffect(() => {
-    // Navigate home if no token in url
-    if (!emailToken) {
-      navigate('/');
-    }
+    // NOTE: verifyEmail was triggered twice due to React.StrictMode issue
 
-    // Attempt to verify email
-    verifyEmail({ body: { emailToken } });
-  }, []);
+    // Attempt to verify email.. isLoading check to make sure we dont trigger this twice
+    if (!isLoading) verifyEmail({ body: { emailToken } });
+  }, [isLoading]);
 
-  // Handle outcomes of verifying email
-  useEffect(() => {
-    if (isSuccess) {
-      console.log('Successfully verified user');
-      navigate('/set-password');
-    }
-
-    if (isError) {
-      console.log('Failed to verify user');
-      navigate('/'); // Navigate home if emailToken was invalid
-    }
-  }, [isSuccess, isError]);
-
-  // TODO: Just put a spinner in the center of the page
-  return (
-    <Container>
-      <ClipLoader size={50} color='blue' loading />
-    </Container>
-  );
+  return <Loader size={200} />;
 };
 
 export default VerifyEmail;
