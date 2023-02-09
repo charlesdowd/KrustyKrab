@@ -5,6 +5,7 @@ export interface IUser {
   emailVerified?: boolean;
   password?: string;
   emailToken?: string; // Randomized token used to verify email on register
+  isAdmin?: boolean;
 }
 
 // Interface to hold normal properties as well as document properties ie _id, timestamps
@@ -16,6 +17,7 @@ const userSchema: Schema<IUserDocument> = new Schema(
     emailVerified: { type: Boolean, required: true, default: false },
     password: { type: String, required: false },
     emailToken: { type: String, required: false },
+    isAdmin: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

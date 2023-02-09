@@ -13,6 +13,8 @@ import SetPassword from './features/auth/SetPassword/SetPassword';
 import ProductsPage from './features/pages/ProductsPage/ProductsPage';
 import SetPasswordGuard from './features/layout/SetPasswordGuard';
 import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
+import AdminGuard from './features/layout/AdminGuard';
+import AdminPage from './features/pages/AdminPage';
 
 /*
   Layout and Guard wrapper routes help redirect user to correct route
@@ -41,6 +43,11 @@ const App: FunctionComponent = () => {
         <Route index element={<Dashboard />} />
         <Route path='users' element={<UserPage />} />
         <Route path='products' element={<ProductsPage />} />
+
+        {/* Admin Routes inside of PrivateLayout (PrivateNav is included) */}
+        <Route element={<AdminGuard />}>
+          <Route path='admin' element={<AdminPage />} />
+        </Route>
       </Route>
 
       {/* Catch other routes and send them to correct page. TODO: add 404 page */}

@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useSendLogoutMutation } from '../../store/slices/api/templateApi';
-import { logOut } from '../../store/slices/authSlice';
+import { logOut, selectUser } from '../../store/slices/authSlice';
 import { NavRoot, NavHome, NavItem } from './Layout.styled';
 
 const PublicNav = () => {
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const [sendLogout, { isSuccess, isError }] = useSendLogoutMutation();
 
-  // Handles logout success and failure
+  // TODO: Change to new extraReducer pattern
   useEffect(() => {
     if (isSuccess) {
       console.log('LOGOUT SUCCESS!'); // TODO: replace with toast notification
@@ -34,6 +35,12 @@ const PublicNav = () => {
       <NavItem to='/products'>
         <Button>Products</Button>
       </NavItem>
+
+      {user?.isAdmin && (
+        <NavItem to='/admin'>
+          <Button>Admin</Button>
+        </NavItem>
+      )}
 
       <Button onClick={() => sendLogout()}>Logout</Button>
     </NavRoot>
