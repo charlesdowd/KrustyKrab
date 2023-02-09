@@ -1,20 +1,18 @@
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, Navigate, useSearchParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/slices/authSlice';
 
 const VerifyEmailGuard = () => {
   const user = useAppSelector(selectUser);
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  // Protect this page from users who should not be here
-  useEffect(() => {
-    if (user?.emailVerified) {
-      navigate('/');
-    }
-  }, []);
+  // Grab emailToken from URL
+  const emailToken = searchParams.get('emailToken');
 
-  return <Outlet />;
+  if (user?.emailVerified || !emailToken) return <Navigate to='/' replace />;
+
+  // Pass emailToken to VerifyEmail component
+  return <Outlet context={{ emailToken }} />;
 };
 
 export default VerifyEmailGuard;

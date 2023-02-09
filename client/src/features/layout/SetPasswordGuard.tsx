@@ -1,19 +1,11 @@
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
-import { selectUser } from '../../store/slices/authSlice';
+import { Outlet, Navigate } from 'react-router-dom';
+import { isSettingPassword } from '../../store/hooks';
 
 const SetPasswordGuard = () => {
-  const user = useAppSelector(selectUser);
-  const navigate = useNavigate();
-
-  // Only allow a user on this page if they are email verified, we have them
-  // saved in our redux store and they have no password saved yet
+  const settingPassword = isSettingPassword();
 
   // Protect this page from users who should not be here
-  useEffect(() => {
-    if (!user || user.password || !user.emailVerified) navigate('/');
-  }, []);
+  if (!settingPassword) return <Navigate to='/' replace />;
 
   return <Outlet />;
 };

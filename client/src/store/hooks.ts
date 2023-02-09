@@ -17,7 +17,7 @@ export const isLoggedIn = () => {
 };
 
 // User has verified their email but does not have a password yet
-export const settingPassword = () => {
+export const isSettingPassword = () => {
   const user = useAppSelector(selectUser);
   return user?.emailVerified && !user?.password;
 };
