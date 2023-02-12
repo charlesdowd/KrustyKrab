@@ -13,7 +13,6 @@ const PublicNav = () => {
   // TODO: Change to new extraReducer pattern
   useEffect(() => {
     if (isSuccess) {
-      console.log('LOGOUT SUCCESS!'); // TODO: replace with toast notification
       // Clear auth token in redux
       dispatch(logOut());
     }

@@ -6,7 +6,7 @@ import {
   FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../..';
-import { setAcessToken } from '../authSlice';
+import { logOut, setAcessToken } from '../authSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_BASE_URL,
@@ -45,6 +45,9 @@ async function baseQueryWithReauth(
       console.log('Refresh token used successfully');
     } else {
       // TODO: (optional) handle 403 expired refresh differently than other errors
+
+      // Log out user if refresh fails
+      api.dispatch(logOut());
       return refreshResult;
     }
   }
