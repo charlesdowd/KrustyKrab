@@ -36,7 +36,7 @@ const PublicNav = () => {
         <Button>Products</Button>
       </NavItem>
 
-      {user?.isAdmin && (
+      {user?.admin && (
         <NavItem to='/admin'>
           <Button>Admin</Button>
         </NavItem>

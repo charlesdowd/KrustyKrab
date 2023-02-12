@@ -226,6 +226,13 @@ components:
             $date: '2022-12-28T06:07:51.229Z'
           __v: 0
       title: User
+      examples:
+        - email: user@example.com
+          password: string
+          _id: string
+          createdAt: '2019-08-24T14:15:22Z'
+          updatedAt: '2019-08-24T14:15:22Z'
+          emailVerified: true
       properties:
         email:
           type: string
@@ -242,20 +249,16 @@ components:
           format: date-time
         emailVerified:
           type: boolean
+        admin:
+          type: boolean
+        approved:
+          type: boolean
       required:
         - email
         - _id
         - createdAt
         - updatedAt
         - emailVerified
-      description: ''
-      examples:
-        - email: user@example.com
-          password: string
-          _id: string
-          createdAt: '2019-08-24T14:15:22Z'
-          updatedAt: '2019-08-24T14:15:22Z'
-          emailVerified: true
     Todo:
       title: Todo
       x-stoplight:

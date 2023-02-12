@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import PublicLayout from './features/layout/PublicLayout';
@@ -14,13 +14,26 @@ import ProductsPage from './features/pages/ProductsPage/ProductsPage';
 import SetPasswordGuard from './features/layout/SetPasswordGuard';
 import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
 import AdminGuard from './features/layout/AdminGuard';
-import AdminPage from './features/pages/AdminPage';
+import AdminDashboard from './features/pages/Admin/AdminDashboard';
+import ApproveAccounts from './features/pages/Admin/ApproveAccounts';
+import { useGetUserQuery } from './store/slices/api/templateApi';
+import { isLoggedIn } from './store/hooks';
 
 /*
   Layout and Guard wrapper routes help redirect user to correct route
 */
 
 const App: FunctionComponent = () => {
+  const loggedIn = isLoggedIn();
+
+  // Currently we do not use the data returned from the getUserQuery since we
+  // are setting the auth.user in our redux store in our extraReducer.
+  // We could pass it to some of our components if we wanted to but are not
+  // using that pattern. We use selectors to get the auth.user state instead.
+  useGetUserQuery(null, {
+    skip: !loggedIn,
+  });
+
   return (
     <Routes>
       {/* Public Routes */}
@@ -45,8 +58,9 @@ const App: FunctionComponent = () => {
         <Route path='products' element={<ProductsPage />} />
 
         {/* Admin Routes inside of PrivateLayout (PrivateNav is included) */}
-        <Route element={<AdminGuard />}>
-          <Route path='admin' element={<AdminPage />} />
+        <Route path='admin' element={<AdminGuard />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path='approve-accounts' element={<ApproveAccounts />} />
         </Route>
       </Route>
 

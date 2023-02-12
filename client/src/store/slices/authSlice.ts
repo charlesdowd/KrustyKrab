@@ -47,6 +47,14 @@ const authSlice = createSlice({
       },
     );
 
+    // Update user in redux store with most up to date user info
+    builder.addMatcher(
+      templateApi.endpoints.getUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+      },
+    );
+
     builder.addMatcher(templateApi.endpoints.register.matchFulfilled, () => {
       toast.success('Verification email sent');
     });
