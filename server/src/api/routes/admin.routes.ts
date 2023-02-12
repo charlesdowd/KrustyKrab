@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import checkAdmin from '../../middleware/checkAdmin';
-import { tryCatch } from '../../middleware/tryCatch';
+import tryCatch from '../../middleware/tryCatch';
 import verifyJWT from '../../middleware/verifyJWT';
 import AdminController from '../../controllers/admin.controller';
 

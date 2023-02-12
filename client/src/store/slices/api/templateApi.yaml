@@ -234,6 +234,30 @@ paths:
                   type: string
               required:
                 - userId
+  /auth/refresh:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-auth-refresh
+  /product:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+      operationId: getAllProducts
+      description: Get all products we offer
 components:
   schemas:
     User:
@@ -285,27 +309,29 @@ components:
         - createdAt
         - updatedAt
         - emailVerified
-    Todo:
-      title: Todo
+    Product:
+      title: Product
       x-stoplight:
-        id: zanfjehx494u1
+        id: vcqf4mviae2l5
       type: object
       properties:
         _id:
           type: string
-        completed:
-          type: boolean
-        task:
+        itemId:
           type: string
-        createdAt:
+        description:
           type: string
-          format: date-time
-        updatedAt:
+        casePack:
           type: string
-          format: date-time
+        caseWeight:
+          type: string
+        price:
+          type: number
       required:
         - _id
-        - completed
-        - task
-        - createdAt
-        - updatedAt
+        - itemId
+        - description
+        - casePack
+        - caseWeight
+        - price
+      description: Products that we offer

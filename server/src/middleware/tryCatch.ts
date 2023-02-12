@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-export const tryCatch =
+const tryCatch =
   (controller: any) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -10,3 +10,5 @@ export const tryCatch =
       return next(error);
     }
   };
+
+export default tryCatch;

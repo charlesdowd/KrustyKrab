@@ -55,6 +55,18 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    getAuthRefresh: build.query<
+      GetAuthRefreshApiResponse,
+      GetAuthRefreshApiArg
+    >({
+      query: () => ({ url: `/auth/refresh` }),
+    }),
+    getAllProducts: build.query<
+      GetAllProductsApiResponse,
+      GetAllProductsApiArg
+    >({
+      query: () => ({ url: `/product` }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -126,6 +138,12 @@ export type AdminApproveAccountApiArg = {
     userId: string;
   };
 };
+export type GetAuthRefreshApiResponse = unknown;
+export type GetAuthRefreshApiArg = void;
+export type GetAllProductsApiResponse = /** status 200 OK */ {
+  products?: Product[];
+};
+export type GetAllProductsApiArg = void;
 export type User = {
   email: string;
   password?: string;
@@ -135,4 +153,12 @@ export type User = {
   emailVerified: boolean;
   admin?: boolean;
   approved?: boolean;
+};
+export type Product = {
+  _id: string;
+  itemId: string;
+  description: string;
+  casePack: string;
+  caseWeight: string;
+  price: number;
 };

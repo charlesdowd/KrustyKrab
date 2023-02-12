@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import UserController from '../../controllers/user.controller';
 import verifyJWT from '../../middleware/verifyJWT';
-import { tryCatch } from '../../middleware/tryCatch';
+import tryCatch from '../../middleware/tryCatch';
 
 const router = Router();
 
