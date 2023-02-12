@@ -2,6 +2,7 @@ import { templateApi as api } from './templateApi.generated';
 
 const tags = {
   user: 'User',
+  users: 'Users',
   todo: 'Todo',
 };
 
@@ -16,11 +17,14 @@ const tags = {
 const enhancedApi = api.enhanceEndpoints({
   addTagTypes: Object.values(tags),
   endpoints: {
-    getUser: {
-      providesTags: [tags.user],
+    getAllUsers: {
+      providesTags: [tags.users],
+    },
+    adminApproveAccount: {
+      invalidatesTags: [tags.users],
     },
     createUser: {
-      invalidatesTags: [tags.user],
+      invalidatesTags: [tags.users],
     },
   },
 });
@@ -46,9 +50,12 @@ export const templateApi = enhancedApi.injectEndpoints({
 });
 
 export const {
+  // Queries
   useGetUserQuery,
   useGetAllUsersQuery,
 
+  // Mutations
+  useAdminApproveAccountMutation,
   useSetPasswordMutation,
   useRegisterMutation,
   useVerifyEmailMutation,

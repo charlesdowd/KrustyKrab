@@ -45,6 +45,16 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    adminApproveAccount: build.mutation<
+      AdminApproveAccountApiResponse,
+      AdminApproveAccountApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/admin/approve-account`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -106,6 +116,14 @@ export type SetPasswordApiArg = {
   body: {
     userId: string;
     password: string;
+  };
+};
+export type AdminApproveAccountApiResponse = /** status 201 Created */ {
+  message?: string;
+};
+export type AdminApproveAccountApiArg = {
+  body: {
+    userId: string;
   };
 };
 export type User = {

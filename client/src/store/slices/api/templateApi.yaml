@@ -208,6 +208,32 @@ paths:
               required:
                 - userId
                 - password
+  /admin/approve-account:
+    post:
+      summary: ''
+      operationId: adminApproveAccount
+      responses:
+        '201':
+          description: Created
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: Allow admins to approve the account of a specific user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+              required:
+                - userId
 components:
   schemas:
     User:

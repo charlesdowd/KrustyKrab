@@ -1,5 +1,11 @@
 import { Root } from '../Dashboard/Dashboard.styled';
-import { useGetAllUsersQuery } from '../../../store/slices/api/templateApi';
+import Button from '../../../components/Button/Button';
+import {
+  useAdminApproveAccountMutation,
+  useGetAllUsersQuery,
+} from '../../../store/slices/api/templateApi';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const ApproveAccounts = () => {
   /*
@@ -15,14 +21,46 @@ const ApproveAccounts = () => {
     }),
   });
 
+  const [approveUser, { isLoading, isSuccess, isError }] =
+    useAdminApproveAccountMutation();
+
+  const handleClick = (userId) => {
+    approveUser({ body: { userId } });
+  };
+
+  // Handle success + error cases
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Account approved successfully');
+    }
+    if (isError) {
+      toast.error('Failed to approve account');
+    }
+  }, [isSuccess, isError]);
+
   return (
     <Root>
       <h1>Approve Accounts Tool</h1>
-      <div className='mt-4'>
+      <div className='mt-4' style={{ width: '100%' }}>
         <h2>Current Unapproved Accounts</h2>
         {filteredUsers?.map((user) => (
-          <div key={user._id} className='mt-1'>
-            {user.email}
+          <div
+            key={user._id}
+            className='mt-1'
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div>{user.email}</div>
+            <Button
+              variant='secondary'
+              loading={isLoading}
+              onClick={() => handleClick(user._id)}
+            >
+              Click to Approve User
+            </Button>
           </div>
         ))}
       </div>
