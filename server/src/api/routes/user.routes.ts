@@ -6,7 +6,6 @@ import { tryCatch } from '../../middleware/tryCatch';
 const router = Router();
 
 // TODO: Add this to all authenticated routes. It attaches user to the req
-// Use auth middleware for this router
 router.use(verifyJWT);
 
 // TODO: add some sort of admin middleware to this route and createUser route
