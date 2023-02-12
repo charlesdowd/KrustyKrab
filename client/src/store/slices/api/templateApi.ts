@@ -3,7 +3,7 @@ import { templateApi as api } from './templateApi.generated';
 const tags = {
   user: 'User',
   users: 'Users',
-  todo: 'Todo',
+  product: 'Product',
 };
 
 // TODO: fix up the tags to make sure dependencies make sense for routes

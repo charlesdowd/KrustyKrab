@@ -2,8 +2,8 @@ import { Router } from 'express';
 
 import MessageResponse from '../interfaces/MessageResponse';
 
-import users from './routes/user.routes';
-import todos from './routes/todo.routes';
+import user from './routes/user.routes';
+import product from './routes/product.routes';
 import auth from './routes/auth.routes';
 import admin from './routes/admin.routes';
 
@@ -20,8 +20,8 @@ router.get<{}, MessageResponse>('/', (req, res) => {
 // TODO: Add basic rate limiter middleware for unauthenticated routes
 
 router.use('/auth', auth);
-router.use('/todo', todos);
-router.use('/user', users);
+router.use('/product', product);
+router.use('/user', user);
 router.use('/admin', admin);
 
 export default router;
