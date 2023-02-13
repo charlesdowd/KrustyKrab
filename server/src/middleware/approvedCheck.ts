@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import AuthenticatedRequest from '../interfaces/AuthenticatedRequest';
 
-const checkAdmin = async (
+const approvedCheck = async (
   request: Request,
   res: Response,
   next: NextFunction,
@@ -12,7 +12,7 @@ const checkAdmin = async (
    * See this post for more info: https://stackoverflow.com/questions/37377731/extend-express-request-object-using-typescript
    */
   const req = request as AuthenticatedRequest;
-  if (req.user && req.user.admin) {
+  if (req.user && req.user.approved) {
     next();
   } else {
     console.log(`Rejected attempt to ${req.method} ${req.path}`);
@@ -22,4 +22,4 @@ const checkAdmin = async (
   }
 };
 
-export default checkAdmin;
+export default approvedCheck;

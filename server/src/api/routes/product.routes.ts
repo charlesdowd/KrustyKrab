@@ -2,7 +2,7 @@ import { Router } from 'express';
 import TodoController from '../../controllers/product.controller';
 import verifyJWT from '../../middleware/verifyJWT';
 import tryCatch from '../../middleware/tryCatch';
-import checkAdmin from '../../middleware/checkAdmin';
+import adminCheck from '../../middleware/adminCheck';
 import AdminController from '../../controllers/admin.controller';
 
 const router = Router();
@@ -14,6 +14,6 @@ router.get('/', tryCatch(TodoController.getAllProducts));
 
 // TODO: consider moving this to adminRouter and using POST /admin/product
 // This route should be and IS protected by admin middleware
-router.post('/', checkAdmin, tryCatch(AdminController.createProduct));
+router.post('/', adminCheck, tryCatch(AdminController.createProduct));
 
 export default router;
