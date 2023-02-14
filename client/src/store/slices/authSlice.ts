@@ -64,7 +64,8 @@ const authSlice = createSlice({
       templateApi.endpoints.login.matchRejected,
       (state, { payload }) => {
         // TODO: find better way to deal with types here
-        const errorMessage = (payload as any)?.data?.error;
+        const errorMessage =
+          (payload as any)?.data?.error || 'Internal Server Error';
         toast.error(`Login Failed: ${errorMessage}`);
       },
     );
@@ -84,6 +85,15 @@ const authSlice = createSlice({
         // TODO: find better way to deal with types here
         const errorMessage = (payload as any)?.data?.error;
         toast.error(`Error: ${errorMessage}`);
+      },
+    );
+
+    // Essentially log the user out if refresh fails
+    builder.addMatcher(
+      templateApi.endpoints.getAuthRefresh.matchRejected,
+      (state) => {
+        state.accessToken = null;
+        state.user = null;
       },
     );
   },

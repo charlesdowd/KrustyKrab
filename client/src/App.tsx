@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import PublicLayout from './features/layout/PublicLayout';
@@ -7,7 +7,6 @@ import LandingPage from './features/pages/LandingPage/LandingPage';
 import Login from './features/auth/Login/Login';
 import SignUp from './features/auth/SignUp/SignUp';
 import Dashboard from './features/pages/Dashboard/Dashboard';
-import UserPage from './features/pages/UserPage';
 import VerifyEmail from './features/auth/VerifyEmail';
 import SetPassword from './features/auth/SetPassword/SetPassword';
 import ProductsPage from './features/pages/ProductsPage';
@@ -16,6 +15,7 @@ import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
 import AdminGuard from './features/layout/AdminGuard';
 import AdminDashboard from './features/pages/Admin/AdminDashboard';
 import ApproveAccounts from './features/pages/Admin/ApproveAccounts';
+import CurrentOrderPage from './features/pages/CurrentOrderPage/CurrrentOrderPage';
 import { useGetUserQuery } from './store/slices/api/templateApi';
 import { isLoggedIn } from './store/hooks';
 
@@ -54,8 +54,8 @@ const App: FunctionComponent = () => {
       {/* Private Routes */}
       <Route element={<PrivateLayout />}>
         <Route index element={<Dashboard />} />
-        <Route path='users' element={<UserPage />} />
         <Route path='products' element={<ProductsPage />} />
+        <Route path='current-order' element={<CurrentOrderPage />} />
 
         {/* Admin Routes inside of PrivateLayout (PrivateNav is included) */}
         <Route path='admin' element={<AdminGuard />}>

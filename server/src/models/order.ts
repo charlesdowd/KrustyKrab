@@ -21,6 +21,11 @@ const orderSchema = new Schema(
     customer: { type: ObjectId, ref: 'User' },
     orderItems: [
       {
+        /*
+         * Since orderItems is a sub-document, mongoose automatically creates
+         * _ids on these array elements. This line shuts it off
+         */
+        _id: false,
         product: { type: ObjectId, required: true, ref: 'Product' },
         quantity: { type: Number, required: true },
       },

@@ -19,7 +19,14 @@ const orderSlice = createSlice({
     addItem: (state, { payload }) => {
       const { product, quantity } = payload;
       state.currentOrder.push({ product, quantity });
-      toast.success('Added to cart!');
+      toast.success('Added to cart');
+    },
+    removeItem: (state, { payload }) => {
+      const { product } = payload;
+      state.currentOrder = state.currentOrder.filter(
+        (orderItem) => orderItem.product !== product,
+      );
+      toast.success('Removed from cart');
     },
     clearOrder: (state) => {
       state.currentOrder = [];
@@ -35,13 +42,17 @@ const orderSlice = createSlice({
         toast.success('Order successfully submitted');
       },
     );
+    builder.addMatcher(templateApi.endpoints.createOrder.matchRejected, () => {
+      toast.error('Failed to submit order');
+    });
   },
 });
 
-export const selectCurrentOrder = (state): [OrderItem] => state.currentOrder;
-export const selectOrderHistory = (state) => state.orderHistory;
+export const selectCurrentOrder = (state): [OrderItem] =>
+  state.order.currentOrder;
+export const selectOrderHistory = (state) => state.order.orderHistory;
 
 // Functions for executing actions on the order state
-export const { addItem, clearOrder } = orderSlice.actions;
+export const { addItem, removeItem, clearOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -27,12 +27,12 @@ const PublicNav = () => {
         <Button>Dashboard</Button>
       </NavHome>
 
-      <NavItem to='/users'>
-        <Button>Users</Button>
-      </NavItem>
-
       <NavItem to='/products'>
         <Button>Products</Button>
+      </NavItem>
+
+      <NavItem to='/current-order'>
+        <Button>Current Order</Button>
       </NavItem>
 
       {user?.admin && (

@@ -156,7 +156,7 @@ export type CreateOrderApiResponse = /** status 201 Created */ {
 };
 export type CreateOrderApiArg = {
   body: {
-    orderItems: OrderItem;
+    orderItems: OrderItem[];
   };
 };
 export type User = {
