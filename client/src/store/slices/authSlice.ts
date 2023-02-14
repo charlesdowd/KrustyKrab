@@ -2,6 +2,16 @@ import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
 import { templateApi } from './api/templateApi.generated';
 
+export interface IUser {
+  _id: string;
+  email: string;
+  emailVerified?: boolean;
+  password?: string;
+  emailToken?: string; // Randomized token used to verify email on register
+  admin?: boolean;
+  approved?: boolean;
+}
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -102,7 +112,7 @@ const authSlice = createSlice({
 // Function for grabbing current auth state
 export const selectAuth = (state) => state.auth;
 export const selectCurrentToken = (state) => state.auth.accessToken;
-export const selectUser = (state) => state.auth.user;
+export const selectUser = (state): IUser => state.auth.user;
 
 // Functions for executing actions on the Auth state
 export const { setCredentials, setAcessToken, logOut, setUser } =

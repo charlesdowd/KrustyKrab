@@ -21,3 +21,7 @@ export const isSettingPassword = () => {
   const user = useAppSelector(selectUser);
   return user?.emailVerified && !user?.password;
 };
+
+export const isApproved = () => {
+  return useAppSelector(selectUser).approved;
+};
