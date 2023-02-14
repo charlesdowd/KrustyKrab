@@ -63,4 +63,5 @@ export const {
   useLoginMutation,
   useSendLogoutMutation,
   useCreateUserMutation,
+  useCreateOrderMutation,
 } = templateApi;

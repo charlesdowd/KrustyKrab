@@ -67,6 +67,13 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: () => ({ url: `/product` }),
     }),
+    createOrder: build.mutation<CreateOrderApiResponse, CreateOrderApiArg>({
+      query: (queryArg) => ({
+        url: `/order`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -144,6 +151,14 @@ export type GetAllProductsApiResponse = /** status 200 OK */ {
   products?: Product[];
 };
 export type GetAllProductsApiArg = void;
+export type CreateOrderApiResponse = /** status 201 Created */ {
+  order: Order;
+};
+export type CreateOrderApiArg = {
+  body: {
+    orderItems: OrderItem;
+  };
+};
 export type User = {
   email: string;
   password?: string;
@@ -161,4 +176,13 @@ export type Product = {
   casePack: string;
   caseWeight: string;
   price: number;
+};
+export type OrderItem = {
+  quantity: number;
+  product: string;
+};
+export type Order = {
+  _id: string;
+  customer: string;
+  orderItems: OrderItem;
 };

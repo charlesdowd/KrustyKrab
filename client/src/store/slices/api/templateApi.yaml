@@ -258,6 +258,33 @@ paths:
                       $ref: '#/components/schemas/Product'
       operationId: getAllProducts
       description: Get all products we offer
+  /order:
+    post:
+      summary: ''
+      operationId: createOrder
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+                required:
+                  - order
+      description: Create an order for a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderItems:
+                  $ref: '#/components/schemas/OrderItem'
+              required:
+                - orderItems
 components:
   schemas:
     User:
@@ -335,3 +362,34 @@ components:
         - caseWeight
         - price
       description: Products that we offer
+    Order:
+      title: Order
+      x-stoplight:
+        id: 1uhdkg67elwy7
+      type: object
+      properties:
+        _id:
+          type: string
+        customer:
+          type: string
+          description: User ID of the user who created this order
+        orderItems:
+          $ref: '#/components/schemas/OrderItem'
+      required:
+        - _id
+        - customer
+        - orderItems
+    OrderItem:
+      title: OrderItem
+      x-stoplight:
+        id: mavmg1s4k2bec
+      type: object
+      properties:
+        quantity:
+          type: integer
+        product:
+          type: string
+          description: 'Product ID '
+      required:
+        - quantity
+        - product

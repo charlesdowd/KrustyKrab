@@ -1,5 +1,6 @@
 export const products = [
   {
+    _id: '1',
     description: 'krabby patty',
     itemId: '123',
     casePack: '1x3',
@@ -7,6 +8,7 @@ export const products = [
     price: 150,
   },
   {
+    _id: '2',
     description: 'chum bucket',
     itemId: '124',
     casePack: '1x3',
@@ -14,6 +16,7 @@ export const products = [
     price: 75,
   },
   {
+    _id: '3',
     description: 'fries',
     itemId: '125',
     casePack: '1x3',
@@ -21,6 +24,7 @@ export const products = [
     price: 25,
   },
   {
+    _id: '4',
     description: 'krabby patty1',
     itemId: '126',
     casePack: '1x3',
@@ -28,6 +32,7 @@ export const products = [
     price: 150,
   },
   {
+    _id: '5',
     description: 'chum bucket1',
     itemId: '127',
     casePack: '1x3',
@@ -35,6 +40,7 @@ export const products = [
     price: 75,
   },
   {
+    _id: '6',
     description: 'fries1',
     itemId: '128',
     casePack: '1x3',
@@ -42,6 +48,7 @@ export const products = [
     price: 25,
   },
   {
+    _id: '7',
     description: 'krabby patty2',
     itemId: '129',
     casePack: '1x3',
@@ -49,6 +56,7 @@ export const products = [
     price: 150,
   },
   {
+    _id: '8',
     description: 'chum bucket2',
     itemId: '130',
     casePack: '1x3',
@@ -56,6 +64,7 @@ export const products = [
     price: 75,
   },
   {
+    _id: '9',
     description: 'fries2',
     itemId: '131',
     casePack: '1x3',

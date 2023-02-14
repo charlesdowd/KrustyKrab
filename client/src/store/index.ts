@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { templateApi } from './slices/api/templateApi.base';
 import authReducer from './slices/authSlice';
+import orderReducer from './slices/orderSlice';
 
 // Default redux logger but collapsed
 const customLogger = createLogger({
@@ -31,6 +32,7 @@ const persistConfig = {
 const combinedReducer = combineReducers({
   [templateApi.reducerPath]: templateApi.reducer,
   auth: authReducer,
+  order: orderReducer,
 });
 
 // Since we are persisting redux state, we need to manually clear it on logout
