@@ -16,7 +16,10 @@ import AdminGuard from './features/layout/AdminGuard';
 import AdminDashboard from './features/pages/Admin/AdminDashboard';
 import ApproveAccounts from './features/pages/Admin/ApproveAccounts';
 import CurrentOrderPage from './features/pages/CurrentOrderPage/CurrrentOrderPage';
-import { useGetUserQuery } from './store/slices/api/templateApi';
+import {
+  useGetAllProductsQuery,
+  useGetUserQuery,
+} from './store/slices/api/templateApi';
 import { isLoggedIn } from './store/hooks';
 
 /*
@@ -30,7 +33,12 @@ const App: FunctionComponent = () => {
   // are setting the auth.user in our redux store in our extraReducer.
   // We could pass it to some of our components if we wanted to but are not
   // using that pattern. We use selectors to get the auth.user state instead.
+
+  // Fetch user info and all current products
   useGetUserQuery(null, {
+    skip: !loggedIn,
+  });
+  useGetAllProductsQuery(null, {
     skip: !loggedIn,
   });
 
