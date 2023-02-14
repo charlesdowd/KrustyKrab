@@ -10,7 +10,7 @@ import Dashboard from './features/pages/Dashboard/Dashboard';
 import UserPage from './features/pages/UserPage';
 import VerifyEmail from './features/auth/VerifyEmail';
 import SetPassword from './features/auth/SetPassword/SetPassword';
-import ProductsPage from './features/pages/ProductsPage/ProductsPage';
+import ProductsPage from './features/pages/ProductsPage';
 import SetPasswordGuard from './features/layout/SetPasswordGuard';
 import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
 import AdminGuard from './features/layout/AdminGuard';
