@@ -7,3 +7,8 @@ export const Root = styled.div`
   padding: 24px;
   border-bottom: 2px solid gray;
 `;
+
+export const ButtonDiv = styled.div`
+  display: flex;
+  gap: 12px;
+`;
