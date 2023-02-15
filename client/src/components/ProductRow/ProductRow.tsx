@@ -1,9 +1,11 @@
-import { FunctionComponent, useRef } from 'react';
+import { FunctionComponent, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useAppDispatch } from '../../store/hooks';
 import { addItem } from '../../store/slices/orderSlice';
-import { Root, ButtonDiv } from './ProductRow.styled';
+import { Root, ButtonDiv, FavoriteDiv } from './ProductRow.styled';
 
 export interface IProduct {
   _id: string;
@@ -22,8 +24,13 @@ const Product: FunctionComponent<IProduct> = ({
   caseWeight,
   price,
 }) => {
+  const [favorite, setFavorite] = useState(false);
   const quantityRef = useRef<HTMLInputElement>();
   const dispatch = useAppDispatch();
+
+  const toggleFavorite = () => {
+    setFavorite(!favorite);
+  };
 
   const handleSubmit = () => {
     const quantity = quantityRef.current.value;
@@ -36,7 +43,7 @@ const Product: FunctionComponent<IProduct> = ({
 
     // Add item to the users current order in redux state
     dispatch(addItem({ product: _id, quantity }));
-    quantityRef.current.value = '0';
+    quantityRef.current.value = null;
   };
 
   return (
@@ -49,6 +56,15 @@ const Product: FunctionComponent<IProduct> = ({
       <ButtonDiv>
         <input type='number' ref={quantityRef} placeholder='0' />
         <Button onClick={handleSubmit}>Add to Order</Button>
+        <FavoriteDiv onClick={toggleFavorite}>
+          <FontAwesomeIcon
+            size='lg'
+            icon={faStar}
+            style={{ margin: 'auto' }}
+            color={favorite ? 'gold' : 'gray'}
+          />
+          {favorite ? 'Unfavorite' : 'Favorite'}
+        </FavoriteDiv>
       </ButtonDiv>
     </Root>
   );
