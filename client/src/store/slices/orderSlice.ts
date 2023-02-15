@@ -18,6 +18,12 @@ const orderSlice = createSlice({
     // TODO: handle case when product is already in the current order
     addItem: (state, { payload }) => {
       const { product, quantity } = payload;
+
+      // Handle when product already exists in current order. Remove old value
+      state.currentOrder = state.currentOrder.filter(
+        (orderItem: OrderItem) => orderItem.product !== product,
+      );
+
       state.currentOrder.push({ product, quantity });
       toast.success('Added to cart');
     },
