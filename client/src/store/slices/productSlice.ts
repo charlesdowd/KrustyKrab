@@ -56,6 +56,18 @@ const productSlice = createSlice({
         toast.error('Failed to get list of current products');
       },
     );
+    // Save users favorites to localStorage on logout
+    builder.addMatcher(
+      templateApi.endpoints.sendLogout.matchPending,
+      (state) => {
+        localStorage.setItem('favorites', JSON.stringify(state.favorites));
+      },
+    );
+    // Add users favorites from localStorage to state on login
+    builder.addMatcher(templateApi.endpoints.login.matchFulfilled, (state) => {
+      const favorites = JSON.parse(localStorage.getItem('favorites'));
+      state.favorites = favorites;
+    });
   },
 });
 
