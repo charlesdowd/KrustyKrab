@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState } from 'react';
+import { FunctionComponent, useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,30 +6,34 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useAppDispatch } from '../../store/hooks';
 import { addItem } from '../../store/slices/orderSlice';
 import { Root, ButtonDiv, FavoriteDiv } from './ProductRow.styled';
+import {
+  Product,
+  addFavorite,
+  removeFavorite,
+} from '../../store/slices/productSlice';
 
-export interface IProduct {
-  _id: string;
-  itemId: string;
-  description: string;
-  casePack: string;
-  caseWeight: string;
-  price: number;
+interface ProductRowProps extends Product {
+  favorite: boolean;
 }
 
-const Product: FunctionComponent<IProduct> = ({
+const ProductRow: FunctionComponent<ProductRowProps> = ({
   _id,
   itemId,
   description,
   casePack,
   caseWeight,
   price,
+  favorite,
 }) => {
-  const [favorite, setFavorite] = useState(false);
   const quantityRef = useRef<HTMLInputElement>();
   const dispatch = useAppDispatch();
 
   const toggleFavorite = () => {
-    setFavorite(!favorite);
+    // Change redux favorite state
+    if (!favorite) dispatch(addFavorite({ _id, itemId }));
+    else {
+      dispatch(removeFavorite({ _id, itemId }));
+    }
   };
 
   const handleSubmit = () => {
@@ -54,7 +58,12 @@ const Product: FunctionComponent<IProduct> = ({
       <div>{caseWeight}</div>
       <div>{price}</div>
       <ButtonDiv>
-        <input type='number' ref={quantityRef} placeholder='0' />
+        <input
+          type='number'
+          style={{ width: 75 }}
+          ref={quantityRef}
+          placeholder='0'
+        />
         <Button onClick={handleSubmit}>Add to Order</Button>
         <FavoriteDiv onClick={toggleFavorite}>
           <FontAwesomeIcon
@@ -70,4 +79,4 @@ const Product: FunctionComponent<IProduct> = ({
   );
 };
 
-export default Product;
+export default ProductRow;

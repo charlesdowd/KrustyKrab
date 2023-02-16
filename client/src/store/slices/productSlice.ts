@@ -12,13 +12,34 @@ export interface Product {
   price: number;
 }
 
+// Interface representing what information we save for favorited products
+export interface Favorite {
+  _id: string;
+  itemId: string;
+}
+
 const productSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
+    favorites: [],
   },
   reducers: {
-    /* Currently no reducers needed */
+    // TODO: Think about removing toasts on favorite/remove favorite
+    // Add new favorite to favorties array
+    addFavorite: (state, { payload }) => {
+      state.favorites?.push(payload);
+      toast.success('Favorite Added');
+    },
+
+    // Remove favorite from favorites array
+    removeFavorite: (state, { payload }) => {
+      const updatedFavorites = state.favorites?.filter(
+        (favorite) => favorite._id != payload._id,
+      );
+      state.favorites = updatedFavorites;
+      toast.success('Favorite removed');
+    },
   },
 
   // Order extra reducers
@@ -39,5 +60,9 @@ const productSlice = createSlice({
 });
 
 export const selectAllProducts = (state): [Product] => state.product.products;
+export const selectFavorites = (state): [Favorite] => state.product.favorites;
+
+// Functions for executing actions on the Product state
+export const { addFavorite, removeFavorite } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -15,7 +15,6 @@ const orderSlice = createSlice({
     orderHistory: [],
   },
   reducers: {
-    // TODO: handle case when product is already in the current order
     addItem: (state, { payload }) => {
       const { product, quantity } = payload;
 
