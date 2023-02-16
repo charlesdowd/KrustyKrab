@@ -2,20 +2,24 @@ import { Response } from 'express';
 import { IOrder } from '../models';
 import AuthenticatedRequest from '../interfaces/AuthenticatedRequest';
 import OrderService from '../services/order';
+import NotificationService from '../services/notifications';
 
 async function createOrder(
   req: AuthenticatedRequest,
   res: Response<{ order: IOrder }>,
 ) {
   const {
-    user,
+    user: { _id: customer, email },
     body: { orderItems },
   } = req;
 
   const order = await OrderService.createOrder({
-    customer: user._id,
+    customer, // userId
     orderItems,
   });
+
+  // Send order confirmation email
+  await NotificationService.sendOrderConfirmationEmail(email, order);
 
   return res.status(201).json({ order });
 }
