@@ -42,3 +42,17 @@ export const FavoriteDiv = styled.div`
     background-color: #d3d3d3;
   }
 `;
+
+export const FilterDiv = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 32px;
+`;
+
+export const Filter = styled.input`
+  width: 65%;
+  height: 48px;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: x-large;
+`;

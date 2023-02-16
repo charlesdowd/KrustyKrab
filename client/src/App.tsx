@@ -9,7 +9,7 @@ import SignUp from './features/auth/SignUp/SignUp';
 import Dashboard from './features/pages/Dashboard/Dashboard';
 import VerifyEmail from './features/auth/VerifyEmail';
 import SetPassword from './features/auth/SetPassword/SetPassword';
-import ProductsPage from './features/pages/ProductsPage';
+import ProductsPage from './features/pages/ProductPage/ProductsPage';
 import SetPasswordGuard from './features/layout/SetPasswordGuard';
 import VerifyEmailGuard from './features/layout/VerifyEmailGuard';
 import AdminGuard from './features/layout/AdminGuard';

@@ -3,14 +3,14 @@ import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useAppDispatch } from '../../store/hooks';
-import { addItem } from '../../store/slices/orderSlice';
-import { Root, FavoriteDiv, OrderInput } from './ProductActions.styled';
+import { useAppDispatch } from '../../../store/hooks';
+import { addItem } from '../../../store/slices/orderSlice';
+import { Root, FavoriteDiv, OrderInput } from './ProductPage.styled';
 import {
   addFavorite,
   removeFavorite,
   Favorite,
-} from '../../store/slices/productSlice';
+} from '../../../store/slices/productSlice';
 
 interface ProductActionsProps extends Favorite {
   favorite: boolean;

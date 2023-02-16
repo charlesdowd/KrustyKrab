@@ -1,24 +1,33 @@
-import { Root } from './Dashboard/Dashboard.styled';
-import ProductActions from '../../components/ProductActions/ProductActions';
-import { ProductTable } from '../../components/ProductActions/ProductActions.styled';
-import { useAppSelector } from '../../store/hooks';
+import { useState } from 'react';
+import { Root } from '../Dashboard/Dashboard.styled';
+import ProductActions from './ProductActions';
+import { FilterDiv, ProductTable, Filter } from './ProductPage.styled';
+import { useAppSelector } from '../../../store/hooks';
 import {
   selectAllProducts,
   selectFavorites,
-} from '../../store/slices/productSlice';
+  Product,
+  Favorite,
+} from '../../../store/slices/productSlice';
 
 const ProductsPage = () => {
   // Grab all products from our store
-  const allProducts = useAppSelector(selectAllProducts);
-  const favorites = useAppSelector(selectFavorites);
+  const allProducts = useAppSelector<Product[]>(selectAllProducts);
+  const favorites = useAppSelector<Favorite[]>(selectFavorites);
+
+  const [query, setQuery] = useState<string>('');
+
+  // Helper function to determine if product is a favorite
   const isFavorite = (_id: string) => {
     return favorites.some((fav) => fav._id == _id);
   };
 
-  // Create a copy of allProducts and then filter them based on search/favorites
-  const filteredProducts = [...allProducts];
-
   // Apply search filter
+  const filteredProducts = allProducts.filter((product) => {
+    return product.description
+      .toLocaleLowerCase()
+      .includes(query.toLocaleLowerCase());
+  });
 
   // Apply favorites filter
   filteredProducts?.sort((a, b) => {
@@ -32,6 +41,15 @@ const ProductsPage = () => {
   return (
     <Root>
       <h1>Products Page</h1>
+
+      <FilterDiv>
+        <Filter
+          type='search'
+          placeholder='Filter by name/description of product'
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </FilterDiv>
+
       <ProductTable>
         <tbody>
           <tr>
