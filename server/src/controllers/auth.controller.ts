@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import NotificationService from '../services/notifications';
 import MessageResponse from '../interfaces/MessageResponse';
 import AuthService from '../services/auth';
 
@@ -72,8 +73,11 @@ async function register(req: Request, res: Response<MessageResponse>) {
 
   const lowerCaseEmail = email.toLowerCase();
 
-  // Create new user and send verification email
-  await AuthService.register(lowerCaseEmail);
+  // Create new user
+  const { emailToken } = await AuthService.register(lowerCaseEmail);
+
+  // Send register email to user
+  await NotificationService.sendRegisterEmail(email, emailToken);
 
   return res.status(200).send({ message: 'Register email sent' });
 }

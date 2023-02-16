@@ -1,4 +1,4 @@
-import nodemailerClient from './nodemailerClient';
+import NodeMailer from './nodemailerClient';
 import { BaseError } from '../../interfaces/Errors';
 
 export async function sendEmail(mailOptions: {
@@ -8,7 +8,7 @@ export async function sendEmail(mailOptions: {
   html: string;
 }) {
   try {
-    await nodemailerClient.sendMail(mailOptions);
+    await NodeMailer.sendMail(mailOptions);
   } catch (error) {
     console.log(error);
     throw new BaseError('Error in sending email with nodemailer');
