@@ -5,24 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useAppDispatch } from '../../store/hooks';
 import { addItem } from '../../store/slices/orderSlice';
-import { Root, ButtonDiv, FavoriteDiv } from './ProductRow.styled';
+import { Root, FavoriteDiv, OrderInput } from './ProductActions.styled';
 import {
-  Product,
   addFavorite,
   removeFavorite,
+  Favorite,
 } from '../../store/slices/productSlice';
 
-interface ProductRowProps extends Product {
+interface ProductActionsProps extends Favorite {
   favorite: boolean;
 }
 
-const ProductRow: FunctionComponent<ProductRowProps> = ({
+const ProductActions: FunctionComponent<ProductActionsProps> = ({
   _id,
   itemId,
-  description,
-  casePack,
-  caseWeight,
-  price,
   favorite,
 }) => {
   const quantityRef = useRef<HTMLInputElement>();
@@ -52,31 +48,19 @@ const ProductRow: FunctionComponent<ProductRowProps> = ({
 
   return (
     <Root>
-      <div>{itemId}</div>
-      <div>{description}</div>
-      <div>{casePack}</div>
-      <div>{caseWeight}</div>
-      <div>{price}</div>
-      <ButtonDiv>
-        <input
-          type='number'
-          style={{ width: 75 }}
-          ref={quantityRef}
-          placeholder='0'
+      <OrderInput type='number' ref={quantityRef} placeholder='0' />
+      <Button onClick={handleSubmit}>Add to Order</Button>
+      <FavoriteDiv onClick={toggleFavorite}>
+        <FontAwesomeIcon
+          size='lg'
+          icon={faStar}
+          style={{ margin: 'auto' }}
+          color={favorite ? 'gold' : 'gray'}
         />
-        <Button onClick={handleSubmit}>Add to Order</Button>
-        <FavoriteDiv onClick={toggleFavorite}>
-          <FontAwesomeIcon
-            size='lg'
-            icon={faStar}
-            style={{ margin: 'auto' }}
-            color={favorite ? 'gold' : 'gray'}
-          />
-          {favorite ? 'Unfavorite' : 'Favorite'}
-        </FavoriteDiv>
-      </ButtonDiv>
+        {favorite ? 'Unfavorite' : 'Favorite'}
+      </FavoriteDiv>
     </Root>
   );
 };
 
-export default ProductRow;
+export default ProductActions;

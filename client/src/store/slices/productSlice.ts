@@ -38,7 +38,7 @@ const productSlice = createSlice({
         (favorite) => favorite._id != payload._id,
       );
       state.favorites = updatedFavorites;
-      toast.success('Favorite removed');
+      toast.success('Favorite Removed');
     },
   },
 
