@@ -68,6 +68,7 @@ const ProductsPage = () => {
                 key={product._id}
                 _id={product._id}
                 itemId={product.itemId}
+                description={product.description}
                 favorite={isFavorite(product._id)}
               />
             </tr>

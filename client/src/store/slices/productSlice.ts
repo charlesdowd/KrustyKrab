@@ -26,7 +26,7 @@ const productSlice = createSlice({
   },
   reducers: {
     // TODO: Think about removing toasts on favorite/remove favorite
-    // Add new favorite to favorties array
+    // Add new favorite to favorites array
     addFavorite: (state, { payload }) => {
       state.favorites?.push(payload);
       toast.success('Favorite Added');

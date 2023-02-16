@@ -180,6 +180,7 @@ export type Product = {
 export type OrderItem = {
   quantity: number;
   product: string;
+  description: string;
 };
 export type Order = {
   _id: string;

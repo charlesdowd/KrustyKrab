@@ -14,11 +14,13 @@ import {
 
 interface ProductActionsProps extends Favorite {
   favorite: boolean;
+  description;
 }
 
 const ProductActions: FunctionComponent<ProductActionsProps> = ({
   _id,
   itemId,
+  description,
   favorite,
 }) => {
   const quantityRef = useRef<HTMLInputElement>();
@@ -42,7 +44,7 @@ const ProductActions: FunctionComponent<ProductActionsProps> = ({
     }
 
     // Add item to the users current order in redux state
-    dispatch(addItem({ product: _id, quantity }));
+    dispatch(addItem({ product: _id, quantity, description }));
     quantityRef.current.value = null;
   };
 

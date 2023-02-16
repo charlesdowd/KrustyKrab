@@ -16,7 +16,7 @@ export async function sendOrderConfirmationEmail(
           orders are delivered on Wednesdays. Any orders placed after Tuesday at 
           noon will be scheduled for the following Wednesday</h4>
           <button>
-            <a href=http://localhost:3000}> 
+            <a href=http://localhost:3000> 
               View all of your placed orders from your profile dashboard
             </a>
           </button>`,

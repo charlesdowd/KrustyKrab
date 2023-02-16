@@ -5,6 +5,7 @@ import { templateApi } from './api/templateApi.generated';
 // Type to represent part of an order. Individual product and quantity ordered
 export type OrderItem = {
   product: string;
+  description: string;
   quantity: number;
 };
 
@@ -16,14 +17,14 @@ const orderSlice = createSlice({
   },
   reducers: {
     addItem: (state, { payload }) => {
-      const { product, quantity } = payload;
+      const { product, quantity, description } = payload;
 
       // Handle when product already exists in current order. Remove old value
       state.currentOrder = state.currentOrder.filter(
         (orderItem: OrderItem) => orderItem.product !== product,
       );
 
-      state.currentOrder.push({ product, quantity });
+      state.currentOrder.push({ product, quantity, description });
       toast.success('Added to cart');
     },
     removeItem: (state, { payload }) => {

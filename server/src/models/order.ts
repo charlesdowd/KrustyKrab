@@ -5,6 +5,7 @@ const { ObjectId } = Types;
 // Type to represent part of an order. Individual product and quantity ordered
 export type OrderItem = {
   product: ObjectId;
+  description: string;
   quantity: number;
 };
 
@@ -27,6 +28,7 @@ const orderSchema = new Schema(
          */
         _id: false,
         product: { type: ObjectId, required: true, ref: 'Product' },
+        description: { type: String, required: true },
         quantity: { type: Number, required: true },
       },
     ],

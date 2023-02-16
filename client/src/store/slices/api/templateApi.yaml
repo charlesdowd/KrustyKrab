@@ -392,6 +392,9 @@ components:
         product:
           type: string
           description: 'Product ID '
+        description:
+          type: string
       required:
         - quantity
         - product
+        - description
