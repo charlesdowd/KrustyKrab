@@ -25,11 +25,9 @@ const productSlice = createSlice({
     favorites: [],
   },
   reducers: {
-    // TODO: Think about removing toasts on favorite/remove favorite
     // Add new favorite to favorites array
     addFavorite: (state, { payload }) => {
       state.favorites?.push(payload);
-      toast.success('Favorite Added');
     },
 
     // Remove favorite from favorites array
@@ -38,7 +36,6 @@ const productSlice = createSlice({
         (favorite) => favorite._id != payload._id,
       );
       state.favorites = updatedFavorites;
-      toast.success('Favorite Removed');
     },
   },
 
