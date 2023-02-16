@@ -74,6 +74,9 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    getOrders: build.query<GetOrdersApiResponse, GetOrdersApiArg>({
+      query: () => ({ url: `/order` }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -159,6 +162,10 @@ export type CreateOrderApiArg = {
     orderItems: OrderItem[];
   };
 };
+export type GetOrdersApiResponse = /** status 200 OK */ {
+  orders?: Order[];
+};
+export type GetOrdersApiArg = void;
 export type User = {
   email: string;
   password?: string;
@@ -185,5 +192,5 @@ export type OrderItem = {
 export type Order = {
   _id: string;
   customer: string;
-  orderItems: OrderItem;
+  orderItems: OrderItem[];
 };

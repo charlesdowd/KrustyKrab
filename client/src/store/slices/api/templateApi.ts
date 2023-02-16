@@ -52,6 +52,7 @@ export const templateApi = enhancedApi.injectEndpoints({
 export const {
   // Queries
   useGetUserQuery,
+  useGetOrdersQuery,
   useGetAllUsersQuery,
   useGetAllProductsQuery,
 

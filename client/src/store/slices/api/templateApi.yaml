@@ -287,6 +287,22 @@ paths:
                     $ref: '#/components/schemas/OrderItem'
               required:
                 - orderItems
+    get:
+      summary: ''
+      operationId: getOrders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+      description: Get all of a users orders
 components:
   schemas:
     User:
@@ -376,7 +392,9 @@ components:
           type: string
           description: User ID of the user who created this order
         orderItems:
-          $ref: '#/components/schemas/OrderItem'
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
       required:
         - _id
         - customer
