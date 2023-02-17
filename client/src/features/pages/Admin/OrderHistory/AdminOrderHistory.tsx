@@ -4,8 +4,8 @@ import { Root } from '../../Dashboard/Dashboard.styled';
 import { useAdminGetOrdersQuery } from '../../../../store/slices/api/templateApi';
 
 // TODO: Refactor based on conversation with Dylan. Add expandable row component + possible 'Processed' column
-const OrderHistory = () => {
-  const { data: orderData } = useAdminGetOrdersQuery();
+const AdminOrderHistory = () => {
+  const { data: orderData, isLoading } = useAdminGetOrdersQuery();
   const columns = [
     {
       name: 'Customer',
@@ -23,11 +23,15 @@ const OrderHistory = () => {
   return (
     <Root>
       <h1>Order History</h1>
-      <div className='mt-4' style={{ width: '100%' }}>
-        <DataTable columns={columns} data={orderData?.orders} />
-      </div>
+      {isLoading ? (
+        <h3>...Loading</h3>
+      ) : (
+        <div className='mt-4' style={{ width: '100%' }}>
+          <DataTable columns={columns} data={orderData?.orders} />
+        </div>
+      )}
     </Root>
   );
 };
 
-export default OrderHistory;
+export default AdminOrderHistory;

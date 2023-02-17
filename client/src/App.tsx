@@ -16,7 +16,7 @@ import AdminGuard from './features/layout/AdminGuard';
 import AdminDashboard from './features/pages/Admin/AdminDashboard';
 import ApproveAccounts from './features/pages/Admin/ApproveAccounts';
 import CurrentOrderPage from './features/pages/CurrentOrderPage/CurrrentOrderPage';
-import OrderHistoryPage from './features/pages/Admin/OrderHistory/OrderHistory';
+import AdminOrderHistory from './features/pages/Admin/OrderHistory/AdminOrderHistory';
 import {
   useGetAllProductsQuery,
   useGetUserQuery,
@@ -70,7 +70,7 @@ const App: FunctionComponent = () => {
         <Route path='admin' element={<AdminGuard />}>
           <Route index element={<AdminDashboard />} />
           <Route path='approve-accounts' element={<ApproveAccounts />} />
-          <Route path='orders' element={<OrderHistoryPage />} />
+          <Route path='orders' element={<AdminOrderHistory />} />
         </Route>
       </Route>
 
