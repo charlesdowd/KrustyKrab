@@ -69,12 +69,16 @@ async function logout(req: Request, res: Response) {
 }
 
 async function register(req: Request, res: Response<MessageResponse>) {
-  const { email } = req.body; // TODO: sanitize emails throughout codebase
+  const { email, company = '', phoneNumber = '' } = req.body; // TODO: sanitize emails throughout codebase
 
   const lowerCaseEmail = email.toLowerCase();
 
   // Create new user
-  const { emailToken } = await AuthService.register(lowerCaseEmail);
+  const { emailToken } = await AuthService.register(
+    lowerCaseEmail,
+    company,
+    phoneNumber,
+  );
 
   // Send register email to user
   await NotificationService.sendRegisterEmail(email, emailToken);

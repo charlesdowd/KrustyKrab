@@ -2,7 +2,11 @@ import crypto from 'crypto';
 import { HttpError } from '../../interfaces/Errors';
 import { IUser, User } from '../../models';
 
-export async function register(email: string): Promise<{ emailToken: string }> {
+export async function register(
+  email: string,
+  company: string,
+  phoneNumber: string,
+): Promise<{ emailToken: string }> {
   const user = await User.findOne({ email });
 
   // If email already exists throw error
@@ -20,6 +24,8 @@ export async function register(email: string): Promise<{ emailToken: string }> {
   const newUser: IUser = {
     email,
     emailToken,
+    company,
+    phoneNumber,
   };
 
   // Email has been successfully sent, save the user to the db
