@@ -48,6 +48,15 @@ const orderSlice = createSlice({
         toast.success('Order successfully submitted');
       },
     );
+
+    // Populate state with users order history
+    builder.addMatcher(
+      templateApi.endpoints.getOrders.matchFulfilled,
+      (state, { payload }) => {
+        state.orderHistory = payload.orders;
+      },
+    );
+
     builder.addMatcher(templateApi.endpoints.createOrder.matchRejected, () => {
       toast.error('Failed to submit order');
     });

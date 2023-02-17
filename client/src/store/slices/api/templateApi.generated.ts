@@ -197,4 +197,6 @@ export type Order = {
   _id: string;
   customer: string;
   orderItems: OrderItem[];
+  createdAt: string;
+  updatedAt: string;
 };

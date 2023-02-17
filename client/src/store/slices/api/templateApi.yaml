@@ -403,10 +403,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OrderItem'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
       required:
         - _id
         - customer
         - orderItems
+        - createdAt
+        - updatedAt
     OrderItem:
       title: OrderItem
       x-stoplight:
