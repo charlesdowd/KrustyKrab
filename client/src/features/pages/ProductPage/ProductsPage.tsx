@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Root } from '../Dashboard/Dashboard.styled';
 import ProductActions from './ProductActions';
-import { FilterDiv, ProductTable, Filter } from './ProductPage.styled';
+import {
+  FilterDiv,
+  ProductTable,
+  Filter,
+  ProductRow,
+} from './ProductPage.styled';
 import { useAppSelector } from '../../../store/hooks';
 import {
   selectAllProducts,
@@ -59,7 +64,7 @@ const ProductsPage = () => {
             <th>Case Weight</th>
           </tr>
           {filteredProducts?.map((product) => (
-            <tr key={product._id} style={{ border: '2px solid gray' }}>
+            <ProductRow key={product._id}>
               <td>{product.itemId}</td>
               <td>{product.description}</td>
               <td>{product.casePack}</td>
@@ -71,7 +76,7 @@ const ProductsPage = () => {
                 description={product.description}
                 favorite={isFavorite(product._id)}
               />
-            </tr>
+            </ProductRow>
           ))}
         </tbody>
       </ProductTable>

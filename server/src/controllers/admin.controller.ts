@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import AdminService from '../services/admin';
 import MessageResponse from '../interfaces/MessageResponse';
-import { IProduct } from '../models';
+import { IOrder, IProduct } from '../models';
 
 /**
  * @desc Approve a users account
@@ -14,6 +14,11 @@ async function approveAccount(req: Request, res: Response<MessageResponse>) {
   await AdminService.approveAccount(userId);
 
   return res.status(201).send({ message: 'User successfully approved' });
+}
+
+async function getAllOrders(req: Request, res: Response<{ orders: IOrder[] }>) {
+  const orders = await AdminService.getAllOrders();
+  return res.status(200).json({ orders });
 }
 
 /**
@@ -35,4 +40,5 @@ async function createProduct(
 export default {
   approveAccount,
   createProduct,
+  getAllOrders,
 };

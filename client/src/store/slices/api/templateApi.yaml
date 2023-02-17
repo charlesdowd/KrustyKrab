@@ -307,6 +307,24 @@ paths:
                     items:
                       $ref: '#/components/schemas/Order'
       description: Get all of a users orders
+  /admin/order:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+      operationId: adminGetOrders
+      description: Get all orders - admin protected route
 components:
   schemas:
     User:

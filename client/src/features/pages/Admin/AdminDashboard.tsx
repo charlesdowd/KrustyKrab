@@ -11,6 +11,9 @@ const AdminDashboard = () => {
           <Link to='/admin/approve-accounts'>
             <CustomButton>Approve Accounts</CustomButton>
           </Link>
+          <Link to='/admin/orders'>
+            <CustomButton>Order History</CustomButton>
+          </Link>
         </ButtonDiv>
       </div>
     </Root>

@@ -12,4 +12,6 @@ router.use(adminCheck);
 
 router.post('/approve-account', tryCatch(AdminController.approveAccount));
 
+router.get('/order', tryCatch(AdminController.getAllOrders));
+
 export default router;

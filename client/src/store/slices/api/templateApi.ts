@@ -55,6 +55,7 @@ export const {
   useGetOrdersQuery,
   useGetAllUsersQuery,
   useGetAllProductsQuery,
+  useAdminGetOrdersQuery,
 
   // Mutations
   useAdminApproveAccountMutation,

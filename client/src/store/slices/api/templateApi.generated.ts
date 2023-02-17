@@ -77,6 +77,12 @@ const injectedRtkApi = api.injectEndpoints({
     getOrders: build.query<GetOrdersApiResponse, GetOrdersApiArg>({
       query: () => ({ url: `/order` }),
     }),
+    adminGetOrders: build.query<
+      AdminGetOrdersApiResponse,
+      AdminGetOrdersApiArg
+    >({
+      query: () => ({ url: `/admin/order` }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -168,6 +174,10 @@ export type GetOrdersApiResponse = /** status 200 OK */ {
   orders?: Order[];
 };
 export type GetOrdersApiArg = void;
+export type AdminGetOrdersApiResponse = /** status 200 OK */ {
+  orders?: Order[];
+};
+export type AdminGetOrdersApiArg = void;
 export type User = {
   email: string;
   password?: string;

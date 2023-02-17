@@ -56,3 +56,7 @@ export const Filter = styled.input`
   padding: 12px;
   font-size: x-large;
 `;
+
+export const ProductRow = styled.tr`
+  border: 2px solid gray;
+`;
