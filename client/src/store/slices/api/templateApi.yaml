@@ -397,7 +397,7 @@ components:
         _id:
           type: string
         customer:
-          type: string
+          $ref: '#/components/schemas/User'
           description: User ID of the user who created this order
         orderItems:
           type: array
