@@ -155,6 +155,10 @@ paths:
                 email:
                   type: string
                   format: email
+                company:
+                  type: string
+                phoneNumber:
+                  type: string
               required:
                 - email
   /auth/verify-email:
@@ -348,6 +352,10 @@ components:
           type: boolean
         approved:
           type: boolean
+        company:
+          type: string
+        phoneNumber:
+          type: string
       required:
         - email
         - _id

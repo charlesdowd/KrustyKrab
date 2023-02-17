@@ -6,9 +6,14 @@ import Button from '../../../components/Button/Button';
 import { Root, InputGroup, SignUpForm } from './SignUp.styled';
 import { useRegisterMutation } from '../../../store/slices/api/templateApi';
 
+const phoneRegExp =
+  /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+
 // Validation object for new sign ups
 const signupSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
+  phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+  company: Yup.string().optional(),
 });
 
 const SignUp = () => {
@@ -21,12 +26,14 @@ const SignUp = () => {
       <Formik
         validationSchema={signupSchema}
         onSubmit={async (values, { resetForm }) => {
-          const { email } = values;
-          await registerUser({ body: { email } });
+          const { email, company = '', phoneNumber = '' } = values;
+          await registerUser({ body: { email, company, phoneNumber } });
           resetForm();
         }}
         initialValues={{
           email: '',
+          company: '',
+          phoneNumber: '',
         }}
       >
         {({
@@ -54,6 +61,34 @@ const SignUp = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.email?.toString()}
               </Form.Control.Feedback>
+            </InputGroup>
+
+            <InputGroup controlId='phoneNumber'>
+              <Form.Control
+                type='tel'
+                placeholder='Phone Number'
+                value={values.phoneNumber}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name='phoneNumber'
+                size='lg'
+                isInvalid={!!errors.phoneNumber && !!touched.phoneNumber}
+              />
+              <Form.Control.Feedback className='FeedBack' type='invalid'>
+                {errors.phoneNumber?.toString()}
+              </Form.Control.Feedback>
+            </InputGroup>
+
+            <InputGroup controlId='company'>
+              <Form.Control
+                type='text'
+                placeholder='Company Name'
+                value={values.company}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name='company'
+                size='lg'
+              />
             </InputGroup>
 
             <Button

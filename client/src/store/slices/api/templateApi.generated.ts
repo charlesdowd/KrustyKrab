@@ -121,6 +121,8 @@ export type RegisterApiResponse = /** status 200 OK */ {
 export type RegisterApiArg = {
   body: {
     email: string;
+    company?: string;
+    phoneNumber?: string;
   };
 };
 export type VerifyEmailApiResponse = /** status 200 OK */ {
@@ -175,6 +177,8 @@ export type User = {
   emailVerified: boolean;
   admin?: boolean;
   approved?: boolean;
+  company?: string;
+  phoneNumber?: string;
 };
 export type Product = {
   _id: string;

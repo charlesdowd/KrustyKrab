@@ -10,6 +10,8 @@ export interface IUser {
   emailToken?: string; // Randomized token used to verify email on register
   admin?: boolean;
   approved?: boolean;
+  company?: string;
+  phoneNumber?: string;
 }
 
 const authSlice = createSlice({

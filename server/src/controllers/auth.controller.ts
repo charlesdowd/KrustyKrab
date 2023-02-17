@@ -69,7 +69,7 @@ async function logout(req: Request, res: Response) {
 }
 
 async function register(req: Request, res: Response<MessageResponse>) {
-  const { email, company = '', phoneNumber = '' } = req.body; // TODO: sanitize emails throughout codebase
+  const { email, company, phoneNumber } = req.body; // TODO: sanitize emails throughout codebase
 
   const lowerCaseEmail = email.toLowerCase();
 
