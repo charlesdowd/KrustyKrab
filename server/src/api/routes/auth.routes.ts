@@ -9,7 +9,7 @@ const router = Router();
 // Register User
 router.post('/register', registerLimiter, tryCatch(AuthController.register));
 
-// Verify email
+// Verify Email
 router.post('/verify-email', tryCatch(AuthController.verifyEmail));
 
 // Set Password
@@ -23,5 +23,8 @@ router.get('/refresh', tryCatch(AuthController.refresh));
 
 // Logout User
 router.post('/logout', tryCatch(AuthController.logout));
+
+// Forgot password
+router.post('/forgot-password', tryCatch(AuthController.forgotPassword));
 
 export default router;

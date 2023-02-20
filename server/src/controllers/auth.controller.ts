@@ -102,4 +102,24 @@ async function setPassword(req: Request, res: Response) {
   return res.status(200).send({ message: 'Password successfully set' });
 }
 
-export default { login, refresh, logout, register, verifyEmail, setPassword };
+export async function forgotPassword(req: Request, res: Response) {
+  const { email } = req.body;
+
+  const resetToken = await AuthService.forgotPassword(email);
+
+  await NotificationService.sendResetPasswordEmail(email, resetToken);
+
+  return res
+    .json(201)
+    .json({ message: 'Reset password link sent to your email' });
+}
+
+export default {
+  login,
+  refresh,
+  logout,
+  register,
+  verifyEmail,
+  setPassword,
+  forgotPassword,
+};
