@@ -9,7 +9,7 @@ export async function sendResetPasswordEmail(
     from: `"Krusty Krab" <krustykrabtesting@gmail.com>`,
     subject: 'Password Reset',
     html: `<h2>Click the link below to reset your password</h2>
-          <h4>If you did not request to reset your password, please ignore this</h4>
+          <h4>This reset link will expire in 5 minutes from when you receive it.</h4>
           <button>
             <a href=http://localhost:3000/reset-password?resetToken=${resetToken}>
               Reset Password
