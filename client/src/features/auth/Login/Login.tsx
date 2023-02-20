@@ -93,6 +93,9 @@ const Login = () => {
             <Form.Text>
               Don&apos;t Have an Account? <Link to='/signup'>Sign Up</Link>
             </Form.Text>
+            <Form.Text>
+              Forgot password? <Link to='/forgot-password'>Reset Password</Link>
+            </Form.Text>
           </LoginForm>
         )}
       </Formik>

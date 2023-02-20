@@ -17,6 +17,7 @@ import AdminDashboard from './features/pages/Admin/AdminDashboard';
 import ApproveAccounts from './features/pages/Admin/ApproveAccounts';
 import CurrentOrderPage from './features/pages/CurrentOrderPage/CurrrentOrderPage';
 import AdminOrderHistory from './features/pages/Admin/OrderHistory/AdminOrderHistory';
+import ForgotPassword from './features/auth/ForgotPassword';
 import {
   useGetAllProductsQuery,
   useGetUserQuery,
@@ -50,6 +51,7 @@ const App: FunctionComponent = () => {
         <Route path='landing' element={<LandingPage />} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
+        <Route path='forgot-password' element={<ForgotPassword />} />
       </Route>
 
       {/* Unique Routes with their own guards*/}
