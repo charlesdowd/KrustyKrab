@@ -23,6 +23,8 @@ import {
   useGetUserQuery,
 } from './store/slices/api/templateApi';
 import { isLoggedIn } from './store/hooks';
+import ResetPasswordGuard from './features/layout/ResetPasswordGuard';
+import ResetPassword from './features/auth/ResetPassword';
 
 /*
   Layout and Guard wrapper routes help redirect user to correct route
@@ -60,6 +62,9 @@ const App: FunctionComponent = () => {
       </Route>
       <Route element={<SetPasswordGuard />}>
         <Route path='set-password' element={<SetPassword />} />
+      </Route>
+      <Route element={<ResetPasswordGuard />}>
+        <Route path='reset-password' element={<ResetPassword />} />
       </Route>
 
       {/* Private Routes */}

@@ -102,7 +102,10 @@ async function setPassword(req: Request, res: Response) {
   return res.status(200).send({ message: 'Password successfully set' });
 }
 
-export async function forgotPassword(req: Request, res: Response) {
+export async function forgotPassword(
+  req: Request,
+  res: Response<MessageResponse>,
+) {
   const { email } = req.body;
 
   const resetToken = await AuthService.forgotPassword(email);
@@ -110,8 +113,16 @@ export async function forgotPassword(req: Request, res: Response) {
   await NotificationService.sendResetPasswordEmail(email, resetToken);
 
   return res
-    .json(201)
+    .status(201)
     .json({ message: 'Reset password link sent to your email' });
+}
+
+export async function resetPassword(req: Request, res: Response) {
+  const { resetToken } = req.body;
+
+  const user = await AuthService.resetPassword(resetToken);
+
+  return res.status(200).json({ user });
 }
 
 export default {
@@ -122,4 +133,5 @@ export default {
   verifyEmail,
   setPassword,
   forgotPassword,
+  resetPassword,
 };

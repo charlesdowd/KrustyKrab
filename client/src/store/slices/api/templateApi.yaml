@@ -325,6 +325,53 @@ paths:
                       $ref: '#/components/schemas/Order'
       operationId: adminGetOrders
       description: Get all orders - admin protected route
+  /auth/reset-password:
+    post:
+      summary: ''
+      operationId: resetPassword
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+      description: 'If the resetToken is valid, we delete the users password. Returns the user from our db so we can set them in redux state.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                resetToken:
+                  type: string
+  /auth/forgot-password:
+    post:
+      summary: ''
+      operationId: forgotPassword
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: Sends an resetToken in a url to the passed in email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
 components:
   schemas:
     User:

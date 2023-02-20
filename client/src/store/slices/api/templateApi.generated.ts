@@ -83,6 +83,26 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: () => ({ url: `/admin/order` }),
     }),
+    resetPassword: build.mutation<
+      ResetPasswordApiResponse,
+      ResetPasswordApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/auth/reset-password`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
+    forgotPassword: build.mutation<
+      ForgotPasswordApiResponse,
+      ForgotPasswordApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/auth/forgot-password`,
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -178,6 +198,22 @@ export type AdminGetOrdersApiResponse = /** status 200 OK */ {
   orders?: Order[];
 };
 export type AdminGetOrdersApiArg = void;
+export type ResetPasswordApiResponse = /** status 200 OK */ {
+  user?: User;
+};
+export type ResetPasswordApiArg = {
+  body: {
+    resetToken?: string;
+  };
+};
+export type ForgotPasswordApiResponse = /** status 201 Created */ {
+  message?: string;
+};
+export type ForgotPasswordApiArg = {
+  body: {
+    email?: string;
+  };
+};
 export type User = {
   email: string;
   password?: string;

@@ -4,6 +4,7 @@ import { register } from './register';
 import { verifyEmail } from './verifyEmail';
 import { setPassword } from './setPassword';
 import { forgotPassword } from './forgotPassword';
+import { resetPassword } from './resetPassword';
 
 export default {
   login,
@@ -12,4 +13,5 @@ export default {
   verifyEmail,
   setPassword,
   forgotPassword,
+  resetPassword,
 };

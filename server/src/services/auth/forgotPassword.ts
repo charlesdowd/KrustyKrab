@@ -16,7 +16,7 @@ export async function forgotPassword(email: string): Promise<string> {
   // Create signed token with the users email and id, expiring in 5 minutes
   const resetToken = jwt.sign(
     { email: user.email, id: user._id },
-    process.env.ACCESS_TOKEN_SECRET as Secret,
+    process.env.RESET_PASSWORD_SECRET as Secret,
     {
       expiresIn: '5m',
     },

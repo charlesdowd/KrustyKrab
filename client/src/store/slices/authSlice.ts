@@ -59,6 +59,20 @@ const authSlice = createSlice({
       },
     );
 
+    builder.addMatcher(
+      templateApi.endpoints.forgotPassword.matchFulfilled,
+      (state, { payload }) => {
+        toast.success(payload.message);
+      },
+    );
+
+    builder.addMatcher(
+      templateApi.endpoints.resetPassword.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+      },
+    );
+
     // Update user in redux store with most up to date user info
     builder.addMatcher(
       templateApi.endpoints.getUser.matchFulfilled,
@@ -93,6 +107,15 @@ const authSlice = createSlice({
 
     builder.addMatcher(
       templateApi.endpoints.register.matchRejected,
+      (state, { payload }) => {
+        // TODO: find better way to deal with types here
+        const errorMessage = (payload as any)?.data?.error;
+        toast.error(`Error: ${errorMessage}`);
+      },
+    );
+
+    builder.addMatcher(
+      templateApi.endpoints.forgotPassword.matchRejected,
       (state, { payload }) => {
         // TODO: find better way to deal with types here
         const errorMessage = (payload as any)?.data?.error;

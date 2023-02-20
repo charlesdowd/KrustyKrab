@@ -24,7 +24,10 @@ router.get('/refresh', tryCatch(AuthController.refresh));
 // Logout User
 router.post('/logout', tryCatch(AuthController.logout));
 
-// Forgot password
+// Forgot Password
 router.post('/forgot-password', tryCatch(AuthController.forgotPassword));
+
+// Reset Password
+router.post('/reset-password', tryCatch(AuthController.resetPassword));
 
 export default router;

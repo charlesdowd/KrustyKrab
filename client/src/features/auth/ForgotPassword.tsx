@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Button from '../../components/Button/Button';
 import { Root, InputGroup, SignUpForm } from './SignUp/SignUp.styled';
+import { useForgotPasswordMutation } from '../../store/slices/api/templateApi';
 
 const forgotPasswordSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
 });
 
 const ForgotPassword = () => {
+  const [forgotPassword] = useForgotPasswordMutation();
   return (
     <Root>
       <h1 className='mb-4'>Password Reset</h1>
@@ -18,7 +20,8 @@ const ForgotPassword = () => {
         validationSchema={forgotPasswordSchema}
         onSubmit={async (values, { resetForm }) => {
           const { email } = values;
-          // TODO: Add forgot password mutation here
+          // Send reset link to email
+          forgotPassword({ body: { email } });
           resetForm();
         }}
         initialValues={{
