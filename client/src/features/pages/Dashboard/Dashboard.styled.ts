@@ -9,3 +9,17 @@ export const Root = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const HistoryRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  width: 65%;
+`;
+
+export const OrderRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 3px solid black;
+`;

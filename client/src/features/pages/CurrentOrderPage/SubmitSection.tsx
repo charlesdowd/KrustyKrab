@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../../../components/Button/Button';
 import { useCreateOrderMutation } from '../../../store/slices/api/templateApi';
 import { isApproved, useAppSelector } from '../../../store/hooks';
 import { selectCurrentOrder } from '../../../store/slices/orderSlice';
+import { HalfWidthButton } from './CurrentOrderPage.styled';
 
 const SubmitSection = () => {
   const currentOrder = useAppSelector(selectCurrentOrder);
@@ -13,13 +13,13 @@ const SubmitSection = () => {
   return (
     <>
       {currentOrder.length > 0 ? (
-        <Button
+        <HalfWidthButton
           loading={isLoading}
           disabled={!approved}
           onClick={() => submitOrder({ body: { orderItems: currentOrder } })}
         >
           Submit Order
-        </Button>
+        </HalfWidthButton>
       ) : (
         <h4 className='mt-5'>
           You do not have any products in your current order. Visit the{' '}

@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component';
 import OrderItemsColumn from './OrderItemsColumn';
-import { Root } from '../../Dashboard/Dashboard.styled';
+import { Root } from './AdminOrderHistory.styled';
 import { useAdminGetOrdersQuery } from '../../../../store/slices/api/templateApi';
 
 // TODO: Refactor based on conversation with Dylan. Add expandable row component + possible 'Processed' column

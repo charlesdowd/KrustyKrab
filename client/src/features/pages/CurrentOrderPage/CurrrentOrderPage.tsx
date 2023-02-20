@@ -18,9 +18,9 @@ const CurrentOrderPage: FunctionComponent = () => {
     <Root>
       <h1 className='mb-4'>Current Order</h1>
       <PendingApprovalBanner />
-      {currentOrder?.map(({ product, quantity }) => (
+      {currentOrder?.map(({ product, description, quantity }) => (
         <OrderItemRow key={product}>
-          <div>Product: {product}</div>
+          <div>Product: {description}</div>
           <div>Quantity: {quantity}</div>
           <Button
             variant='danger'

@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { HistoryRoot, OrderRow } from './Dashboard.styled';
 import { useGetOrdersQuery } from '../../../store/slices/api/templateApi';
 import { Order } from '../../../store/slices/api/templateApi.generated';
 
@@ -9,14 +10,10 @@ const UserOrderHistory: FunctionComponent = () => {
   if (!orders) return <div>..Loading</div>;
 
   return (
-    <div className='m-4'>
+    <HistoryRoot className='m-4'>
       <h2>Order History</h2>
       {orders.map((order) => (
-        <div
-          key={order._id}
-          className='mt-4'
-          style={{ borderBottom: '3px solid black', width: '100%' }}
-        >
+        <OrderRow key={order._id} className='mt-4'>
           <div>
             Order Date: {new Date(order.createdAt).toLocaleDateString('en-US')}
           </div>
@@ -25,13 +22,13 @@ const UserOrderHistory: FunctionComponent = () => {
               key={orderItem.description}
               style={{ display: 'flex', justifyContent: 'space-between' }}
             >
-              <div>{orderItem.description}</div>
-              <div>{orderItem.quantity}</div>
+              <div>Product: {orderItem.description}</div>
+              <div>Quantity: {orderItem.quantity}</div>
             </div>
           ))}
-        </div>
+        </OrderRow>
       ))}
-    </div>
+    </HistoryRoot>
   );
 };
 

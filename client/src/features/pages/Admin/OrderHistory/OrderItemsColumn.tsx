@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { OrderItemRow } from './AdminOrderHistory.styled';
 import { OrderItem } from '../../../../store/slices/api/templateApi.generated';
 
 interface OrderItemsColumnProps {
@@ -9,14 +10,14 @@ const OrderItemsColumn: FunctionComponent<OrderItemsColumnProps> = ({
   orderItems,
 }) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <>
       {orderItems?.map((orderItem) => (
-        <div key={orderItem.product}>
+        <OrderItemRow key={orderItem.product}>
           <div>Item: {orderItem.description}</div>
           <div>Quantity: {orderItem.quantity}</div>
-        </div>
+        </OrderItemRow>
       ))}
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import Button from '../../../components/Button/Button';
 
 export const Root = styled.div`
+  margin-top: 64px;
   display: flex;
   flex-direction: column;
 `;
@@ -20,7 +22,15 @@ export const BannerTitle = styled.h3`
 `;
 
 export const OrderItemRow = styled.div`
+  width: 50%;
+  justify-content: space-between;
   display: flex;
+  align-self: center;
   gap: 32px;
   padding: 24px;
+`;
+
+export const HalfWidthButton = styled(Button)`
+  width: 50%;
+  align-self: center;
 `;
