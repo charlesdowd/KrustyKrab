@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { Navigate, useOutletContext } from 'react-router-dom';
 import { useResetPasswordMutation } from '../../store/slices/api/templateApi';
 import Loader from '../../components/Loader/Loader';
 
 type ContextType = { resetToken: string };
 
 const ResetPassword = () => {
-  const [resetPassword, result] = useResetPasswordMutation();
+  const [resetPassword, { isError }] = useResetPasswordMutation();
 
   const { resetToken } = useOutletContext<ContextType>();
 
@@ -16,6 +16,9 @@ const ResetPassword = () => {
 
     resetPassword({ body: { resetToken } });
   }, []);
+
+  // If invalid resetToken is used and resetPassword fails, navigate home
+  if (isError) return <Navigate to='/' replace />;
 
   return <Loader size={200} />;
 };

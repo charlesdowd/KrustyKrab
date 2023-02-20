@@ -9,7 +9,7 @@ const ResetPasswordGuard = () => {
   // Grab emailToken from URL
   const resetToken = searchParams.get('resetToken');
 
-  if (user) return <Navigate to='/' replace />;
+  if (user || !resetToken) return <Navigate to='/' replace />;
 
   // Pass emailToken to VerifyEmail component
   return <Outlet context={{ resetToken }} />;
