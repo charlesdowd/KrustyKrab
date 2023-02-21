@@ -17,7 +17,7 @@ const tags = {
 const enhancedApi = api.enhanceEndpoints({
   addTagTypes: Object.values(tags),
   endpoints: {
-    getAllUsers: {
+    adminGetUsers: {
       providesTags: [tags.users],
     },
     adminApproveAccount: {
@@ -53,7 +53,7 @@ export const {
   // Queries
   useGetUserQuery,
   useGetOrdersQuery,
-  useGetAllUsersQuery,
+  useAdminGetUsersQuery,
   useGetAllProductsQuery,
   useAdminGetOrdersQuery,
 

@@ -1,8 +1,8 @@
 import { templateApi as api } from './templateApi.base';
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getAllUsers: build.query<GetAllUsersApiResponse, GetAllUsersApiArg>({
-      query: () => ({ url: `/user/all` }),
+    adminGetUsers: build.query<AdminGetUsersApiResponse, AdminGetUsersApiArg>({
+      query: () => ({ url: `/admin/user` }),
     }),
     createUser: build.mutation<CreateUserApiResponse, CreateUserApiArg>({
       query: (queryArg) => ({
@@ -107,10 +107,10 @@ const injectedRtkApi = api.injectEndpoints({
   overrideExisting: false,
 });
 export { injectedRtkApi as templateApi };
-export type GetAllUsersApiResponse = /** status 200  */ {
+export type AdminGetUsersApiResponse = /** status 200  */ {
   users?: User[];
 };
-export type GetAllUsersApiArg = void;
+export type AdminGetUsersApiArg = void;
 export type CreateUserApiResponse = /** status 200 User Created */ {
   user: User;
 };

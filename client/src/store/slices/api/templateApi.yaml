@@ -7,7 +7,7 @@ info:
 servers:
   - url: 'http://localhost:3000/api/v1'
 paths:
-  /user/all:
+  /admin/user:
     parameters: []
     get:
       summary: Get User by ID
@@ -25,8 +25,18 @@ paths:
                     items:
                       $ref: '#/components/schemas/User'
               examples: {}
-      operationId: getAllUsers
-      description: Get all users
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+      operationId: adminGetUsers
+      description: Admin route to get all users
   /user:
     post:
       summary: Create New User

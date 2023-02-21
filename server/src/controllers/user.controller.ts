@@ -8,21 +8,6 @@ import MessageResponse from '../interfaces/MessageResponse';
  *
  * @param req
  * @param res
- * @returns { IUser[] } all users
- */
-async function getAllUsers(
-  req: AuthenticatedRequest,
-  res: Response<{ users: IUser[] }>,
-) {
-  const users = await UserService.getAllUsers();
-
-  return res.status(200).json({ users });
-}
-
-/**
- *
- * @param req
- * @param res
  * @returns { IUser } the queried user
  */
 async function getUser(
@@ -53,6 +38,5 @@ async function createUser(req: AuthenticatedRequest<IUser>, res: Response) {
 
 export default {
   getUser,
-  getAllUsers,
   createUser,
 };

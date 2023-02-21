@@ -2,7 +2,7 @@ import { Root } from '../Dashboard/Dashboard.styled';
 import Button from '../../../components/Button/Button';
 import {
   useAdminApproveAccountMutation,
-  useGetAllUsersQuery,
+  useAdminGetUsersQuery,
 } from '../../../store/slices/api/templateApi';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
@@ -15,7 +15,7 @@ const ApproveAccounts = () => {
    This is not efficient if we had many users but since we expect to not
    have many users in production, this is fine. Also fun new tool.
   */
-  const { data: filteredUsers } = useGetAllUsersQuery(undefined, {
+  const { data: filteredUsers } = useAdminGetUsersQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data: data?.users?.filter((user) => !user.approved),
     }),
