@@ -4,6 +4,7 @@ export const ProductTable = styled.table`
   width: 100%;
   margin-top: 32px;
 `;
+
 export const Root = styled.td`
   display: flex;
   justify-content: flex-end;

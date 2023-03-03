@@ -24,7 +24,7 @@ const ProductsPage = () => {
 
   // Helper function to determine if product is a favorite
   const isFavorite = (_id: string) => {
-    return favorites.some((fav) => fav._id == _id);
+    return favorites?.some((fav) => fav._id == _id);
   };
 
   // Apply search filter
