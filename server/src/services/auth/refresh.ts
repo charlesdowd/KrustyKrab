@@ -26,7 +26,7 @@ export async function refresh(refreshToken: string) {
         _id: foundUser._id,
       },
       process.env.ACCESS_TOKEN_SECRET as Secret,
-      { expiresIn: '1000s' },
+      { expiresIn: '1h' },
     );
 
     return { accessToken };
