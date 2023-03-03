@@ -25,14 +25,14 @@ const orderSlice = createSlice({
       );
 
       state.currentOrder.push({ product, quantity, description });
-      toast.success('Added to cart');
+      toast.success('Added to current order');
     },
     removeItem: (state, { payload }) => {
       const { product } = payload;
       state.currentOrder = state.currentOrder.filter(
         (orderItem) => orderItem.product !== product,
       );
-      toast.success('Removed from cart');
+      toast.success('Removed from current order');
     },
     clearOrder: (state) => {
       state.currentOrder = [];
