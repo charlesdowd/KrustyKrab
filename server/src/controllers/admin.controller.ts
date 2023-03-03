@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import AdminService from '../services/admin';
 import MessageResponse from '../interfaces/MessageResponse';
 import { IOrder, IProduct, IUser } from '../models';
+import NotificationService from '../services/notifications';
+import { BaseError } from '../interfaces/Errors';
 
 /**
  * @desc Approve a users account
@@ -11,7 +13,12 @@ import { IOrder, IProduct, IUser } from '../models';
 async function approveAccount(req: Request, res: Response<MessageResponse>) {
   const { userId } = req.body;
 
-  await AdminService.approveAccount(userId);
+  // Approve account and grab the user to pass to email service
+  const user: IUser | null = await AdminService.approveAccount(userId);
+
+  if (!user) throw new BaseError('Account not found or failed to be updated');
+
+  await NotificationService.sendAccountApprovedEmail(user.email);
 
   return res.status(201).send({ message: 'User successfully approved' });
 }

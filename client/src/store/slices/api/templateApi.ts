@@ -4,6 +4,7 @@ const tags = {
   user: 'User',
   users: 'Users',
   product: 'Product',
+  orders: 'Orders',
 };
 
 // TODO: fix up the tags to make sure dependencies make sense for routes
@@ -25,6 +26,12 @@ const enhancedApi = api.enhanceEndpoints({
     },
     createUser: {
       invalidatesTags: [tags.users],
+    },
+    getOrders: {
+      providesTags: [tags.orders],
+    },
+    createOrder: {
+      invalidatesTags: [tags.orders],
     },
   },
 });
