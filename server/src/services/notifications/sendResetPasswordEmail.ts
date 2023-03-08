@@ -11,7 +11,7 @@ export async function sendResetPasswordEmail(
     html: `<h2>Click the link below to reset your password</h2>
           <h4>This reset link will expire in 5 minutes from when you receive it.</h4>
           <button>
-            <a href=http://localhost:3000/reset-password?resetToken=${resetToken}>
+            <a href=${process.env.BASE_URL}/reset-password?resetToken=${resetToken}>
               Reset Password
             </a>
           </button>`,

@@ -9,7 +9,7 @@ export async function sendRegisterEmail(email: string, emailToken: string) {
     html: `<h2>Thanks for registering on our site </h2>
           <h4>Please verify your email to continue...</h4>
           <button>
-            <a href=http://localhost:3000/verify-email?emailToken=${emailToken}>
+            <a href=${process.env.BASE_URL}/verify-email?emailToken=${emailToken}>
               Verify Email
             </a>
           </button>`,

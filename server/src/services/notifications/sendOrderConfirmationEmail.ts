@@ -16,7 +16,7 @@ export async function sendOrderConfirmationEmail(
           orders are delivered on Wednesdays. Any orders placed after Tuesday at 
           noon will be scheduled for the following Wednesday</h4>
           <button>
-            <a href=http://localhost:3000> 
+            <a href=${process.env.BASE_URL}> 
               View all of your placed orders from your profile dashboard
             </a>
           </button>`,
@@ -30,7 +30,7 @@ export async function sendOrderConfirmationEmail(
           <h4>User: ${email}</h4>
           <h4>Order: ${JSON.stringify(order.orderItems)}</h4>
           <button>
-            <a href=http://localhost:3000/admin>
+            <a href=${process.env.BASE_URL}/admin>
               View order in admin dashboard
             </a>
           </button>`,

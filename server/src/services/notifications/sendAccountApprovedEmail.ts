@@ -9,7 +9,7 @@ export async function sendAccountApprovedEmail(email: string) {
     html: `<h2>Your Account has been approved by Lagniappe </h2>
           <h4>You now can create and place orders with us. Visit our products page to get started.</h4>
           <button>
-            <a href=http://localhost:3000/products>
+            <a href=${process.env.BASE_URL}/products>
               Products Page
             </a>
           </button>`,

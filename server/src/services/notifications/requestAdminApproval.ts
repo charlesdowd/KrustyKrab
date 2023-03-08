@@ -17,7 +17,7 @@ export async function requestAdminApproval(
           </h4>
           <h4>Use the button below to approve them in the account approval page</h4
           <button>
-            <a href=http://localhost:3000/admin/approve-accounts>
+            <a href=${process.env.BASE_URL}/admin/approve-accounts>
               Account Approval Page
             </a>
           </button>`,

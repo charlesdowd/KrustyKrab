@@ -10,7 +10,7 @@ mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 
   app.listen(PORT, () => {
-    console.log(`Listening: http://localhost:${PORT}`);
+    console.log(`Listening on PORT: ${PORT}`);
   });
 });
 
