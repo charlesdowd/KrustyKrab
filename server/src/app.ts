@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 import api from './api';
 import * as middlewares from './middleware/notFound';
@@ -22,12 +23,20 @@ app.use(helmet());
 // https://stackoverflow.com/questions/63351799/react-fetch-credentials-include-breaks-my-entire-request-and-i-get-an-error
 app.use(
   cors({
-    origin: 'http://localhost:3000', // (Whatever your frontend url is)
+    origin: process.env.BASE_URL, // (Whatever your frontend url is)
     credentials: true, // <= Accept credentials (cookies) sent by the client
   }),
 );
 app.use(cookieParser());
 app.use(express.json());
+
+app.get('*/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 app.get<{}, MessageResponse>('/', (req, res) => {
   res.json({
