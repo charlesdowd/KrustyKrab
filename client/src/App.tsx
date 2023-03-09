@@ -1,8 +1,9 @@
 import { FunctionComponent } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import PublicLayout from './features/layout/PublicLayout';
-import PrivateLayout from './features/layout/PrivateLayout';
+import { AppContainer } from './App.styled';
+import PublicGuard from './features/layout/PublicGuard';
+import AuthenticatedGuard from './features/layout/AuthenticatedGuard';
 import LandingPage from './features/pages/LandingPage/LandingPage';
 import Login from './features/auth/Login/Login';
 import SignUp from './features/auth/SignUp/SignUp';
@@ -47,43 +48,45 @@ const App: FunctionComponent = () => {
   });
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route element={<PublicLayout />}>
-        <Route path='landing' element={<LandingPage />} />
-        <Route path='login' element={<Login />} />
-        <Route path='signup' element={<SignUp />} />
-        <Route path='forgot-password' element={<ForgotPassword />} />
-      </Route>
-
-      {/* Unique Routes with their own guards*/}
-      <Route element={<VerifyEmailGuard />}>
-        <Route path='verify-email' element={<VerifyEmail />} />
-      </Route>
-      <Route element={<SetPasswordGuard />}>
-        <Route path='set-password' element={<SetPassword />} />
-      </Route>
-      <Route element={<ResetPasswordGuard />}>
-        <Route path='reset-password' element={<ResetPassword />} />
-      </Route>
-
-      {/* Private Routes */}
-      <Route element={<PrivateLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path='products' element={<ProductsPage />} />
-        <Route path='current-order' element={<CurrentOrderPage />} />
-
-        {/* Admin Routes inside of PrivateLayout (PrivateNav is included) */}
-        <Route path='admin' element={<AdminGuard />}>
-          <Route index element={<AdminDashboard />} />
-          <Route path='approve-accounts' element={<ApproveAccounts />} />
-          <Route path='orders' element={<AdminOrderHistory />} />
+    <AppContainer>
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<PublicGuard />}>
+          <Route path='landing' element={<LandingPage />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
+          <Route path='forgot-password' element={<ForgotPassword />} />
         </Route>
-      </Route>
 
-      {/* Catch other routes and send them to correct page. TODO: add 404 page */}
-      <Route path='*' element={<Navigate to='/' />} />
-    </Routes>
+        {/* Unique Routes with their own guards*/}
+        <Route element={<VerifyEmailGuard />}>
+          <Route path='verify-email' element={<VerifyEmail />} />
+        </Route>
+        <Route element={<SetPasswordGuard />}>
+          <Route path='set-password' element={<SetPassword />} />
+        </Route>
+        <Route element={<ResetPasswordGuard />}>
+          <Route path='reset-password' element={<ResetPassword />} />
+        </Route>
+
+        {/* Private Routes */}
+        <Route element={<AuthenticatedGuard />}>
+          <Route index element={<Dashboard />} />
+          <Route path='products' element={<ProductsPage />} />
+          <Route path='current-order' element={<CurrentOrderPage />} />
+
+          {/* Admin Routes inside of Authenticated Guard (NavBar is included) */}
+          <Route path='admin' element={<AdminGuard />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path='approve-accounts' element={<ApproveAccounts />} />
+            <Route path='orders' element={<AdminOrderHistory />} />
+          </Route>
+        </Route>
+
+        {/* Catch other routes and send them to correct page. TODO: add 404 page */}
+        <Route path='*' element={<Navigate to='/' />} />
+      </Routes>
+    </AppContainer>
   );
 };
 

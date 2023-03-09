@@ -1,13 +1,12 @@
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import PublicNav from './PublicNav';
-import { Root, Footer } from './Layout.styled';
+import { Root } from './Layout.styled';
 import { isLoggedIn, isSettingPassword } from '../../store/hooks';
 
 /*
 If we wanted to wrap our App in something like a container or a Nav bar 
 or something else, we could wrap the outlet component with it.
 */
-const PublicLayout = () => {
+const PublicGuard = () => {
   const location = useLocation();
   const loggedIn = isLoggedIn();
   const settingPassword = isSettingPassword();
@@ -21,13 +20,9 @@ const PublicLayout = () => {
 
   return (
     <Root>
-      <PublicNav />
       <Outlet />
-      <Footer>
-        <h1>Footer</h1>
-      </Footer>
     </Root>
   );
 };
 
-export default PublicLayout;
+export default PublicGuard;

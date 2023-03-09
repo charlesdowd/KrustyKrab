@@ -38,6 +38,7 @@ const authSlice = createSlice({
     },
     logOut: (state) => {
       state.accessToken = null;
+      state.user = null;
     },
   },
   // Automatically update state after these endpoints are fulfilled
@@ -78,6 +79,15 @@ const authSlice = createSlice({
       templateApi.endpoints.getUser.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user;
+      },
+    );
+
+    // Clear auth state on successful logout
+    builder.addMatcher(
+      templateApi.endpoints.sendLogout.matchFulfilled,
+      (state) => {
+        state.accessToken = null;
+        state.user = null;
       },
     );
 

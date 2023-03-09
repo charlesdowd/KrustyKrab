@@ -6,29 +6,20 @@ export const Root = styled(Container)`
   height: 100vh;
 `;
 
-export const Footer = styled.div`
+export const NavContainer = styled(Container)`
+  background-color: #353535;
   display: flex;
-  flex-direction: column-reverse;
-  text-align: center;
-  height: calc(100vh - 80px);
-`;
-
-export const NavRoot = styled.div`
-  display: flex;
-  height: 64px;
+  justify-content: space-around;
+  height: 136px;
   align-items: center;
-  gap: 12px;
 `;
 
 export const NavItem = styled(NavLink)`
   &.active {
     > button {
-      background-color: white;
-      color: blue;
+      background-color: #ffffff;
+      color: #f84e54;
+      font-weight: 600;
     }
   }
-`;
-
-export const NavHome = styled(NavItem)`
-  flex-grow: 1;
 `;

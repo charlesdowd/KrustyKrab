@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 
 export const Root = styled.div`
   text-align: center;
-  height: 100%;
   width: 100%;
   margin-top: 100px;
 `;

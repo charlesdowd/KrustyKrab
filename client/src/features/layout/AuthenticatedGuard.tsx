@@ -2,8 +2,8 @@ import { Outlet, Navigate, useLocation } from 'react-router-dom';
 
 import { isLoggedIn } from '../../store/hooks';
 
-import PrivateNav from './PrivateNav';
-import { Root, Footer } from './Layout.styled';
+import NavBar from './NavBar/NavBar';
+import { Root } from './Layout.styled';
 
 const PrivateLayout = () => {
   // Save location to redirect user to where they wanted to go after logging in
@@ -14,13 +14,12 @@ const PrivateLayout = () => {
     return <Navigate to='/login' replace state={{ from: location }} />;
 
   return (
-    <Root>
-      <PrivateNav />
-      <Outlet />
-      <Footer>
-        <h1>Footer</h1>
-      </Footer>
-    </Root>
+    <>
+      <NavBar />
+      <Root>
+        <Outlet />
+      </Root>
+    </>
   );
 };
 
