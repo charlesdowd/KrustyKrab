@@ -32,6 +32,15 @@ app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
+app.get<{}, MessageResponse>('/', (req, res) => {
+  res.json({
+    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
+  });
+});
+
+// The order of these matter, consider refactoring middleware
+app.use('/api/v1', api);
+
 app.get('*/', (req, res) => {
   res.sendFile(
     path.join(__dirname, '../../../client/build/index.html'),
@@ -43,14 +52,6 @@ app.get('*/', (req, res) => {
   );
 });
 
-app.get<{}, MessageResponse>('/', (req, res) => {
-  res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
-  });
-});
-
-// The order of these matter, consider refactoring middleware
-app.use('/api/v1', api);
 app.use(middlewares.notFound);
 app.use(errorHandler); // Custom error middleware
 
