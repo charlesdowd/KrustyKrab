@@ -25,7 +25,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd server && ts-node src/index.ts",
-    "build": "cd client && npm install && npm run build && (cd server && tsc)",
+    "build": "cd client && npm install && npm run build && (cd ../server && tsc)",
     "postinstall": "npm run build"
   },
   "repository": {
