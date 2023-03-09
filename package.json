@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Built off of template project",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
   "dependencies": {
     "@types/common-errors": "^1.0.2",
     "bcrypt": "^5.1.0",
@@ -21,7 +23,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && ts-node src/index.ts"
+    "start": "cd server && ts-node src/index.ts",
+    "build": "cd client && npm run build && (cd server && tsc)",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
