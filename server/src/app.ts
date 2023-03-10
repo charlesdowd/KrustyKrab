@@ -30,7 +30,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, '../../../client/build')));
 
 // The order of these matter, consider refactoring middleware
 app.use('/api/v1', api);
