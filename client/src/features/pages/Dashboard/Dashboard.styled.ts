@@ -72,8 +72,14 @@ export const Title = styled.span`
   margin-top: 88px;
 `;
 
-export const TagLine = styled.span`
+export const BannerText = styled.span`
   color: white;
-  font-size: 32px;
   font-weight: 600;
+  a {
+    color: white;
+  }
+`;
+
+export const TagLine = styled(BannerText)`
+  font-size: 32px;
 `;

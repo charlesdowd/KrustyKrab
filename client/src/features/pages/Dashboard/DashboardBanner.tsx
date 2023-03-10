@@ -1,5 +1,10 @@
 import { Container } from 'react-bootstrap';
-import { BannerRoot, RedSection, TagLine } from './Dashboard.styled';
+import {
+  BannerRoot,
+  BannerText,
+  RedSection,
+  TagLine,
+} from './Dashboard.styled';
 
 const DashboardBanner = () => {
   return (
@@ -8,15 +13,12 @@ const DashboardBanner = () => {
         <RedSection>
           <TagLine>A Little Something Extra</TagLine>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span>Email Billing Department:</span>
-            <span>
-              <a
-                style={{ color: 'white' }}
-                href='mailto: arap@lagniappefoods.com'
-              >
+            <BannerText>Email Billing Department</BannerText>
+            <BannerText>
+              <a href='mailto: arap@lagniappefoods.com'>
                 arap@lagniappefoods.com
               </a>
-            </span>
+            </BannerText>
           </div>
         </RedSection>
       </Container>
