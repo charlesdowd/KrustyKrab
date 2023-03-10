@@ -23,8 +23,8 @@ export const NavButton = styled.button`
 `;
 
 export const Logo = styled.img`
-  height: 46px;
-  width: 100px;
+  height: 69px;
+  width: 150px;
 `;
 
 export const SignOutIcon = styled.img`

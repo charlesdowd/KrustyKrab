@@ -1,10 +1,11 @@
 import { Root } from './Dashboard.styled';
+import DashboardBanner from './DashboardBanner';
 import UserOrderHistory from './UserOrderHistory';
 
 const Dashboard = () => {
   return (
     <Root>
-      <h1 className='mb-4'>Dashboard</h1>
+      <DashboardBanner />
       <UserOrderHistory />
     </Root>
   );

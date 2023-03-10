@@ -1,7 +1,15 @@
 import { FunctionComponent } from 'react';
-import { HistoryRoot, OrderRow } from './Dashboard.styled';
+import {
+  HistoryRoot,
+  DescriptionHeader,
+  QuantityHeader,
+  DateHeader,
+  Headers,
+  Title,
+} from './Dashboard.styled';
 import { useGetOrdersQuery } from '../../../store/slices/api/templateApi';
 import { Order } from '../../../store/slices/api/templateApi.generated';
+import OrderRow from '../../../components/OrderRow/OrderRow';
 
 const UserOrderHistory: FunctionComponent = () => {
   const { data } = useGetOrdersQuery();
@@ -10,23 +18,15 @@ const UserOrderHistory: FunctionComponent = () => {
   if (!orders) return <div>..Loading</div>;
 
   return (
-    <HistoryRoot className='m-4'>
-      <h2>Order History</h2>
+    <HistoryRoot>
+      <Title>Order History</Title>
+      <Headers>
+        <DescriptionHeader>Description</DescriptionHeader>
+        <QuantityHeader>Quantity</QuantityHeader>
+        <DateHeader>Date</DateHeader>
+      </Headers>
       {orders.map((order) => (
-        <OrderRow key={order._id} className='mt-4'>
-          <div>
-            Order Date: {new Date(order.createdAt).toLocaleDateString('en-US')}
-          </div>
-          {order?.orderItems?.map((orderItem) => (
-            <div
-              key={orderItem.description}
-              style={{ display: 'flex', justifyContent: 'space-between' }}
-            >
-              <div>Product: {orderItem.description}</div>
-              <div>Quantity: {orderItem.quantity}</div>
-            </div>
-          ))}
-        </OrderRow>
+        <OrderRow order={order} key={order._id} className='mt-4' />
       ))}
     </HistoryRoot>
   );

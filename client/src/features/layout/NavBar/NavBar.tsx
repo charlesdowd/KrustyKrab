@@ -24,7 +24,7 @@ const PrivateNav = () => {
 
         <ButtonGroup>
           <NavItem to='/'>
-            <NavButton>Dashboard</NavButton>
+            <NavButton>Order History</NavButton>
           </NavItem>
 
           <NavItem to='/products'>
