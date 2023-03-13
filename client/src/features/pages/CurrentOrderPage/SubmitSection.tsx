@@ -21,11 +21,13 @@ const SubmitSection = () => {
           Submit Order
         </HalfWidthButton>
       ) : (
-        <h4 className='mt-5'>
-          You do not have any products in your current order. Visit the{' '}
-          <NavLink to='/products'>Products Page</NavLink> to add to your current
-          order
-        </h4>
+        <div>
+          <h4 className='mt-5'>
+            You do not have any products in your current order. Visit the{' '}
+            <NavLink to='/products'>Products Page</NavLink> to add to your
+            current order
+          </h4>
+        </div>
       )}
     </>
   );

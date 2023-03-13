@@ -17,6 +17,21 @@ export const PendingApprovalDiv = styled.div`
   gap: 8px;
 `;
 
+export const BannerRoot = styled.div`
+  display: flex;
+  padding: 24px 32px;
+  border-radius: 12px;
+  background-color: #353535;
+  color: white;
+  gap: 12px;
+`;
+
+export const DeadlineText = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+  max-width: 272px;
+`;
+
 export const BannerTitle = styled.h3`
   font-weight: bold;
 `;

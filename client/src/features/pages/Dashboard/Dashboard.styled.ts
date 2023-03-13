@@ -75,7 +75,9 @@ export const Title = styled.span`
 export const BannerText = styled.span`
   color: white;
   font-weight: 600;
+  font-size: 14px;
   a {
+    font-size: 16px;
     color: white;
   }
 `;

@@ -6,6 +6,7 @@ import {
   selectCurrentOrder,
 } from '../../../store/slices/orderSlice';
 import { Root, OrderItemRow } from './CurrentOrderPage.styled';
+import DeadlineBanner from './DeadlineBanner';
 import PendingApprovalBanner from './PendingApprovalBanner';
 import SubmitSection from './SubmitSection';
 
@@ -16,7 +17,11 @@ const CurrentOrderPage: FunctionComponent = () => {
 
   return (
     <Root>
-      <h1 className='mb-4'>Current Order</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <h1 className='mb-4'>Current Order</h1>
+        <DeadlineBanner />
+      </div>
+
       <PendingApprovalBanner />
       {currentOrder?.map(({ product, description, quantity }) => (
         <OrderItemRow key={product}>
