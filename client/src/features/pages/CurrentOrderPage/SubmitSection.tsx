@@ -2,7 +2,12 @@ import { NavLink } from 'react-router-dom';
 import { useCreateOrderMutation } from '../../../store/slices/api/templateApi';
 import { isApproved, useAppSelector } from '../../../store/hooks';
 import { selectCurrentOrder } from '../../../store/slices/orderSlice';
-import { HalfWidthButton } from './CurrentOrderPage.styled';
+import {
+  HalfWidthButton,
+  EmptyOrderDiv,
+  EmptyOrderText,
+} from './CurrentOrderPage.styled';
+import EmptyOrderIcon from '../../../assets/empty-order-icon.svg';
 
 const SubmitSection = () => {
   const currentOrder = useAppSelector(selectCurrentOrder);
@@ -21,13 +26,14 @@ const SubmitSection = () => {
           Submit Order
         </HalfWidthButton>
       ) : (
-        <div>
-          <h4 className='mt-5'>
+        <EmptyOrderDiv>
+          <img src={EmptyOrderIcon} height={48} />
+          <EmptyOrderText>
             You do not have any products in your current order. Visit the{' '}
             <NavLink to='/products'>Products Page</NavLink> to add to your
             current order
-          </h4>
-        </div>
+          </EmptyOrderText>
+        </EmptyOrderDiv>
       )}
     </>
   );

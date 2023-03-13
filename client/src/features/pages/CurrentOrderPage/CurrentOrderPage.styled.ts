@@ -49,3 +49,21 @@ export const HalfWidthButton = styled(Button)`
   width: 50%;
   align-self: center;
 `;
+
+export const EmptyOrderDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 165px;
+  max-width: 356px;
+  text-align: center;
+  align-self: center;
+`;
+
+export const EmptyOrderText = styled.span`
+  font-weight: 600;
+  font-size: 18px;
+  color: #353535;
+  a {
+    color: #f84e54;
+  }
+`;
