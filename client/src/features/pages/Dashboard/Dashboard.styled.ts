@@ -12,9 +12,9 @@ export const HistoryRoot = styled.div`
   display: flex;
   flex-direction: column;
   align-self: start;
-  margin-top: 88px;
   width: 100%;
   text-align: left;
+  padding-top: 180px;
 `;
 
 export const OrderRow = styled.div`
@@ -69,7 +69,6 @@ export const Title = styled.span`
   color: #070f29;
   font-weight: 600;
   font-size: 28px;
-  margin-top: 88px;
 `;
 
 export const BannerText = styled.span`

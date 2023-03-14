@@ -8,4 +8,5 @@ export const AppContainer = styled.div`
   min-height: 100vh;
   position: relative;
   width: 100%;
+  padding-bottom: 50px;
 `;

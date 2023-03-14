@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 export const Root = styled(Container)`
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const NavContainer = styled(Container)`
