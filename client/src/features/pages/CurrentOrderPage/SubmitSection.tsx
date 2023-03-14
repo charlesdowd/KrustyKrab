@@ -1,39 +1,51 @@
 import { NavLink } from 'react-router-dom';
 import { useCreateOrderMutation } from '../../../store/slices/api/templateApi';
-import { isApproved, useAppSelector } from '../../../store/hooks';
-import { selectCurrentOrder } from '../../../store/slices/orderSlice';
+import { isApproved } from '../../../store/hooks';
 import {
-  HalfWidthButton,
+  SubmitButton,
   EmptyOrderDiv,
   EmptyOrderText,
+  SubmitButtonDiv,
 } from './CurrentOrderPage.styled';
 import EmptyOrderIcon from '../../../assets/empty-order-icon.svg';
+import { OrderItem } from '../../../store/slices/api/templateApi.generated';
+import { FunctionComponent } from 'react';
 
-const SubmitSection = () => {
-  const currentOrder = useAppSelector(selectCurrentOrder);
+interface SubmitSectionProps {
+  currentOrder: [OrderItem];
+}
+
+const SubmitSection: FunctionComponent<SubmitSectionProps> = ({
+  currentOrder,
+}) => {
   const approved = isApproved();
 
   const [submitOrder, { isLoading }] = useCreateOrderMutation();
 
+  const emptyOrder = !currentOrder || currentOrder.length < 1;
+
   return (
     <>
-      {currentOrder.length > 0 ? (
-        <HalfWidthButton
-          loading={isLoading}
-          disabled={!approved}
-          onClick={() => submitOrder({ body: { orderItems: currentOrder } })}
-        >
-          Submit Order
-        </HalfWidthButton>
-      ) : (
+      {emptyOrder ? (
         <EmptyOrderDiv>
-          <img src={EmptyOrderIcon} height={48} />
+          <img src={EmptyOrderIcon} height={56} />
           <EmptyOrderText>
             You do not have any products in your current order. Visit the{' '}
-            <NavLink to='/products'>Products Page</NavLink> to add to your
+            <NavLink to='/products'>products page</NavLink> to add to your
             current order
           </EmptyOrderText>
         </EmptyOrderDiv>
+      ) : (
+        <SubmitButtonDiv>
+          <SubmitButton
+            variant='danger'
+            loading={isLoading}
+            disabled={!approved}
+            onClick={() => submitOrder({ body: { orderItems: currentOrder } })}
+          >
+            Submit Order
+          </SubmitButton>
+        </SubmitButtonDiv>
       )}
     </>
   );

@@ -7,6 +7,17 @@ export const Root = styled.div`
   flex-direction: column;
 `;
 
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SubmitButtonDiv = styled.div`
+  display: flex;
+  justify-content: right;
+  margin-top: 24px;
+`;
+
 export const PendingApprovalDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,18 +47,9 @@ export const BannerTitle = styled.h3`
   font-weight: bold;
 `;
 
-export const OrderItemRow = styled.div`
-  width: 50%;
-  justify-content: space-between;
-  display: flex;
-  align-self: center;
-  gap: 32px;
-  padding: 24px;
-`;
-
-export const HalfWidthButton = styled(Button)`
-  width: 50%;
-  align-self: center;
+export const SubmitButton = styled(Button)`
+  background-color: #f84e54;
+  height: 56px;
 `;
 
 export const EmptyOrderDiv = styled.div`
@@ -57,6 +59,7 @@ export const EmptyOrderDiv = styled.div`
   max-width: 356px;
   text-align: center;
   align-self: center;
+  gap: 16px;
 `;
 
 export const EmptyOrderText = styled.span`
