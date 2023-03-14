@@ -84,3 +84,14 @@ export const BannerText = styled.span`
 export const TagLine = styled(BannerText)`
   font-size: 32px;
 `;
+
+export const EmptyHistoryDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 110px;
+  gap: 16px;
+  max-width: 356px;
+  text-align: center;
+  align-self: center;
+`;
