@@ -4,6 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 export const Root = styled(Container)`
   min-height: 100vh;
+
+  .outsideContainer {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    max-width: 100vw;
+  }
 `;
 
 export const NavContainer = styled(Container)`

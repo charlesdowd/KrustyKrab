@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Button from '../../../components/Button/Button';
 
 export const Root = styled.div`
-  margin-top: 64px;
   display: flex;
   flex-direction: column;
 `;
@@ -10,22 +9,13 @@ export const Root = styled.div`
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-top: 65px;
 `;
 
 export const SubmitButtonDiv = styled.div`
   display: flex;
   justify-content: right;
   margin-top: 24px;
-`;
-
-export const PendingApprovalDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border: 10px solid red;
-  padding: 24px;
-  border-radius: 24px;
-  gap: 8px;
 `;
 
 export const BannerRoot = styled.div`
@@ -41,10 +31,6 @@ export const DeadlineText = styled.span`
   font-size: 14px;
   font-weight: 600;
   max-width: 272px;
-`;
-
-export const BannerTitle = styled.h3`
-  font-weight: bold;
 `;
 
 export const SubmitButton = styled(Button)`
