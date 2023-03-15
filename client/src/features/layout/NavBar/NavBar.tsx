@@ -12,6 +12,8 @@ import {
   LogoutButton,
   SignOutIcon,
   Text,
+  ContactDiv,
+  RightSide,
 } from './NavBar.styled';
 
 const PrivateNav = () => {
@@ -42,18 +44,17 @@ const PrivateNav = () => {
             </NavItem>
           )}
         </ButtonGroup>
-        <div style={{ display: 'flex', gap: '24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={PhoneIcon} height={18} />
-            <span style={{ color: 'white', marginLeft: '8px' }}>
-              973-674-0498
-            </span>
-          </div>
+
+        <RightSide>
+          <ContactDiv>
+            <img src={PhoneIcon} height={16} />
+            <Text>973-674-0498</Text>
+          </ContactDiv>
           <LogoutButton onClick={() => sendLogout()}>
             <SignOutIcon src={SignOut} />
             <Text>Log Out</Text>
           </LogoutButton>
-        </div>
+        </RightSide>
       </NavContainer>
     </div>
   );

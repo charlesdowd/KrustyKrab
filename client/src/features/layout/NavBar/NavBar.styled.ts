@@ -15,7 +15,10 @@ export const NavButton = styled.button`
   height: 100%;
   border-radius: 12px;
   font-weight: 500;
-  padding: 16px 24px;
+
+  @media (min-width: 992px) {
+    padding: 16px 24px;
+  }
 
   :hover {
     color: white;
@@ -48,4 +51,22 @@ export const Text = styled.span`
   font-weight: 500;
   font-size: 12px;
   color: white;
+`;
+
+export const ContactDiv = styled.div`
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  gap: 6px;
+`;
+
+export const RightSide = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+
+  @media (min-width: 992px) {
+    // flex-direction: row; // TODO: decide if we want # and logout button stacked
+  }
 `;

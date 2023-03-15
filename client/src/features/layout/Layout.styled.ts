@@ -16,7 +16,7 @@ export const Root = styled(Container)`
 export const NavContainer = styled(Container)`
   background-color: #353535;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 136px;
   align-items: center;
 `;
