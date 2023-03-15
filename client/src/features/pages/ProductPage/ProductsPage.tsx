@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { Root } from '../Dashboard/Dashboard.styled';
 import ProductActions from './ProductActions';
 import {
-  FilterDiv,
+  TopBar,
   ProductTable,
   Filter,
   ProductRow,
+  SearchIcon,
+  ContactInfo,
+  EmailText,
+  EmailLink,
 } from './ProductPage.styled';
 import { useAppSelector } from '../../../store/hooks';
 import {
@@ -14,6 +18,7 @@ import {
   Product,
   Favorite,
 } from '../../../store/slices/productSlice';
+import MagnifyingGlass from '../../../assets/search-icon.svg';
 
 const ProductsPage = () => {
   // Grab all products from our store
@@ -45,15 +50,21 @@ const ProductsPage = () => {
 
   return (
     <Root>
-      <h1>Products Page</h1>
-
-      <FilterDiv>
+      <TopBar>
+        <SearchIcon src={MagnifyingGlass} />
         <Filter
           type='search'
           placeholder='Filter by name/description of product'
           onChange={(e) => setQuery(e.target.value)}
         />
-      </FilterDiv>
+        <ContactInfo>
+          <EmailText>Email Sales Rep: </EmailText>
+
+          <EmailLink href='mailto: dylan@lagniappefoods.com'>
+            dylan@lagniappefoods.com
+          </EmailLink>
+        </ContactInfo>
+      </TopBar>
 
       <ProductTable>
         <tbody>

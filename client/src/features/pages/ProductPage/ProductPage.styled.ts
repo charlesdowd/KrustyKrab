@@ -44,20 +44,54 @@ export const FavoriteDiv = styled.div`
   }
 `;
 
-export const FilterDiv = styled.div`
+export const TopBar = styled.div`
   display: flex;
   width: 100%;
   margin-top: 32px;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Filter = styled.input`
-  width: 65%;
-  height: 48px;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: x-large;
+  width: 420px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px 8px 8px 36px;
+  font-size: medium;
+  background-color: #3131311f;
+  border: none;
+  left: 0px;
 `;
 
 export const ProductRow = styled.tr`
   border: 2px solid gray;
+`;
+
+export const SearchIcon = styled.img`
+  position: absolute;
+  height: 20px;
+  left: 8px;
+  top: 10px;
+`;
+
+export const ContactInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  gap: 6px;
+`;
+
+export const EmailLink = styled.a`
+  color: #070f29;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+`;
+
+export const EmailText = styled.span`
+  color: rgba(0, 0, 0, 0.3);
+  line-height: 24px;
 `;
