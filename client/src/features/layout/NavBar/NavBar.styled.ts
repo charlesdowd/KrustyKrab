@@ -34,17 +34,18 @@ export const SignOutIcon = styled.img`
 `;
 
 export const LogoutButton = styled.button`
-  height: 48px;
-  padding: 0 30px;
+  display: flex;
+  height: 36px;
+  padding: 0 20px;
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   background-color: #353535;
+  align-items: center;
 `;
 
 export const Text = styled.span`
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 12px;
   color: white;
 `;

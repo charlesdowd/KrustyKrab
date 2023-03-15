@@ -41,7 +41,7 @@ const UserOrderHistory: FunctionComponent = () => {
       <Headers>
         <DescriptionHeader>Description</DescriptionHeader>
         <QuantityHeader>Quantity</QuantityHeader>
-        <DateHeader>Date</DateHeader>
+        <DateHeader>Order Placed</DateHeader>
       </Headers>
       {orders.map((order) => (
         <OrderRow order={order} key={order._id} className='mt-4' />

@@ -4,6 +4,7 @@ import { selectUser } from '../../../store/slices/authSlice';
 import LagniappeLogo from '../../../assets/crawfish-logo.svg';
 import SignOut from '../../../assets/sign-out-icon.svg';
 import { NavContainer, NavItem } from '../Layout.styled';
+import PhoneIcon from '../../../assets/phone-icon.svg';
 import {
   ButtonGroup,
   NavButton,
@@ -41,10 +42,18 @@ const PrivateNav = () => {
             </NavItem>
           )}
         </ButtonGroup>
-        <LogoutButton onClick={() => sendLogout()}>
-          <SignOutIcon src={SignOut} />
-          <Text>Log Out</Text>
-        </LogoutButton>
+        <div style={{ display: 'flex', gap: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src={PhoneIcon} height={18} />
+            <span style={{ color: 'white', marginLeft: '8px' }}>
+              973-674-0498
+            </span>
+          </div>
+          <LogoutButton onClick={() => sendLogout()}>
+            <SignOutIcon src={SignOut} />
+            <Text>Log Out</Text>
+          </LogoutButton>
+        </div>
       </NavContainer>
     </div>
   );
