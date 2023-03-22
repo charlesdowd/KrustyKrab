@@ -1,33 +1,11 @@
 import styled from 'styled-components';
 
-export const ProductTable = styled.table`
+export const Products = styled.div``;
+
+export const Root = styled.div`
   width: 100%;
-  margin-top: 32px;
-`;
-
-export const Root = styled.td`
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 20px;
-`;
-
-export const OrderInput = styled.input`
-  width: 75px;
-  border-radius: 12px;
-
-  // Hide arrows
-  /* Chrome, Safari, Edge, Opera */
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  [type='number'] {
-    -moz-appearance: textfield;
-  }
+  flex-direction: column;
 `;
 
 export const FavoriteDiv = styled.div`
@@ -64,10 +42,6 @@ export const Filter = styled.input`
   left: 0px;
 `;
 
-export const ProductRow = styled.tr`
-  border: 2px solid gray;
-`;
-
 export const SearchIcon = styled.img`
   position: absolute;
   height: 20px;
@@ -77,7 +51,6 @@ export const SearchIcon = styled.img`
 
 export const ContactInfo = styled.div`
   display: flex;
-  justify-content: space-between;
   padding: 8px 24px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
@@ -94,4 +67,48 @@ export const EmailLink = styled.a`
 export const EmailText = styled.span`
   color: rgba(0, 0, 0, 0.3);
   line-height: 24px;
+`;
+
+export const Sections = styled.div`
+  width: 100%;
+  margin-top: 32px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  overflow: auto;
+`;
+
+export const SectionButton = styled.button`
+  color: rgba(0, 0, 0, 0.6);
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 12px;
+  height: 100%;
+  border-radius: 12px;
+  font-weight: 500;
+
+  @media (min-width: 992px) {
+    padding: 16px 24px;
+    font-size: 16px;
+  }
+
+  :hover {
+    color: #f84e54;
+  }
+
+  :focus {
+    background-color: #f84e54;
+    color: white;
+  }
+`;
+
+export const Headers = styled.div`
+  position: relative;
+  padding: 0 32px;
+`;
+
+export const ProductList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
 `;

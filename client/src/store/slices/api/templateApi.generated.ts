@@ -232,7 +232,6 @@ export type Product = {
   description: string;
   casePack: string;
   caseWeight: string;
-  price: number;
 };
 export type OrderItem = {
   quantity: number;

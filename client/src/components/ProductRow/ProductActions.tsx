@@ -1,16 +1,20 @@
 import { FunctionComponent, useRef } from 'react';
-import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useAppDispatch } from '../../../store/hooks';
-import { addItem } from '../../../store/slices/orderSlice';
-import { Root, FavoriteDiv, OrderInput } from './ProductPage.styled';
+import { useAppDispatch } from '../../store/hooks';
+import { addItem } from '../../store/slices/orderSlice';
+import FavoritedIcon from '../../assets/favorited-icon.svg';
+import NonFavoritedIcon from '../../assets/non-favorited-icon.svg';
+import {
+  ActionsRoot,
+  AddToOrderButton,
+  OrderInput,
+  FavoriteDiv,
+} from './ProductRow.styled';
 import {
   addFavorite,
   removeFavorite,
   Favorite,
-} from '../../../store/slices/productSlice';
+} from '../../store/slices/productSlice';
 
 interface ProductActionsProps extends Favorite {
   favorite: boolean;
@@ -49,19 +53,13 @@ const ProductActions: FunctionComponent<ProductActionsProps> = ({
   };
 
   return (
-    <Root>
+    <ActionsRoot>
       <OrderInput type='number' ref={quantityRef} placeholder='0' />
-      <Button onClick={handleSubmit}>Add to Order</Button>
+      <AddToOrderButton onClick={handleSubmit}>Add to Order</AddToOrderButton>
       <FavoriteDiv onClick={toggleFavorite}>
-        <FontAwesomeIcon
-          size='lg'
-          icon={faStar}
-          style={{ margin: 'auto' }}
-          color={favorite ? 'gold' : 'gray'}
-        />
-        {favorite ? 'Unfavorite' : 'Favorite'}
+        <img src={favorite ? FavoritedIcon : NonFavoritedIcon} />
       </FavoriteDiv>
-    </Root>
+    </ActionsRoot>
   );
 };
 

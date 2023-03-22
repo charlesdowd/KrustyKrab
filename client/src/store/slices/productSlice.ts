@@ -1,16 +1,5 @@
-import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { templateApi } from './api/templateApi.generated';
-
-// Type to represent part of a product
-export interface Product {
-  _id: string;
-  itemId: string;
-  description: string;
-  casePack: string;
-  caseWeight: string;
-  price: number;
-}
+import { templateApi, Product } from './api/templateApi.generated';
 
 // Interface representing what information we save for favorited products
 export interface Favorite {
@@ -47,12 +36,7 @@ const productSlice = createSlice({
         state.products = payload.products;
       },
     );
-    builder.addMatcher(
-      templateApi.endpoints.getAllProducts.matchRejected,
-      () => {
-        toast.error('Failed to get list of current products');
-      },
-    );
+
     // Save users favorites to localStorage on logout
     builder.addMatcher(
       templateApi.endpoints.sendLogout.matchPending,

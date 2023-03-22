@@ -43,7 +43,7 @@ const calculateFontStyle = ($header: boolean) => {
     `;
   } else {
     return css`
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       color: #070f29;
     `;
@@ -58,37 +58,40 @@ export const ItemId = styled.div<{ $header?: boolean }>(
   `,
 );
 
-export const Description = styled.div<{ $header?: boolean }>(
-  ({ $header }) => css`
+export const Description = styled.div<{
+  $header?: boolean;
+  $position?: number;
+}>(
+  ({ $header, $position }) => css`
     position: absolute;
-    left: 15%;
+    left: ${$position ? `${$position}%` : '15%'};
+
+    ${calculateFontStyle($header)};
+  `,
+);
+
+export const CasePack = styled.div<{ $header?: boolean; $position?: number }>(
+  ({ $header, $position }) => css`
+    position: absolute;
+    left: ${$position ? `${$position}%` : '35%'};
 
     ${calculateFontStyle($header)}
   `,
 );
 
-export const CasePack = styled.div<{ $header?: boolean }>(
-  ({ $header }) => css`
+export const CaseWeight = styled.div<{ $header?: boolean; $position?: number }>(
+  ({ $header, $position }) => css`
     position: absolute;
-    left: 35%;
+    left: ${$position ? `${$position}%` : '48%'};
 
     ${calculateFontStyle($header)}
   `,
 );
 
-export const CaseWeight = styled.div<{ $header?: boolean }>(
-  ({ $header }) => css`
+export const Quantity = styled.div<{ $header?: boolean; $position?: number }>(
+  ({ $header, $position }) => css`
     position: absolute;
-    left: 48%;
-
-    ${calculateFontStyle($header)}
-  `,
-);
-
-export const Quantity = styled.div<{ $header?: boolean }>(
-  ({ $header }) => css`
-    position: absolute;
-    left: 70%;
+    left: ${$position ? `${$position}%` : '70%'};
 
     ${calculateFontStyle($header)}
   `,

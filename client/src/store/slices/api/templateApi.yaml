@@ -442,6 +442,7 @@ components:
       x-stoplight:
         id: vcqf4mviae2l5
       type: object
+      description: Products that we offer
       properties:
         _id:
           type: string
@@ -453,16 +454,12 @@ components:
           type: string
         caseWeight:
           type: string
-        price:
-          type: number
       required:
         - _id
         - itemId
         - description
         - casePack
         - caseWeight
-        - price
-      description: Products that we offer
     Order:
       title: Order
       x-stoplight:
