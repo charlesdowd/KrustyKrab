@@ -27,11 +27,13 @@ export const OrderItemRow = styled.div`
 
 export const RemoveDiv = styled.div`
   position: absolute;
+  line-height: 32px;
   right: 0px;
   display: flex;
   gap: 8px;
   color: #f84e54;
   cursor: pointer;
+  align-items: center;
 `;
 
 const calculateFontStyle = ($header: boolean) => {
@@ -53,6 +55,7 @@ const calculateFontStyle = ($header: boolean) => {
 export const ItemId = styled.div<{ $header?: boolean }>(
   ({ $header }) => css`
     position: absolute;
+    line-height: 32px;
 
     ${calculateFontStyle($header)}
   `,
@@ -64,6 +67,7 @@ export const Description = styled.div<{
 }>(
   ({ $header, $position }) => css`
     position: absolute;
+    line-height: 32px;
     left: ${$position ? `${$position}%` : '15%'};
 
     ${calculateFontStyle($header)};
@@ -73,6 +77,7 @@ export const Description = styled.div<{
 export const CasePack = styled.div<{ $header?: boolean; $position?: number }>(
   ({ $header, $position }) => css`
     position: absolute;
+    line-height: 32px;
     left: ${$position ? `${$position}%` : '35%'};
 
     ${calculateFontStyle($header)}
@@ -82,6 +87,7 @@ export const CasePack = styled.div<{ $header?: boolean; $position?: number }>(
 export const CaseWeight = styled.div<{ $header?: boolean; $position?: number }>(
   ({ $header, $position }) => css`
     position: absolute;
+    line-height: 32px;
     left: ${$position ? `${$position}%` : '48%'};
 
     ${calculateFontStyle($header)}
@@ -91,6 +97,7 @@ export const CaseWeight = styled.div<{ $header?: boolean; $position?: number }>(
 export const Quantity = styled.div<{ $header?: boolean; $position?: number }>(
   ({ $header, $position }) => css`
     position: absolute;
+    line-height: 32px;
     left: ${$position ? `${$position}%` : '70%'};
 
     ${calculateFontStyle($header)}
