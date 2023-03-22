@@ -232,6 +232,13 @@ export type Product = {
   description: string;
   casePack: string;
   caseWeight: string;
+  category?:
+    | 'SEAFOOD_CAKES'
+    | 'SEAFOOD_BURGERS'
+    | 'SEAFOOD_SAUSAGE'
+    | 'SEAFOOD_SALADS'
+    | 'SEAFOOD_STUFFING'
+    | 'PREPARED_FILLETS';
 };
 export type OrderItem = {
   quantity: number;

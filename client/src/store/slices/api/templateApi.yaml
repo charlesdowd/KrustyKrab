@@ -454,6 +454,18 @@ components:
           type: string
         caseWeight:
           type: string
+        category:
+          type: string
+          x-stoplight:
+            id: t1ol7lrhdq2ku
+          enum:
+            - SEAFOOD_CAKES
+            - SEAFOOD_BURGERS
+            - SEAFOOD_SAUSAGE
+            - SEAFOOD_SALADS
+            - SEAFOOD_STUFFING
+            - PREPARED_FILLETS
+          description: Category that this product is a part of
       required:
         - _id
         - itemId
