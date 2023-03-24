@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
 export const Products = styled.div``;
 
@@ -69,35 +70,44 @@ export const EmailText = styled.span`
   line-height: 24px;
 `;
 
-export const Sections = styled.div`
+export const ButtonGroup = styled(ToggleButtonGroup)`
   width: 100%;
   margin-top: 32px;
   background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 12px;
   overflow: auto;
+  border-radius: 12px !important;
+
+  .btn-check:checked + .btn,
+  .btn.active,
+  .btn.show,
+  .btn:first-child:active,
+  :not(.btn-check) + .btn:active {
+    background-color: #f84e54;
+  }
+
+  .btn:hover {
+    color: rgba(0, 0, 0, 0.6);
+    background: none;
+  }
+
+  label.btn.btn-primary {
+    border-radius: 12px !important;
+  }
 `;
 
-export const SectionButton = styled.button`
+export const SectionButton = styled(ToggleButton)`
+  box-sizing: border-box;
   color: rgba(0, 0, 0, 0.6);
   border: none;
   background-color: rgba(255, 255, 255, 0);
-  font-size: 12px;
-  height: 100%;
-  border-radius: 12px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 992px) {
     padding: 16px 24px;
     font-size: 16px;
-  }
-
-  :hover {
-    color: #f84e54;
-  }
-
-  :focus {
-    background-color: #f84e54;
-    color: white;
   }
 `;
 
