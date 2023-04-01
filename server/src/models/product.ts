@@ -15,7 +15,6 @@ export interface IProduct {
   description: string;
   casePack: string;
   caseWeight: string;
-  price: number;
   category: PRODUCT_CATEGORY;
 }
 

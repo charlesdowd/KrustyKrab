@@ -2,7 +2,7 @@ import { IProduct, Product } from '../../models';
 import { BaseError } from '../../interfaces/Errors';
 
 export async function createProduct(body: IProduct): Promise<void> {
-  const { itemId, description, casePack, caseWeight, price } = body;
+  const { itemId, description, casePack, caseWeight, category } = body;
 
   // Make sure all fields are non-nullish
   const allFieldsExist = [
@@ -10,7 +10,7 @@ export async function createProduct(body: IProduct): Promise<void> {
     description,
     casePack,
     caseWeight,
-    price,
+    category,
   ].every((val) => !!val);
 
   if (!allFieldsExist)
@@ -19,5 +19,5 @@ export async function createProduct(body: IProduct): Promise<void> {
     });
 
   // Create the new product
-  await Product.create({ itemId, description, casePack, caseWeight, price });
+  await Product.create({ itemId, description, casePack, caseWeight, category });
 }
