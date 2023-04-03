@@ -96,7 +96,6 @@ const SignUp = () => {
               disabled={!(isValid && dirty)}
               loading={isLoading}
               variant='primary'
-              className='SignUpButton'
               type='submit'
             >
               Sign Up

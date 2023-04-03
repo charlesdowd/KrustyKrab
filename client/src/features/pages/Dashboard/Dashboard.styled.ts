@@ -15,6 +15,7 @@ export const HistoryRoot = styled.div`
   width: 100%;
   text-align: left;
   padding-top: 180px;
+  padding-bottom: 50px;
 `;
 
 export const OrderRow = styled.div`

@@ -1,20 +1,20 @@
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Root } from '../Dashboard/Dashboard.styled';
-import { ButtonDiv, CustomButton } from '../LandingPage/LandingPage.styled';
 
 const AdminDashboard = () => {
   return (
     <Root>
       <h1>Admin Dashboard</h1>
       <div className='mt-4'>
-        <ButtonDiv>
+        <div className='mt-4'>
           <Link to='/admin/approve-accounts'>
-            <CustomButton>Approve Accounts</CustomButton>
+            <Button>Approve Accounts</Button>
           </Link>
           <Link to='/admin/orders'>
-            <CustomButton>Order History</CustomButton>
+            <Button>Order History</Button>
           </Link>
-        </ButtonDiv>
+        </div>
       </div>
     </Root>
   );

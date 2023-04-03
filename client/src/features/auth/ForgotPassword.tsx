@@ -58,9 +58,7 @@ const ForgotPassword = () => {
             <Button
               // Start out disabled on initial load and until all fields valid
               disabled={!(isValid && dirty)}
-              loading={false} /* TODO: forgot password mutation isLoading */
               variant='primary'
-              className='SignUpButton'
               type='submit'
             >
               Send Reset Link

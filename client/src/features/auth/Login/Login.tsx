@@ -1,9 +1,17 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
-import { LoginForm, Root, InputGroup } from './Login.styled';
-import Button from '../../../components/Button/Button';
+import {
+  LoginForm,
+  Root,
+  InputGroup,
+  Input,
+  Title,
+  LoginButton,
+  InfoText,
+  LinkText,
+} from './Login.styled';
+import RedLogo from '../../../assets/red-logo.svg';
 
 import { useLoginMutation } from '../../../store/slices/api/templateApi';
 
@@ -23,7 +31,11 @@ const Login = () => {
 
   return (
     <Root>
-      <h1 className='mb-4'>Log In Page</h1>
+      <div>
+        <img src={RedLogo} width={140} />
+      </div>
+
+      <Title>Log In</Title>
 
       <Formik
         validationSchema={loginSchema}
@@ -48,7 +60,7 @@ const Login = () => {
         }) => (
           <LoginForm noValidate onSubmit={handleSubmit}>
             <InputGroup controlId='email'>
-              <Form.Control
+              <Input
                 type='email'
                 placeholder='Email'
                 value={values.email}
@@ -65,7 +77,8 @@ const Login = () => {
             </InputGroup>
 
             <InputGroup controlId='password'>
-              <Form.Control
+              <Input
+                className='mb-1'
                 size='lg'
                 type='password'
                 name='password'
@@ -76,26 +89,27 @@ const Login = () => {
                 isInvalid={!!errors.password && !!touched.password}
                 autoComplete='current-password'
               />
-              <Form.Control.Feedback className='FeedBack' type='invalid'>
+              <Form.Control.Feedback className='FeedBack mb-1' type='invalid'>
                 {errors.password?.toString()}
               </Form.Control.Feedback>
+              <InfoText>
+                <LinkText to='/forgot-password'> Forgot password</LinkText>
+              </InfoText>
             </InputGroup>
 
-            <Button
+            <LoginButton
               // Start out disabled on initial load and until all fields valid
+              color='red'
               disabled={!(isValid && dirty)}
-              className='SignUpButton'
               type='submit'
               loading={isLoading}
             >
               Log In
-            </Button>
-            <Form.Text>
-              Don&apos;t Have an Account? <Link to='/signup'>Sign Up</Link>
-            </Form.Text>
-            <Form.Text>
-              Forgot password? <Link to='/forgot-password'>Reset Password</Link>
-            </Form.Text>
+            </LoginButton>
+            <InfoText>
+              Don&apos;t Have an Account?{' '}
+              <LinkText to='/signup'>Sign Up</LinkText>
+            </InfoText>
           </LoginForm>
         )}
       </Formik>

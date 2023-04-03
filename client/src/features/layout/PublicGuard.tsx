@@ -1,5 +1,5 @@
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import { Root } from './Layout.styled';
+import { PublicRoot } from './Layout.styled';
 import { isLoggedIn, isSettingPassword } from '../../store/hooks';
 
 /*
@@ -19,9 +19,9 @@ const PublicGuard = () => {
   if (settingPassword) return <Navigate to='set-password' replace />;
 
   return (
-    <Root>
+    <PublicRoot>
       <Outlet />
-    </Root>
+    </PublicRoot>
   );
 };
 

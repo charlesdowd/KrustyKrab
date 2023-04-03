@@ -4,7 +4,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AppContainer } from './App.styled';
 import PublicGuard from './features/layout/PublicGuard';
 import AuthenticatedGuard from './features/layout/AuthenticatedGuard';
-import LandingPage from './features/pages/LandingPage/LandingPage';
 import Login from './features/auth/Login/Login';
 import SignUp from './features/auth/SignUp/SignUp';
 import Dashboard from './features/pages/Dashboard/Dashboard';
@@ -52,7 +51,6 @@ const App: FunctionComponent = () => {
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicGuard />}>
-          <Route path='landing' element={<LandingPage />} />
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='forgot-password' element={<ForgotPassword />} />
