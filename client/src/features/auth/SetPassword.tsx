@@ -1,14 +1,14 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { useAppSelector } from '../../../store/hooks';
-import { selectUser } from '../../../store/slices/authSlice';
+import { useAppSelector } from '../../store/hooks';
+import { selectUser } from '../../store/slices/authSlice';
 import {
   useLoginMutation,
   useSetPasswordMutation,
-} from '../../../store/slices/api/templateApi';
+} from '../../store/slices/api/templateApi';
 
-import { Form, FormButton, Input, Title } from '../AuthPages.styled'; // TODO: Make these non login specific styled components
+import { Form, FormButton, Input, Title } from './AuthPages.styled'; // TODO: Make these non login specific styled components
 
 const setPasswordSchema = Yup.object({
   password: Yup.string()

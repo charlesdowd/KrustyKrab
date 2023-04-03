@@ -7,8 +7,8 @@ import {
   InfoText,
   LinkText,
   Title,
-} from '../AuthPages.styled';
-import { useRegisterMutation } from '../../../store/slices/api/templateApi';
+} from './AuthPages.styled';
+import { useRegisterMutation } from '../../store/slices/api/templateApi';
 
 const phoneRegExp =
   /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;

@@ -7,9 +7,9 @@ import {
   FormButton,
   InfoText,
   LinkText,
-} from '../AuthPages.styled';
+} from './AuthPages.styled';
 
-import { useLoginMutation } from '../../../store/slices/api/templateApi';
+import { useLoginMutation } from '../../store/slices/api/templateApi';
 
 // Validation object for logging in
 const loginSchema = Yup.object({
