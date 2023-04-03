@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Form, Container } from 'react-bootstrap';
-import Button from '../../../components/Button/Button';
+import { Form as BootstrapForm, Container } from 'react-bootstrap';
+import Button from '../../components/Button/Button';
 
 export const Root = styled(Container)`
   margin-top: 100px;
@@ -9,15 +9,11 @@ export const Root = styled(Container)`
   flex-direction: column;
 `;
 
-export const LoginForm = styled(Form)`
+export const Form = styled(BootstrapForm)`
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 60px;
-`;
-
-export const InputGroup = styled(Form.Group)`
-  width: 400px;
 `;
 
 export const Input = styled(Form.Control)`
@@ -41,7 +37,7 @@ export const Title = styled.span`
   margin-top: 100px;
 `;
 
-export const LoginButton = styled(Button)`
+export const FormButton = styled(Button)`
   background-color: #ed2228;
   border: none;
   height: 48px;
@@ -73,7 +69,6 @@ export const InfoText = styled(Form.Text)``;
 export const LinkText = styled(Link)`
   color: #ed2228;
   text-decoration: none;
-  font-size: 12px;
   font-weight: bold;
 
   :hover {

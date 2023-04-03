@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Form } from 'react-bootstrap';
 
 import { useAppSelector } from '../../../store/hooks';
 import { selectUser } from '../../../store/slices/authSlice';
@@ -9,8 +8,7 @@ import {
   useSetPasswordMutation,
 } from '../../../store/slices/api/templateApi';
 
-import Button from '../../../components/Button/Button';
-import { LoginForm, Root, InputGroup } from '../Login/Login.styled'; // TODO: Make these non login specific styled components
+import { Form, FormButton, Input, Title } from '../AuthPages.styled'; // TODO: Make these non login specific styled components
 
 const setPasswordSchema = Yup.object({
   password: Yup.string()
@@ -49,8 +47,8 @@ const SetPassword = () => {
   };
 
   return (
-    <Root>
-      <h1 className='mb-4'>Set Your Password</h1>
+    <>
+      <Title>Set Your Password</Title>
 
       <Formik
         validationSchema={setPasswordSchema}
@@ -70,9 +68,9 @@ const SetPassword = () => {
           errors,
           dirty,
         }) => (
-          <LoginForm noValidate onSubmit={handleSubmit}>
-            <InputGroup controlId='password'>
-              <Form.Control
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group controlId='password'>
+              <Input
                 type='password'
                 placeholder='Set Password'
                 value={values.password}
@@ -85,10 +83,10 @@ const SetPassword = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.password?.toString()}
               </Form.Control.Feedback>
-            </InputGroup>
+            </Form.Group>
 
-            <InputGroup controlId='passwordConfirmation'>
-              <Form.Control
+            <Form.Group controlId='passwordConfirmation'>
+              <Input
                 type='password'
                 placeholder='Confirm Password'
                 value={values.passwordConfirmation}
@@ -105,9 +103,9 @@ const SetPassword = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.passwordConfirmation?.toString()}
               </Form.Control.Feedback>
-            </InputGroup>
+            </Form.Group>
 
-            <Button
+            <FormButton
               // Start out disabled on initial load and until all fields valid
               disabled={!isValid || !dirty || !values.passwordConfirmation}
               loading={isLoading || loginLoading}
@@ -116,11 +114,11 @@ const SetPassword = () => {
               type='submit'
             >
               Set Password
-            </Button>
-          </LoginForm>
+            </FormButton>
+          </Form>
         )}
       </Formik>
-    </Root>
+    </>
   );
 };
 

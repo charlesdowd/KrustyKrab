@@ -1,9 +1,13 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { Form } from 'react-bootstrap';
-import Button from '../../components/Button/Button';
-import { Root, InputGroup, SignUpForm } from './SignUp/SignUp.styled';
+import {
+  Form,
+  FormButton,
+  InfoText,
+  Input,
+  LinkText,
+  Title,
+} from './AuthPages.styled';
 import { useForgotPasswordMutation } from '../../store/slices/api/templateApi';
 
 const forgotPasswordSchema = Yup.object({
@@ -13,8 +17,8 @@ const forgotPasswordSchema = Yup.object({
 const ForgotPassword = () => {
   const [forgotPassword] = useForgotPasswordMutation();
   return (
-    <Root>
-      <h1 className='mb-4'>Password Reset</h1>
+    <>
+      <Title>Password Reset</Title>
 
       <Formik
         validationSchema={forgotPasswordSchema}
@@ -38,9 +42,9 @@ const ForgotPassword = () => {
           errors,
           dirty,
         }) => (
-          <SignUpForm noValidate onSubmit={handleSubmit}>
-            <InputGroup controlId='email'>
-              <Form.Control
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group controlId='email'>
+              <Input
                 type='email'
                 placeholder='Email'
                 value={values.email}
@@ -53,23 +57,24 @@ const ForgotPassword = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.email?.toString()}
               </Form.Control.Feedback>
-            </InputGroup>
+            </Form.Group>
 
-            <Button
+            <FormButton
               // Start out disabled on initial load and until all fields valid
               disabled={!(isValid && dirty)}
               variant='primary'
               type='submit'
             >
               Send Reset Link
-            </Button>
-            <Form.Text>
-              Haven&apos;t signed up yet? Sign up <Link to='/signup'>Here</Link>
-            </Form.Text>
-          </SignUpForm>
+            </FormButton>
+            <InfoText>
+              Haven&apos;t signed up yet?{'  '}
+              <LinkText to='/signup'>Sign up Here</LinkText>
+            </InfoText>
+          </Form>
         )}
       </Formik>
-    </Root>
+    </>
   );
 };
 

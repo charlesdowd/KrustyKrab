@@ -1,9 +1,13 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { Form } from 'react-bootstrap';
-import Button from '../../../components/Button/Button';
-import { Root, InputGroup, SignUpForm } from './SignUp.styled';
+import {
+  Form,
+  FormButton,
+  Input,
+  InfoText,
+  LinkText,
+  Title,
+} from '../AuthPages.styled';
 import { useRegisterMutation } from '../../../store/slices/api/templateApi';
 
 const phoneRegExp =
@@ -20,8 +24,8 @@ const SignUp = () => {
   const [registerUser, { isLoading }] = useRegisterMutation();
 
   return (
-    <Root>
-      <h1 className='mb-4'>Sign Up Page</h1>
+    <>
+      <Title>Sign Up</Title>
 
       <Formik
         validationSchema={signupSchema}
@@ -46,9 +50,9 @@ const SignUp = () => {
           errors,
           dirty,
         }) => (
-          <SignUpForm noValidate onSubmit={handleSubmit}>
-            <InputGroup controlId='email'>
-              <Form.Control
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group controlId='email'>
+              <Input
                 type='email'
                 placeholder='Email'
                 value={values.email}
@@ -61,10 +65,10 @@ const SignUp = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.email?.toString()}
               </Form.Control.Feedback>
-            </InputGroup>
+            </Form.Group>
 
-            <InputGroup controlId='phoneNumber'>
-              <Form.Control
+            <Form.Group controlId='phoneNumber'>
+              <Input
                 type='tel'
                 placeholder='Phone Number'
                 value={values.phoneNumber}
@@ -77,10 +81,10 @@ const SignUp = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.phoneNumber?.toString()}
               </Form.Control.Feedback>
-            </InputGroup>
+            </Form.Group>
 
-            <InputGroup controlId='company'>
-              <Form.Control
+            <Form.Group controlId='company'>
+              <Input
                 type='text'
                 placeholder='Company Name'
                 value={values.company}
@@ -89,9 +93,9 @@ const SignUp = () => {
                 name='company'
                 size='lg'
               />
-            </InputGroup>
+            </Form.Group>
 
-            <Button
+            <FormButton
               // Start out disabled on initial load and until all fields valid
               disabled={!(isValid && dirty)}
               loading={isLoading}
@@ -99,14 +103,15 @@ const SignUp = () => {
               type='submit'
             >
               Sign Up
-            </Button>
-            <Form.Text>
-              Already a User? <Link to='/login'>Log In</Link>
-            </Form.Text>
-          </SignUpForm>
+            </FormButton>
+            <InfoText>
+              Already a User?{'  '}
+              <LinkText to='/login'>Log In</LinkText>
+            </InfoText>
+          </Form>
         )}
       </Formik>
-    </Root>
+    </>
   );
 };
 

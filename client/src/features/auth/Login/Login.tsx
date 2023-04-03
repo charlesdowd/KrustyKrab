@@ -1,17 +1,13 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Form } from 'react-bootstrap';
 import {
-  LoginForm,
-  Root,
-  InputGroup,
+  Form,
   Input,
   Title,
-  LoginButton,
+  FormButton,
   InfoText,
   LinkText,
-} from './Login.styled';
-import RedLogo from '../../../assets/red-logo.svg';
+} from '../AuthPages.styled';
 
 import { useLoginMutation } from '../../../store/slices/api/templateApi';
 
@@ -30,11 +26,7 @@ const Login = () => {
   const [login, { isLoading }] = useLoginMutation();
 
   return (
-    <Root>
-      <div>
-        <img src={RedLogo} width={140} />
-      </div>
-
+    <>
       <Title>Log In</Title>
 
       <Formik
@@ -58,8 +50,8 @@ const Login = () => {
           errors,
           dirty,
         }) => (
-          <LoginForm noValidate onSubmit={handleSubmit}>
-            <InputGroup controlId='email'>
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group controlId='email'>
               <Input
                 type='email'
                 placeholder='Email'
@@ -74,9 +66,9 @@ const Login = () => {
               <Form.Control.Feedback className='FeedBack' type='invalid'>
                 {errors.email?.toString()}
               </Form.Control.Feedback>
-            </InputGroup>
+            </Form.Group>
 
-            <InputGroup controlId='password'>
+            <Form.Group controlId='password'>
               <Input
                 className='mb-1'
                 size='lg'
@@ -93,11 +85,13 @@ const Login = () => {
                 {errors.password?.toString()}
               </Form.Control.Feedback>
               <InfoText>
-                <LinkText to='/forgot-password'> Forgot password</LinkText>
+                <LinkText style={{ fontSize: '12px' }} to='/forgot-password'>
+                  Forgot password
+                </LinkText>
               </InfoText>
-            </InputGroup>
+            </Form.Group>
 
-            <LoginButton
+            <FormButton
               // Start out disabled on initial load and until all fields valid
               color='red'
               disabled={!(isValid && dirty)}
@@ -105,15 +99,15 @@ const Login = () => {
               loading={isLoading}
             >
               Log In
-            </LoginButton>
+            </FormButton>
             <InfoText>
-              Don&apos;t Have an Account?{' '}
+              Don&apos;t Have an Account?{'  '}
               <LinkText to='/signup'>Sign Up</LinkText>
             </InfoText>
-          </LoginForm>
+          </Form>
         )}
       </Formik>
-    </Root>
+    </>
   );
 };
 

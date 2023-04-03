@@ -1,6 +1,7 @@
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import { PublicRoot } from './Layout.styled';
+import { PublicContainer, PublicRoot } from './Layout.styled';
 import { isLoggedIn, isSettingPassword } from '../../store/hooks';
+import RedLogo from '../../assets/red-logo.svg';
 
 /*
 If we wanted to wrap our App in something like a container or a Nav bar 
@@ -20,7 +21,12 @@ const PublicGuard = () => {
 
   return (
     <PublicRoot>
-      <Outlet />
+      <PublicContainer>
+        <div>
+          <img src={RedLogo} width={140} />
+        </div>
+        <Outlet />
+      </PublicContainer>
     </PublicRoot>
   );
 };

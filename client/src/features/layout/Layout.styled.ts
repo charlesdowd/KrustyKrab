@@ -20,6 +20,12 @@ export const PublicRoot = styled.div`
   background-size: cover;
 `;
 
+export const PublicContainer = styled(Container)`
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const NavContainer = styled(Container)`
   background-color: #353535;
   display: flex;
