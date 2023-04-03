@@ -20,6 +20,7 @@ import AdminOrderHistory from './features/pages/Admin/OrderHistory/AdminOrderHis
 import ForgotPassword from './features/auth/ForgotPassword';
 import {
   useGetAllProductsQuery,
+  useGetOrdersQuery,
   useGetUserQuery,
 } from './store/slices/api/templateApi';
 import { isLoggedIn } from './store/hooks';
@@ -38,11 +39,15 @@ const App: FunctionComponent = () => {
   // We could pass it to some of our components if we wanted to but are not
   // using that pattern. We use selectors to get the auth.user state instead.
 
-  // Fetch user info and all current products
+  // Fetch user info, all current products, and user order history
+
   useGetUserQuery(null, {
     skip: !loggedIn,
   });
   useGetAllProductsQuery(null, {
+    skip: !loggedIn,
+  });
+  useGetOrdersQuery(null, {
     skip: !loggedIn,
   });
 

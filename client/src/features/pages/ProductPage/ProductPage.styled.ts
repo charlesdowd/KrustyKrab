@@ -47,7 +47,6 @@ export const SearchIcon = styled.img`
   position: absolute;
   height: 20px;
   left: 8px;
-  top: 10px;
 `;
 
 export const ContactInfo = styled.div`
