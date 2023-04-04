@@ -28,6 +28,10 @@ export const NavButton = styled.button`
 export const Logo = styled.img`
   height: 69px;
   width: 150px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const SignOutIcon = styled.img`
@@ -66,7 +70,7 @@ export const RightSide = styled.div`
   gap: 12px;
   flex-direction: column;
 
-  @media (min-width: 992px) {
-    // flex-direction: row; // TODO: decide if we want # and logout button stacked
+  @media (max-width: 768px) {
+    display: none;
   }
 `;

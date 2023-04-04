@@ -80,10 +80,20 @@ export const BannerText = styled.span`
     font-size: 16px;
     color: white;
   }
+
+  @media (max-width: 768px) {
+    a {
+      font-size: 12px;
+    }
+    font-size: 12px;
+  }
 `;
 
 export const TagLine = styled(BannerText)`
   font-size: 32px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const EmptyHistoryDiv = styled.div`

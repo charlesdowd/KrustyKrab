@@ -32,6 +32,10 @@ export const NavContainer = styled(Container)`
   justify-content: space-between;
   height: 136px;
   align-items: center;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const NavItem = styled(NavLink)`
