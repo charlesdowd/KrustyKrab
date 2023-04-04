@@ -9,6 +9,11 @@ export const Root = styled.div`
   flex-direction: column;
 `;
 
+export const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const FavoriteDiv = styled.div`
   cursor: pointer;
   display: flex;
@@ -55,6 +60,7 @@ export const ContactInfo = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   gap: 6px;
+  flex-direction: column;
 `;
 
 export const EmailLink = styled.a`

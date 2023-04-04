@@ -27,7 +27,7 @@ const ProductRow: FunctionComponent<ProductRowProps> = ({ product }) => {
   return (
     <Root>
       <ItemId>{itemId}</ItemId>
-      <Description $position={25}>{description}</Description>
+      <Description $position={17}>{description}</Description>
       <CasePack $position={48}>{casePack}</CasePack>
       <CaseWeight $position={60}>{caseWeight}</CaseWeight>
       <ProductActions

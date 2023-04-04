@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import ProductRow from '../../../components/ProductRow/ProductRow';
 import { Product } from '../../../store/slices/api/templateApi.generated';
 import {
@@ -15,6 +14,7 @@ import {
   SectionButton,
   Headers,
   ProductList,
+  SearchBar,
 } from './ProductPage.styled';
 import {
   ItemId,
@@ -73,12 +73,14 @@ const ProductsPage = () => {
   return (
     <Root>
       <TopBar>
-        <SearchIcon src={MagnifyingGlass} />
-        <Filter
-          type='search'
-          placeholder='Filter by name/description of product'
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <SearchBar>
+          <Filter
+            type='search'
+            placeholder='Filter by name/description of product'
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <SearchIcon src={MagnifyingGlass} />
+        </SearchBar>
 
         <ContactInfo>
           <EmailText>Email Sales Rep: </EmailText>
@@ -123,13 +125,13 @@ const ProductsPage = () => {
       <Products className='mt-5'>
         <Headers>
           <ItemId $header>Item ID</ItemId>
-          <Description $header $position={25}>
+          <Description $header $position={18}>
             Description
           </Description>
           <CasePack $header $position={48}>
             Case Pack
           </CasePack>
-          <CaseWeight $header $position={60}>
+          <CaseWeight $header $position={58}>
             Case Weight
           </CaseWeight>
           <Quantity $header $position={72}>

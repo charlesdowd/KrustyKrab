@@ -46,9 +46,8 @@ export const FormButton = styled(Button)`
   border: 2px solid #ed2228;
 
   :hover {
-    color: #ed2228;
-    background-color: white;
-    border: 2px solid #ed2228;
+    background-color: #cd1e23;
+    border: 2px solid #cd1e23;
   }
 
   :focus {
