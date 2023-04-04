@@ -24,6 +24,10 @@ export const PublicContainer = styled(Container)`
   margin-top: 100px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    margin-top: 50px;
+    align-items: center;
+  }
 `;
 
 export const NavContainer = styled(Container)`

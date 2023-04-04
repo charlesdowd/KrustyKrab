@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Form as BootstrapForm, Container } from 'react-bootstrap';
+import { Form as BootstrapForm } from 'react-bootstrap';
 import Button from '../../components/Button/Button';
-
-export const Root = styled(Container)`
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-`;
 
 export const Form = styled(BootstrapForm)`
   display: flex;
@@ -34,6 +28,10 @@ export const Title = styled.span`
   font-weight: 600;
   font-size: 32px;
   line-height: 24px;
+  @media (max-width: 768px) {
+    margin-top: 50px;
+  }
+
   margin-top: 100px;
 `;
 
