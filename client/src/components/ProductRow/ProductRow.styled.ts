@@ -12,10 +12,8 @@ export const Root = styled.div`
 `;
 
 export const ActionsRoot = styled.div`
-  position: absolute;
-  left: 72%;
   display: flex;
-  right: calc(0% + 32px);
+  width: 27%;
   justify-content: space-between;
   max-height: 36px;
 `;

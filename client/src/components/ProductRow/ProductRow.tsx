@@ -26,10 +26,10 @@ const ProductRow: FunctionComponent<ProductRowProps> = ({ product }) => {
 
   return (
     <Root>
-      <ItemId>{itemId}</ItemId>
-      <Description $position={17}>{description}</Description>
-      <CasePack $position={48}>{casePack}</CasePack>
-      <CaseWeight $position={60}>{caseWeight}</CaseWeight>
+      <div style={{ width: '16%' }}>{itemId}</div>
+      <div style={{ width: '32%' }}>{description}</div>
+      <div style={{ width: '11%' }}>{casePack}</div>
+      <div style={{ width: '14%' }}>{caseWeight}</div>
       <ProductActions
         _id={_id}
         favorite={isFavorite(_id)}
