@@ -12,6 +12,8 @@ export const Root = styled.div`
 export const SearchBar = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+  width: 100%;
 `;
 
 export const FavoriteDiv = styled.div`
@@ -30,11 +32,14 @@ export const FavoriteDiv = styled.div`
 
 export const TopBar = styled.div`
   display: flex;
-  width: 100%;
   margin-top: 32px;
-  position: relative;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 16px;
+    align-items: flex-start;
+  }
 `;
 
 export const Filter = styled.input`
@@ -45,7 +50,9 @@ export const Filter = styled.input`
   font-size: medium;
   background-color: #3131311f;
   border: none;
-  left: 0px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const SearchIcon = styled.img`
