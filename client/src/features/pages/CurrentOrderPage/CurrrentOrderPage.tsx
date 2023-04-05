@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useAppSelector } from '../../../store/hooks';
 import { selectCurrentOrder } from '../../../store/slices/orderSlice';
-import { Root, Header } from './CurrentOrderPage.styled';
+import { Root, Header, Title } from './CurrentOrderPage.styled';
 import DeadlineBanner from './DeadlineBanner';
 import PendingApprovalBanner from './PendingApprovalBanner/PendingApprovalBanner';
 import SubmitSection from './SubmitSection';
@@ -15,7 +15,7 @@ const CurrentOrderPage: FunctionComponent = () => {
       <PendingApprovalBanner />
 
       <Header>
-        <h1 className='mb-4'>Current Order</h1>
+        <Title className='mb-4'>Current Order</Title>
         <DeadlineBanner />
       </Header>
 

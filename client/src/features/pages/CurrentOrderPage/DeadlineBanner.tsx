@@ -19,11 +19,13 @@ const DeadlineBanner = () => {
           <DeadlineText>Wednesday, 10AM</DeadlineText>
         </div>
       </div>
-      <img src={InfoIcon} height={14} style={{ marginTop: '3px' }} />
-      <DeadlineText>
-        Orders placed before the deadline will ship out Wednesday evening and be
-        available Thursday morning
-      </DeadlineText>
+      <div style={{ display: 'flex', gap: '5px' }}>
+        <img src={InfoIcon} height={14} style={{ marginTop: '3px' }} />
+        <DeadlineText>
+          Orders placed before the deadline will ship out Wednesday evening and
+          be available Thursday morning
+        </DeadlineText>
+      </div>
     </BannerRoot>
   );
 };

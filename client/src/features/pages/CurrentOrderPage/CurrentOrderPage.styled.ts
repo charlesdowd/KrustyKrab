@@ -9,7 +9,17 @@ export const Root = styled.div`
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 65px;
+  padding-top: 32px;
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+`;
+
+export const Title = styled.span`
+  font-weight: 600;
+  font-size: 32px;
+  color: #070f29;
+  align-self: center;
 `;
 
 export const SubmitButtonDiv = styled.div`
@@ -25,6 +35,10 @@ export const BannerRoot = styled.div`
   background-color: #353535;
   color: white;
   gap: 12px;
+
+  @media (max-width: 475px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const DeadlineText = styled.span`
