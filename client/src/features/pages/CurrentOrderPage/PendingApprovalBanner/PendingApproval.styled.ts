@@ -20,4 +20,8 @@ export const BannerTitle = styled.span`
 export const BannerContainer = styled(Container)`
   display: flex;
   gap: 24px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 `;
