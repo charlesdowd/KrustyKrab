@@ -41,6 +41,9 @@ export const RedSection = styled.div`
   background-color: #f84e54;
   color: white;
   padding: 0 40px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const Header = styled.span`
@@ -91,8 +94,16 @@ export const BannerText = styled.span`
 
 export const TagLine = styled(BannerText)`
   font-size: 32px;
+  @media (max-width: 576px) {
+    font-size: 20px;
+  }
+`;
+
+export const RightSide = styled.div`
+  display: flex;
+  flex-direction: column;
   @media (max-width: 768px) {
-    font-size: 16px;
+    display: none;
   }
 `;
 

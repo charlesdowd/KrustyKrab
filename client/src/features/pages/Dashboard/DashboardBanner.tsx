@@ -4,6 +4,7 @@ import {
   BannerText,
   RedSection,
   TagLine,
+  RightSide,
 } from './Dashboard.styled';
 
 const DashboardBanner = () => {
@@ -12,14 +13,14 @@ const DashboardBanner = () => {
       <Container>
         <RedSection>
           <TagLine>A Little Something Extra</TagLine>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <RightSide>
             <BannerText>Email Billing Department</BannerText>
             <BannerText>
               <a href='mailto: arap@lagniappefoods.com'>
                 arap@lagniappefoods.com
               </a>
             </BannerText>
-          </div>
+          </RightSide>
         </RedSection>
       </Container>
     </BannerRoot>
