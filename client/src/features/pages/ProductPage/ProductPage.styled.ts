@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import { ToggleButton, ToggleButtonGroup, Container } from 'react-bootstrap';
 
 export const Products = styled.div``;
 
@@ -84,7 +84,7 @@ export const EmailText = styled.span`
 
 export const ButtonGroup = styled(ToggleButtonGroup)`
   width: 100%;
-  margin-top: 32px;
+  margin: 32px 0;
   background-color: rgba(0, 0, 0, 0.04);
   overflow: auto;
   border-radius: 12px !important;
@@ -133,4 +133,8 @@ export const ProductList = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-top: 32px;
+`;
+
+export const EmptyProductsContainer = styled(Container)`
+  text-align: center;
 `;

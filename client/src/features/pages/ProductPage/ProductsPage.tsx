@@ -15,6 +15,7 @@ import {
   Headers,
   ProductList,
   SearchBar,
+  EmptyProductsContainer,
 } from './ProductPage.styled';
 import {
   ItemId,
@@ -122,29 +123,37 @@ const ProductsPage = () => {
         </SectionButton>
       </ButtonGroup>
 
-      <Products className='mt-5'>
-        <Headers>
-          <ItemId $header>Item ID</ItemId>
-          <Description $header $position={18}>
-            Description
-          </Description>
-          <CasePack $header $position={48}>
-            Case Pack
-          </CasePack>
-          <CaseWeight $header $position={58}>
-            Case Weight
-          </CaseWeight>
-          <Quantity $header $position={72}>
-            Quantity
-          </Quantity>
-        </Headers>
+      {filteredProducts.length > 0 ? (
+        <Products className='pb-5'>
+          <Headers>
+            <ItemId $header>Item ID</ItemId>
+            <Description $header $position={18}>
+              Description
+            </Description>
+            <CasePack $header $position={48}>
+              Case Pack
+            </CasePack>
+            <CaseWeight $header $position={58}>
+              Case Weight
+            </CaseWeight>
+            <Quantity $header $position={72}>
+              Quantity
+            </Quantity>
+          </Headers>
 
-        <ProductList>
-          {filteredProducts?.map((product) => (
-            <ProductRow key={product._id} product={product} />
-          ))}
-        </ProductList>
-      </Products>
+          <ProductList>
+            {filteredProducts?.map((product) => (
+              <ProductRow key={product._id} product={product} />
+            ))}
+          </ProductList>
+        </Products>
+      ) : (
+        <EmptyProductsContainer>
+          <h3>
+            None of our products match this filter or category combination
+          </h3>
+        </EmptyProductsContainer>
+      )}
     </Root>
   );
 };
