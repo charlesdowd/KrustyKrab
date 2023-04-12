@@ -1,7 +1,5 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import FavoritedIcon from '../../assets/favorited-icon.svg';
-import NonFavoritedIcon from '../../assets/non-favorited-icon.svg';
 
 export const ActionsRoot = styled.div`
   display: flex;
@@ -74,10 +72,7 @@ export const SmallButton = styled(AddToCartButton)`
   }
 `;
 
-export const FavoritedButton = styled.button`
-  background-image: url(${FavoritedIcon});
-`;
-
-export const NonFavoritedButton = styled.button`
-  background-image: url(${NonFavoritedIcon});
+export const FavoriteButton = styled.button`
+  border: none;
+  background: none;
 `;

@@ -9,8 +9,7 @@ import {
   BigButton,
   SmallButton,
   OrderInput,
-  FavoritedButton,
-  NonFavoritedButton,
+  FavoriteButton,
 } from './ProductRow.styled';
 import {
   addFavorite,
@@ -59,11 +58,9 @@ const ProductActions: FunctionComponent<ProductActionsProps> = ({
       <OrderInput type='number' ref={quantityRef} placeholder='0' />
       <BigButton onClick={handleSubmit}>Add to Order</BigButton>
       <SmallButton onClick={handleSubmit}>{' + '}</SmallButton>
-      {favorite ? (
-        <FavoritedButton onClick={toggleFavorite} />
-      ) : (
-        <NonFavoritedButton onClick={toggleFavorite} />
-      )}
+      <FavoriteButton onClick={toggleFavorite}>
+        <img src={favorite ? FavoritedIcon : NonFavoritedIcon} />
+      </FavoriteButton>
     </ActionsRoot>
   );
 };

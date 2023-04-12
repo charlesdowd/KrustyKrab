@@ -18,7 +18,6 @@ const productSlice = createSlice({
     // Add new favorite to favorites array
     addFavorite: (state, { payload }) => {
       state.favorites?.push(payload);
-      toast.success('Added to favorites');
     },
 
     // Remove favorite from favorites array
