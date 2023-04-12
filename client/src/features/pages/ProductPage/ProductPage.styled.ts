@@ -1,7 +1,47 @@
 import styled from 'styled-components';
 import { ToggleButton, ToggleButtonGroup, Container } from 'react-bootstrap';
 
-export const Products = styled.div``;
+export const ProductList = styled.table`
+  border-collapse: separate;
+  border-spacing: 0 1em;
+
+  td:first-child,
+  th:first-child {
+    border-radius: 10px 0 0 10px;
+  }
+
+  td:last-child,
+  th:last-child {
+    border-radius: 0 10px 10px 0;
+  }
+
+  // Hide 3rd/4th columns on smaller screen sizes
+  @media (max-width: 768px) {
+    th:nth-child(3),
+    td:nth-child(3) {
+      display: none;
+    }
+    th:nth-child(4),
+    td:nth-child(4) {
+      display: none;
+    }
+  }
+`;
+
+export const TableHeader = styled.th`
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.32);
+  padding: 6px;
+
+  @media (min-width: 768px) {
+    padding: 0 16px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 0 24px;
+  }
+`;
 
 export const Root = styled.div`
   width: 100%;
@@ -121,18 +161,6 @@ export const SectionButton = styled(ToggleButton)`
     padding: 16px 24px;
     font-size: 16px;
   }
-`;
-
-export const Headers = styled.div`
-  position: relative;
-  padding: 0 32px;
-`;
-
-export const ProductList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 32px;
 `;
 
 export const EmptyProductsContainer = styled(Container)`

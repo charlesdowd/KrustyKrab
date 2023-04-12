@@ -4,7 +4,6 @@ import { Product } from '../../../store/slices/api/templateApi.generated';
 import {
   Root,
   TopBar,
-  Products,
   Filter,
   SearchIcon,
   ContactInfo,
@@ -12,18 +11,11 @@ import {
   EmailLink,
   ButtonGroup,
   SectionButton,
-  Headers,
   ProductList,
   SearchBar,
   EmptyProductsContainer,
+  TableHeader,
 } from './ProductPage.styled';
-import {
-  ItemId,
-  Description,
-  CasePack,
-  CaseWeight,
-  Quantity,
-} from '../CurrentOrderPage/CurrentOrder/CurrentOrder.styled';
 import { useAppSelector } from '../../../store/hooks';
 import {
   selectAllProducts,
@@ -124,29 +116,18 @@ const ProductsPage = () => {
       </ButtonGroup>
 
       {filteredProducts.length > 0 ? (
-        <Products className='pb-5'>
-          <Headers>
-            <ItemId $header>Item ID</ItemId>
-            <Description $header $position={18}>
-              Description
-            </Description>
-            <CasePack $header $position={48}>
-              Case Pack
-            </CasePack>
-            <CaseWeight $header $position={58}>
-              Case Weight
-            </CaseWeight>
-            <Quantity $header $position={72}>
-              Quantity
-            </Quantity>
-          </Headers>
-
-          <ProductList>
+        <ProductList className='pb-5'>
+          <TableHeader>Item ID</TableHeader>
+          <TableHeader>Description</TableHeader>
+          <TableHeader>Case Pack</TableHeader>
+          <TableHeader>Weight</TableHeader>
+          <TableHeader>Quantity</TableHeader>
+          <>
             {filteredProducts?.map((product) => (
               <ProductRow key={product._id} product={product} />
             ))}
-          </ProductList>
-        </Products>
+          </>
+        </ProductList>
       ) : (
         <EmptyProductsContainer>
           <h3>

@@ -3,15 +3,9 @@ import { OrderItem } from '../../../../store/slices/api/templateApi.generated';
 import { removeItem } from '../../../../store/slices/orderSlice';
 import {
   Root,
-  Headers,
   OrderSection,
   OrderItemRow,
   RemoveDiv,
-  ItemId,
-  Description,
-  CasePack,
-  CaseWeight,
-  Quantity,
 } from './CurrentOrder.styled';
 import TrashIcon from '../../../../assets/trash-icon.svg';
 import { useAppDispatch } from '../../../../store/hooks';
@@ -30,24 +24,21 @@ const CurrentOrder: FunctionComponent<CurrentOrderProps> = ({
 
   return (
     <Root>
-      <div style={{ padding: '0 40px' }}>
-        <Headers>
-          <ItemId $header>Item ID</ItemId>
-          <Description $header>Description</Description>
-          <CasePack $header>Case Pack</CasePack>
-          <CaseWeight $header>Case Weight</CaseWeight>
-          <Quantity $header>Quantity</Quantity>
-        </Headers>
-      </div>
+      <th>Item ID</th>
+      <th>Description</th>
+      <th>Case Pack</th>
+      <th>Case Weight</th>
+      <th>Quantity</th>
+
       <OrderSection>
         {currentOrder?.map((orderItem) => (
           <OrderItemRow key={(Math.random() * 100 + 1).toString()}>
             {/* TODO FIX THIS KEY ABOVE AND ADD EXTRA INFO TO ORDERITEMS */}
-            <ItemId>1234</ItemId>
-            <Description>{orderItem.description}</Description>
-            <CasePack>7869</CasePack>
-            <CaseWeight>12lbs</CaseWeight>
-            <Quantity>{orderItem.quantity}</Quantity>
+            <td>1234</td>
+            <td>{orderItem.description}</td>
+            <td>7869</td>
+            <td>12lbs</td>
+            <td>{orderItem.quantity}</td>
             <RemoveDiv
               onClick={() =>
                 dispatch(removeItem({ product: orderItem.product }))

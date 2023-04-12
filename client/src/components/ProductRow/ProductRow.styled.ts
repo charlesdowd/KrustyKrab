@@ -1,34 +1,24 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
-export const Root = styled.div`
+export const Root = styled.tr`
   background-color: white;
-  border-radius: 8px;
-  display: flex;
-  position: relative;
   height: 86px;
-  padding: 25px 32px;
-  align-items: center;
 `;
 
 export const ActionsRoot = styled.div`
   display: flex;
-  width: 27%;
   justify-content: space-between;
   max-height: 36px;
+  gap: 12px;
 `;
 
-export const AddToOrderButton = styled(Button)`
+export const AddToCartButton = styled(Button)`
   background-color: white;
   color: #f84e54;
   border: 1px solid #f84e54;
   border-radius: 8px;
-  font-size: normal;
-
-  @media (max-width: 992px) {
-    font-size: x-small !important;
-    padding: 4px;
-  }
+  font-weight: 600;
 
   :hover {
     color: white;
@@ -53,6 +43,10 @@ export const OrderInput = styled.input`
   text-align: right;
   padding: 6px;
 
+  @media (max-width: 768px) {
+    width: 32px;
+  }
+
   // Hide arrows
   /* Chrome, Safari, Edge, Opera */
   ::-webkit-outer-spin-button,
@@ -67,7 +61,39 @@ export const OrderInput = styled.input`
   }
 `;
 
-export const FavoriteDiv = styled.div`
-  cursor: pointer;
-  align-self: center;
+export const BigButton = styled(AddToCartButton)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const SmallButton = styled(AddToCartButton)`
+  font-size: small !important;
+  padding: 0 11px;
+  font-weight: 800;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const TableData = styled.td`
+  color: #070f29;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px;
+
+  @media (min-width: 576px) {
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 24px;
+  }
+`;
+
+export const FavoriteDiv = styled.button`
+  border: none;
+  background: none;
 `;

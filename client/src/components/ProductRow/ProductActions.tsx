@@ -6,7 +6,8 @@ import FavoritedIcon from '../../assets/favorited-icon.svg';
 import NonFavoritedIcon from '../../assets/non-favorited-icon.svg';
 import {
   ActionsRoot,
-  AddToOrderButton,
+  BigButton,
+  SmallButton,
   OrderInput,
   FavoriteDiv,
 } from './ProductRow.styled';
@@ -55,7 +56,8 @@ const ProductActions: FunctionComponent<ProductActionsProps> = ({
   return (
     <ActionsRoot>
       <OrderInput type='number' ref={quantityRef} placeholder='0' />
-      <AddToOrderButton onClick={handleSubmit}>Add to Order</AddToOrderButton>
+      <BigButton onClick={handleSubmit}>Add to Order</BigButton>
+      <SmallButton onClick={handleSubmit}>{' + '}</SmallButton>
       <FavoriteDiv onClick={toggleFavorite}>
         <img src={favorite ? FavoritedIcon : NonFavoritedIcon} />
       </FavoriteDiv>
