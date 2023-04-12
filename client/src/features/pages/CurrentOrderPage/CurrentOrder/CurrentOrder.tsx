@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { OrderItem } from '../../../../store/slices/api/templateApi.generated';
 import { removeItem } from '../../../../store/slices/orderSlice';
-import { OrderSection, OrderItemRow, RemoveDiv } from './CurrentOrder.styled';
+import { RemoveDiv } from './CurrentOrder.styled';
 import {
   Table as Root,
   TableData,
