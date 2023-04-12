@@ -1,11 +1,6 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
-export const Root = styled.tr`
-  background-color: white;
-  height: 86px;
-`;
-
 export const ActionsRoot = styled.div`
   display: flex;
   justify-content: space-between;
@@ -74,22 +69,6 @@ export const SmallButton = styled(AddToCartButton)`
 
   @media (min-width: 768px) {
     display: none;
-  }
-`;
-
-export const TableData = styled.td`
-  color: #070f29;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px;
-
-  @media (min-width: 576px) {
-    padding: 16px;
-    font-size: 14px;
-  }
-
-  @media (min-width: 992px) {
-    padding: 24px;
   }
 `;
 

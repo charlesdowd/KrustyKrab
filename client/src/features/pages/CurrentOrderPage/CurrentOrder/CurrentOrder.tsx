@@ -1,12 +1,13 @@
 import { FunctionComponent } from 'react';
 import { OrderItem } from '../../../../store/slices/api/templateApi.generated';
 import { removeItem } from '../../../../store/slices/orderSlice';
+import { OrderSection, OrderItemRow, RemoveDiv } from './CurrentOrder.styled';
 import {
-  Root,
-  OrderSection,
-  OrderItemRow,
-  RemoveDiv,
-} from './CurrentOrder.styled';
+  Table as Root,
+  TableData,
+  TableHeader,
+  TableRow,
+} from '../../../../components/ProductTable/ProductTable.styled';
 import TrashIcon from '../../../../assets/trash-icon.svg';
 import { useAppDispatch } from '../../../../store/hooks';
 
@@ -23,22 +24,22 @@ const CurrentOrder: FunctionComponent<CurrentOrderProps> = ({
   if (!(currentOrder.length > 0)) return;
 
   return (
-    <Root>
-      <th>Item ID</th>
-      <th>Description</th>
-      <th>Case Pack</th>
-      <th>Case Weight</th>
-      <th>Quantity</th>
+    <Root className='mt-5' style={{ borderSpacing: '0' }}>
+      <TableHeader className='pb-3'>Item ID</TableHeader>
+      <TableHeader>Description</TableHeader>
+      <TableHeader>Case Pack</TableHeader>
+      <TableHeader>Case Weight</TableHeader>
+      <TableHeader>Quantity</TableHeader>
 
-      <OrderSection>
-        {currentOrder?.map((orderItem) => (
-          <OrderItemRow key={(Math.random() * 100 + 1).toString()}>
-            {/* TODO FIX THIS KEY ABOVE AND ADD EXTRA INFO TO ORDERITEMS */}
-            <td>1234</td>
-            <td>{orderItem.description}</td>
-            <td>7869</td>
-            <td>12lbs</td>
-            <td>{orderItem.quantity}</td>
+      {currentOrder?.map((orderItem) => (
+        <TableRow key={(Math.random() * 100 + 1).toString()}>
+          {/* TODO FIX THIS KEY ABOVE AND ADD EXTRA INFO TO ORDERITEMS */}
+          <TableData>1234</TableData>
+          <TableData>{orderItem.description}</TableData>
+          <TableData>7869</TableData>
+          <TableData>12lbs</TableData>
+          <TableData>{orderItem.quantity}</TableData>
+          <TableData>
             <RemoveDiv
               onClick={() =>
                 dispatch(removeItem({ product: orderItem.product }))
@@ -47,9 +48,9 @@ const CurrentOrder: FunctionComponent<CurrentOrderProps> = ({
               <img src={TrashIcon} height={20} />
               <span>Remove Item</span>
             </RemoveDiv>
-          </OrderItemRow>
-        ))}
-      </OrderSection>
+          </TableData>
+        </TableRow>
+      ))}
     </Root>
   );
 };

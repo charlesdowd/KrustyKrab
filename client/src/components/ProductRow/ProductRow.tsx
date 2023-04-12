@@ -1,5 +1,8 @@
 import { FunctionComponent } from 'react';
-import { Root, TableData } from './ProductRow.styled';
+import {
+  TableRow as Root,
+  TableData,
+} from '../ProductTable/ProductTable.styled';
 import { Product } from '../../store/slices/api/templateApi.generated';
 import { selectFavorites } from '../../store/slices/productSlice';
 import ProductActions from './ProductActions';

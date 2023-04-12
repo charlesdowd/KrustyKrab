@@ -11,11 +11,13 @@ import {
   EmailLink,
   ButtonGroup,
   SectionButton,
-  ProductList,
   SearchBar,
   EmptyProductsContainer,
-  TableHeader,
 } from './ProductPage.styled';
+import {
+  Table,
+  TableHeader,
+} from '../../../components/ProductTable/ProductTable.styled';
 import { useAppSelector } from '../../../store/hooks';
 import {
   selectAllProducts,
@@ -116,7 +118,7 @@ const ProductsPage = () => {
       </ButtonGroup>
 
       {filteredProducts.length > 0 ? (
-        <ProductList className='pb-5'>
+        <Table className='pb-5'>
           <TableHeader>Item ID</TableHeader>
           <TableHeader>Description</TableHeader>
           <TableHeader>Case Pack</TableHeader>
@@ -127,7 +129,7 @@ const ProductsPage = () => {
               <ProductRow key={product._id} product={product} />
             ))}
           </>
-        </ProductList>
+        </Table>
       ) : (
         <EmptyProductsContainer>
           <h3>

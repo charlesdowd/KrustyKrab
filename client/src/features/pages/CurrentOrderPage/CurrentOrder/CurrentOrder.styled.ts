@@ -21,14 +21,12 @@ export const OrderItemRow = styled.div`
 `;
 
 export const RemoveDiv = styled.div`
-  position: absolute;
-  line-height: 32px;
-  right: 0px;
   display: flex;
   gap: 8px;
   color: #f84e54;
   cursor: pointer;
   align-items: center;
+  text-align: center;
 `;
 
 const calculateFontStyle = ($header: boolean) => {
