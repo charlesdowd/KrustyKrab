@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { templateApi, Product } from './api/templateApi.generated';
 
 // Interface representing what information we save for favorited products
@@ -17,6 +18,7 @@ const productSlice = createSlice({
     // Add new favorite to favorites array
     addFavorite: (state, { payload }) => {
       state.favorites?.push(payload);
+      toast.success('Added to favorites');
     },
 
     // Remove favorite from favorites array
