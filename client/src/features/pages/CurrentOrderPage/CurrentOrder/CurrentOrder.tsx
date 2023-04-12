@@ -3,7 +3,7 @@ import { OrderItem } from '../../../../store/slices/api/templateApi.generated';
 import { removeItem } from '../../../../store/slices/orderSlice';
 import { RemoveDiv } from './CurrentOrder.styled';
 import {
-  Table as Root,
+  ResponsiveTable as Root,
   TableData,
   TableHeader,
   TableRow,

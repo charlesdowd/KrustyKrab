@@ -13,7 +13,9 @@ export const Table = styled.table`
   th:last-child {
     border-radius: 0 10px 10px 0;
   }
+`;
 
+export const ResponsiveTable = styled(Table)`
   // Hide 3rd/4th columns on smaller screen sizes
   @media (max-width: 768px) {
     th:nth-child(3),
@@ -35,10 +37,12 @@ export const TableHeader = styled.th`
 
   @media (min-width: 768px) {
     padding: 0 16px;
+    font-size: 14px;
   }
 
   @media (min-width: 992px) {
     padding: 0 24px;
+    font-size: 16px;
   }
 `;
 

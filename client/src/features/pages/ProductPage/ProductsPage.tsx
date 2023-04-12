@@ -15,6 +15,7 @@ import {
   EmptyProductsContainer,
 } from './ProductPage.styled';
 import {
+  ResponsiveTable,
   Table,
   TableHeader,
 } from '../../../components/ProductTable/ProductTable.styled';
@@ -118,7 +119,7 @@ const ProductsPage = () => {
       </ButtonGroup>
 
       {filteredProducts.length > 0 ? (
-        <Table className='pb-5'>
+        <ResponsiveTable className='pb-5'>
           <TableHeader>Item ID</TableHeader>
           <TableHeader>Description</TableHeader>
           <TableHeader>Case Pack</TableHeader>
@@ -129,7 +130,7 @@ const ProductsPage = () => {
               <ProductRow key={product._id} product={product} />
             ))}
           </>
-        </Table>
+        </ResponsiveTable>
       ) : (
         <EmptyProductsContainer>
           <h3>

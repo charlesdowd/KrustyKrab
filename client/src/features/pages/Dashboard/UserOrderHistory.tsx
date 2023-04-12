@@ -1,19 +1,21 @@
 import { FunctionComponent } from 'react';
 import {
   HistoryRoot,
-  DescriptionHeader,
-  QuantityHeader,
-  DateHeader,
-  Headers,
   Title,
   EmptyHistoryDiv,
+  DescriptionColumn,
 } from './Dashboard.styled';
 import { EmptyOrderText } from '../CurrentOrderPage/CurrentOrderPage.styled';
 import EmptyOrderIcon from '../../../assets/empty-order-icon.svg';
 import { useGetOrdersQuery } from '../../../store/slices/api/templateApi';
 import { Order } from '../../../store/slices/api/templateApi.generated';
-import OrderRow from '../../../components/OrderRow/OrderRow';
 import { NavLink } from 'react-router-dom';
+import {
+  Table,
+  TableData,
+  TableHeader,
+  TableRow,
+} from '../../../components/ProductTable/ProductTable.styled';
 
 const UserOrderHistory: FunctionComponent = () => {
   const { data } = useGetOrdersQuery();
@@ -38,14 +40,33 @@ const UserOrderHistory: FunctionComponent = () => {
   return (
     <HistoryRoot>
       <Title>Order History</Title>
-      <Headers>
-        <DescriptionHeader>Description</DescriptionHeader>
-        <QuantityHeader>Quantity</QuantityHeader>
-        <DateHeader>Order Placed</DateHeader>
-      </Headers>
-      {orders.map((order) => (
-        <OrderRow order={order} key={order._id} className='mt-4' />
-      ))}
+      <Table>
+        <TableHeader>Description</TableHeader>
+        <TableHeader>Quantity</TableHeader>
+        <TableHeader style={{ textAlign: 'center' }}>Order Placed</TableHeader>
+
+        {orders.map((order) => (
+          <TableRow key={order._id}>
+            <TableData>
+              <DescriptionColumn>
+                {order.orderItems.map((orderItem) => (
+                  <div key={orderItem.description}>{orderItem.description}</div>
+                ))}
+              </DescriptionColumn>
+            </TableData>
+            <TableData>
+              <DescriptionColumn>
+                {order.orderItems.map((orderItem) => (
+                  <div key={orderItem.description}>{orderItem.quantity}</div>
+                ))}
+              </DescriptionColumn>
+            </TableData>
+            <TableData style={{ textAlign: 'center' }}>
+              {new Date(order.createdAt).toLocaleDateString('en-US')}
+            </TableData>
+          </TableRow>
+        ))}
+      </Table>
     </HistoryRoot>
   );
 };

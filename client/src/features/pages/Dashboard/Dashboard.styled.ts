@@ -18,13 +18,6 @@ export const HistoryRoot = styled.div`
   padding-bottom: 50px;
 `;
 
-export const OrderRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-bottom: 3px solid black;
-`;
-
 export const BannerRoot = styled.div`
   height: 62px;
   background-color: rgb(53, 53, 53);
@@ -44,29 +37,6 @@ export const RedSection = styled.div`
   @media (max-width: 768px) {
     justify-content: center;
   }
-`;
-
-const Header = styled.span`
-  position: absolute;
-  color: #0000006b;
-  font-weight: 600;
-`;
-
-export const Headers = styled.div`
-  position: relative;
-  margin: 24px 0;
-`;
-
-export const DescriptionHeader = styled(Header)`
-  left: 40px;
-`;
-
-export const QuantityHeader = styled(Header)`
-  left: 50%;
-`;
-
-export const DateHeader = styled(Header)`
-  right: 40px;
 `;
 
 export const Title = styled.span`
@@ -116,4 +86,11 @@ export const EmptyHistoryDiv = styled.div`
   max-width: 356px;
   text-align: center;
   align-self: center;
+`;
+
+export const DescriptionColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
 `;
