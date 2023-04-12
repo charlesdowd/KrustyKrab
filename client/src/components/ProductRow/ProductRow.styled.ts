@@ -72,7 +72,4 @@ export const SmallButton = styled(AddToCartButton)`
   }
 `;
 
-export const FavoriteDiv = styled.button`
-  border: none;
-  background: none;
-`;
+export const FavoriteDiv = styled.button``;
