@@ -56,7 +56,7 @@ const authSlice = createSlice({
       (state, { payload }) => {
         state.accessToken = payload.accessToken;
         state.user = payload.user;
-        toast.success('Login success');
+        toast.success('Welcome Back!');
       },
     );
 

@@ -17,7 +17,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ToastContainer theme='colored' position='top-center' />
+        <ToastContainer theme='colored' position='top-right' autoClose={1500} />
         <BrowserRouter>
           <Routes>
             <Route path='/*' element={<App />} />

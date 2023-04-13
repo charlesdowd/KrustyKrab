@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import { templateApi, Product } from './api/templateApi.generated';
 
 // Interface representing what information we save for favorited products
@@ -48,7 +47,7 @@ const productSlice = createSlice({
     // Add users favorites from localStorage to state on login
     builder.addMatcher(templateApi.endpoints.login.matchFulfilled, (state) => {
       const favorites = JSON.parse(localStorage.getItem('favorites'));
-      state.favorites = favorites;
+      state.favorites = favorites || [];
     });
   },
 });

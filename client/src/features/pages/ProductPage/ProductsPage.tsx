@@ -16,7 +16,6 @@ import {
 } from './ProductPage.styled';
 import {
   ResponsiveTable,
-  Table,
   TableHeader,
 } from '../../../components/ProductTable/ProductTable.styled';
 import { useAppSelector } from '../../../store/hooks';
