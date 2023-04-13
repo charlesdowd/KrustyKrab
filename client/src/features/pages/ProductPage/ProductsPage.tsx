@@ -119,16 +119,20 @@ const ProductsPage = () => {
 
       {filteredProducts.length > 0 ? (
         <ResponsiveTable className='pb-5'>
-          <TableHeader>Item ID</TableHeader>
-          <TableHeader>Description</TableHeader>
-          <TableHeader>Case Pack</TableHeader>
-          <TableHeader>Weight</TableHeader>
-          <TableHeader>Quantity</TableHeader>
-          <>
+          <thead>
+            <tr>
+              <TableHeader>Item ID</TableHeader>
+              <TableHeader>Description</TableHeader>
+              <TableHeader>Case Pack</TableHeader>
+              <TableHeader>Weight</TableHeader>
+              <TableHeader>Quantity</TableHeader>
+            </tr>
+          </thead>
+          <tbody>
             {filteredProducts?.map((product) => (
               <ProductRow key={product._id} product={product} />
             ))}
-          </>
+          </tbody>
         </ResponsiveTable>
       ) : (
         <EmptyProductsContainer>

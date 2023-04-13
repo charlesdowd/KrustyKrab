@@ -41,31 +41,42 @@ const UserOrderHistory: FunctionComponent = () => {
     <HistoryRoot>
       <Title>Order History</Title>
       <Table>
-        <TableHeader>Description</TableHeader>
-        <TableHeader>Quantity</TableHeader>
-        <TableHeader style={{ textAlign: 'center' }}>Order Placed</TableHeader>
-
-        {orders.map((order) => (
-          <TableRow key={order._id}>
-            <TableData>
-              <DescriptionColumn>
-                {order.orderItems.map((orderItem) => (
-                  <div key={orderItem.description}>{orderItem.description}</div>
-                ))}
-              </DescriptionColumn>
-            </TableData>
-            <TableData>
-              <DescriptionColumn>
-                {order.orderItems.map((orderItem) => (
-                  <div key={orderItem.description}>{orderItem.quantity}</div>
-                ))}
-              </DescriptionColumn>
-            </TableData>
-            <TableData style={{ textAlign: 'center' }}>
-              {new Date(order.createdAt).toLocaleDateString('en-US')}
-            </TableData>
-          </TableRow>
-        ))}
+        <thead>
+          <tr>
+            <TableHeader>Description</TableHeader>
+            <TableHeader>Quantity</TableHeader>
+            <TableHeader style={{ textAlign: 'center' }}>
+              Order Placed
+            </TableHeader>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <TableRow key={order._id}>
+              <TableData>
+                <DescriptionColumn>
+                  {order.orderItems.map((orderItem) => (
+                    <div key={orderItem.product.description}>
+                      {orderItem.product.description}
+                    </div>
+                  ))}
+                </DescriptionColumn>
+              </TableData>
+              <TableData>
+                <DescriptionColumn>
+                  {order.orderItems.map((orderItem) => (
+                    <div key={orderItem.product.description}>
+                      {orderItem.quantity}
+                    </div>
+                  ))}
+                </DescriptionColumn>
+              </TableData>
+              <TableData style={{ textAlign: 'center' }}>
+                {new Date(order.createdAt).toLocaleDateString('en-US')}
+              </TableData>
+            </TableRow>
+          ))}
+        </tbody>
       </Table>
     </HistoryRoot>
   );

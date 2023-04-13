@@ -11,25 +11,22 @@ import {
   OrderInput,
   FavoriteButton,
 } from './ProductRow.styled';
-import {
-  addFavorite,
-  removeFavorite,
-  Favorite,
-} from '../../store/slices/productSlice';
+import { addFavorite, removeFavorite } from '../../store/slices/productSlice';
+import { Product } from '../../store/slices/api/templateApi.generated';
 
-interface ProductActionsProps extends Favorite {
+interface ProductActionsProps {
+  product: Product;
   favorite: boolean;
-  description;
 }
 
 const ProductActions: FunctionComponent<ProductActionsProps> = ({
-  _id,
-  itemId,
-  description,
+  product,
   favorite,
 }) => {
   const quantityRef = useRef<HTMLInputElement>();
   const dispatch = useAppDispatch();
+
+  const { _id, itemId } = product;
 
   const toggleFavorite = () => {
     // Change redux favorite state
@@ -49,7 +46,7 @@ const ProductActions: FunctionComponent<ProductActionsProps> = ({
     }
 
     // Add item to the users current order in redux state
-    dispatch(addItem({ product: _id, quantity, description }));
+    dispatch(addItem({ ...product, quantity }));
     quantityRef.current.value = null;
   };
 

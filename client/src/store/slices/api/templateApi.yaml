@@ -508,11 +508,8 @@ components:
         quantity:
           type: integer
         product:
-          type: string
-          description: 'Product ID '
-        description:
-          type: string
+          $ref: '#/components/schemas/Product'
+          description: Product
       required:
         - quantity
         - product
-        - description

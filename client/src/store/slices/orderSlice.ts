@@ -1,13 +1,6 @@
 import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { templateApi } from './api/templateApi.generated';
-
-// Type to represent part of an order. Individual product and quantity ordered
-export type OrderItem = {
-  product: string;
-  description: string;
-  quantity: number;
-};
+import { templateApi, OrderItem } from './api/templateApi.generated';
 
 const orderSlice = createSlice({
   name: 'order',
@@ -17,20 +10,24 @@ const orderSlice = createSlice({
   },
   reducers: {
     addItem: (state, { payload }) => {
-      const { product, quantity, description } = payload;
+      const { _id, quantity, description, itemId, casePack, caseWeight } =
+        payload;
 
       // Handle when product already exists in current order. Remove old value
       state.currentOrder = state.currentOrder.filter(
-        (orderItem: OrderItem) => orderItem.product !== product,
+        (orderItem: OrderItem) => orderItem.product._id !== _id,
       );
 
-      state.currentOrder.push({ product, quantity, description });
+      state.currentOrder.push({
+        product: { description, itemId, casePack, caseWeight, _id },
+        quantity,
+      });
       toast.success('Added to current order');
     },
     removeItem: (state, { payload }) => {
       const { product } = payload;
       state.currentOrder = state.currentOrder.filter(
-        (orderItem) => orderItem.product !== product,
+        (orderItem) => orderItem.product._id !== product,
       );
       toast.success('Removed from current order');
     },

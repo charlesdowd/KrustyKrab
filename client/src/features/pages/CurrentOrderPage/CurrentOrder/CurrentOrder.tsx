@@ -25,32 +25,34 @@ const CurrentOrder: FunctionComponent<CurrentOrderProps> = ({
 
   return (
     <Root className='mt-5' style={{ borderSpacing: '0' }}>
-      <TableHeader className='pb-3'>Item ID</TableHeader>
-      <TableHeader>Description</TableHeader>
-      <TableHeader>Case Pack</TableHeader>
-      <TableHeader>Case Weight</TableHeader>
-      <TableHeader>Quantity</TableHeader>
-
-      {currentOrder?.map((orderItem) => (
-        <TableRow key={(Math.random() * 100 + 1).toString()}>
-          {/* TODO FIX THIS KEY ABOVE AND ADD EXTRA INFO TO ORDERITEMS */}
-          <TableData>1234</TableData>
-          <TableData>{orderItem.description}</TableData>
-          <TableData>7869</TableData>
-          <TableData>12lbs</TableData>
-          <TableData>{orderItem.quantity}</TableData>
-          <TableData>
-            <RemoveDiv
-              onClick={() =>
-                dispatch(removeItem({ product: orderItem.product }))
-              }
-            >
-              <img src={TrashIcon} height={20} />
-              <span>Remove Item</span>
-            </RemoveDiv>
-          </TableData>
-        </TableRow>
-      ))}
+      <thead>
+        <tr>
+          <TableHeader>Item ID</TableHeader>
+          <TableHeader>Description</TableHeader>
+          <TableHeader>Case Pack</TableHeader>
+          <TableHeader>Case Weight</TableHeader>
+          <TableHeader>Quantity</TableHeader>
+        </tr>
+      </thead>
+      <tbody>
+        {currentOrder?.map(({ product, quantity }: OrderItem) => (
+          <TableRow key={product._id}>
+            <TableData>{product.itemId}</TableData>
+            <TableData>{product.description}</TableData>
+            <TableData>{product.casePack}</TableData>
+            <TableData>{product.caseWeight}</TableData>
+            <TableData>{quantity}</TableData>
+            <TableData>
+              <RemoveDiv
+                onClick={() => dispatch(removeItem({ product: product._id }))}
+              >
+                <img src={TrashIcon} height={20} />
+                <span>Remove Item</span>
+              </RemoveDiv>
+            </TableData>
+          </TableRow>
+        ))}
+      </tbody>
     </Root>
   );
 };

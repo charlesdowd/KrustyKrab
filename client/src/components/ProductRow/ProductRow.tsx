@@ -28,12 +28,7 @@ const ProductRow: FunctionComponent<ProductRowProps> = ({ product }) => {
       <TableData>{casePack}</TableData>
       <TableData>{caseWeight}</TableData>
       <TableData>
-        <ProductActions
-          _id={_id}
-          favorite={isFavorite(_id)}
-          itemId={itemId}
-          description={description}
-        />
+        <ProductActions product={product} favorite={isFavorite(_id)} />
       </TableData>
     </Root>
   );

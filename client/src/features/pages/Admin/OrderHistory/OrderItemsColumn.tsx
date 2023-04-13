@@ -12,8 +12,8 @@ const OrderItemsColumn: FunctionComponent<OrderItemsColumnProps> = ({
   return (
     <>
       {orderItems?.map((orderItem) => (
-        <OrderItemRow key={orderItem.product}>
-          <div>Item: {orderItem.description}</div>
+        <OrderItemRow key={orderItem.product._id}>
+          <div>Item: {orderItem.product.description}</div>
           <div>Quantity: {orderItem.quantity}</div>
         </OrderItemRow>
       ))}
