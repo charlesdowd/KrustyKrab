@@ -56,7 +56,7 @@ const UserOrderHistory: FunctionComponent = () => {
               <TableData>
                 <DescriptionColumn>
                   {order.orderItems.map((orderItem) => (
-                    <div key={orderItem.product.description}>
+                    <div key={orderItem.product._id}>
                       {orderItem.product.description}
                     </div>
                   ))}
@@ -65,9 +65,7 @@ const UserOrderHistory: FunctionComponent = () => {
               <TableData>
                 <DescriptionColumn>
                   {order.orderItems.map((orderItem) => (
-                    <div key={orderItem.product.description}>
-                      {orderItem.quantity}
-                    </div>
+                    <div key={orderItem.product._id}>{orderItem.quantity}</div>
                   ))}
                 </DescriptionColumn>
               </TableData>

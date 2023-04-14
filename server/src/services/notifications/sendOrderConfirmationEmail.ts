@@ -1,9 +1,10 @@
-import { IOrder } from '../../models';
+/* eslint-disable prettier/prettier */
+import { OrderItem } from '../../models';
 import { sendEmail } from './sendEmail';
 
 export async function sendOrderConfirmationEmail(
   email: string,
-  order: IOrder,
+  orderItems: [OrderItem],
 ): Promise<void> {
   // TODO: Talk with Dylan about putting order information in the email vs admin dashboard
 
@@ -15,11 +16,10 @@ export async function sendOrderConfirmationEmail(
           <h4>We will be processing this order as soon as possible. Keep in mind 
           orders are delivered on Wednesdays. Any orders placed after Tuesday at 
           noon will be scheduled for the following Wednesday</h4>
-          <button>
+   
             <a href=${process.env.BASE_URL}> 
               View all of your placed orders from your profile dashboard
-            </a>
-          </button>`,
+            </a>`,
   };
 
   const lagniappeMailOptions = {
@@ -28,12 +28,35 @@ export async function sendOrderConfirmationEmail(
     subject: 'New Customer Order Placed!',
     html: `<h2>View the new order in the admin dashboard if needed</h2>
           <h4>User: ${email}</h4>
-          <h4>Order: ${JSON.stringify(order.orderItems)}</h4>
-          <button>
+          <h4>Order: </h4>
+
+          <div>
+            <table style={{ textAlign: 'center' }}>
+              <thead>
+                <tr>
+                  <th>Item ID</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${orderItems.map(
+                  (orderItem) =>
+                    `<tr>
+                      <td>${orderItem.product.itemId}</td>
+                      <td>${orderItem.product.description}</td>
+                      <td>${orderItem.quantity}</td>
+                    </tr>`,
+                )}
+              </tbody>
+            </table
+          </div>
+
+        
             <a href=${process.env.BASE_URL}/admin>
               View order in admin dashboard
             </a>
-          </button>`,
+        `,
   };
 
   // Send Lagniappe new user order email

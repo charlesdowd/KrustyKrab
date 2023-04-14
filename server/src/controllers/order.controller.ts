@@ -19,7 +19,7 @@ async function createOrder(
   });
 
   // Send order confirmation email
-  await NotificationService.sendOrderConfirmationEmail(email, order);
+  await NotificationService.sendOrderConfirmationEmail(email, orderItems);
 
   return res.status(201).json({ order });
 }
