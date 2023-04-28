@@ -23,7 +23,10 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: ['https://lagniappefoods.store'],
+      connectSrc: [
+        'https://lagniappefoods.store',
+        'https://lagniappe-orders-app.herokuapp.com',
+      ],
     },
   }),
 );
