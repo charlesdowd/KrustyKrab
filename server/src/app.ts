@@ -8,7 +8,6 @@ import path from 'path';
 
 import api from './api';
 import * as middlewares from './middleware/notFound';
-import MessageResponse from './interfaces/MessageResponse';
 import errorHandler from './middleware/errorHandler';
 
 dotenv.config();
@@ -19,6 +18,15 @@ console.log('ENVIRONMENT: ', process.env.NODE_ENV);
 
 app.use(morgan('dev'));
 app.use(helmet());
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ['https://lagniappefoods.store'],
+    },
+  }),
+);
 
 // https://stackoverflow.com/questions/63351799/react-fetch-credentials-include-breaks-my-entire-request-and-i-get-an-error
 app.use(
