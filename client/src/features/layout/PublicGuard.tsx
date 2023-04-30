@@ -23,7 +23,7 @@ const PublicGuard = () => {
     <PublicRoot>
       <PublicContainer>
         <div>
-          <img src={RedLogo} />
+          <img src={RedLogo} width={140} />
         </div>
         <Outlet />
       </PublicContainer>
