@@ -4,8 +4,8 @@ export async function sendRegisterEmail(email: string, emailToken: string) {
   // Send out verification email
   const mailOptions = {
     to: email,
-    from: `"Verify your email" <krustykrabtesting@gmail.com>`,
-    subject: 'KrustyKrab - verify your email',
+    from: `"Lagniappe Foods" <krustykrabtesting@gmail.com>`,
+    subject: 'Verify your email',
     html: `<h2>Thanks for registering on our site </h2>
           <h4>Please verify your email to continue...</h4>
           <button>
