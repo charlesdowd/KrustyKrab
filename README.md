@@ -1,6 +1,6 @@
 # Project Krusty Krab
 
-This is forked off of a private repo for a custom order service project I built for Lagniappefoods.com
+This is forked off of a private repo for a custom order service project I built for Lagniappefoods.com, a value added seafood company.
 
 This repo is being used to showcase some of my code and patterns I like to use
 
