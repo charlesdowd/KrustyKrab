@@ -1,15 +1,9 @@
 # Project Krabby Patty
 
-Built off of template project
+This is forked off of a private repo for a custom order service project I built for Lagniappefoods.com
 
-- Use npm install in root folder of both client and server
-- Create a .env file inside the root of the Server folder and set DATABASE_URI to your local mongo uri.
-- Create a .env file inside of the root of the client and set the REACT_APP_BASE_URL to `http://localhost:PORT/api/v1` and replace PORT with whatever port you are running the server on. The default is 4000.
+This fork is being used to showcase some of my code and patterns I like to use
 
-Run Client Locally:
-Inside of client folder `npm run dev` which will run default on Port 3000 - http://localhost:3000/
+You can go see this project in action at www.lagniappefoods.store
 
-Run Server Locally:
-Inside of server folder `npm run start`
-
-TODO: Add more relevant info to the readme.
+Any questions please feel free to reach out to me at charlie@luciddev.io :)
