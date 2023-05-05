@@ -4,13 +4,13 @@ import { sendEmail } from './sendEmail';
 
 export async function sendOrderConfirmationEmail(
   email: string,
-  orderItems: [OrderItem]
+  orderItems: [OrderItem],
 ): Promise<void> {
   // TODO: Talk with Dylan about putting order information in the email vs admin dashboard
 
   const customerMailOptions = {
     to: email,
-    from: `"Lagniappe Foods" <krustykrabtesting@gmail.com>`,
+    from: 'Lagniappe Foods',
     subject: 'Your Order is Confirmed!',
     html: `<h2>Your order was placed successfully</h2>
           <h4>We will be processing this order as soon as possible. Keep in mind 
@@ -19,7 +19,7 @@ export async function sendOrderConfirmationEmail(
    
             <a href=${process.env.BASE_URL}> 
               View all of your placed orders from your profile dashboard
-            </a>`
+            </a>`,
   };
 
   const lagniappeMailOptions = {
@@ -46,7 +46,7 @@ export async function sendOrderConfirmationEmail(
                       <td>${orderItem.product.itemId}</td>
                       <td>${orderItem.product.description}</td>
                       <td>${orderItem.quantity}</td>
-                    </tr>`
+                    </tr>`,
                 )}
               </tbody>
             </table
@@ -56,7 +56,7 @@ export async function sendOrderConfirmationEmail(
             <a href=${process.env.BASE_URL}/admin>
               View order in admin dashboard
             </a>
-        `
+        `,
   };
 
   // Send Lagniappe new user order email
